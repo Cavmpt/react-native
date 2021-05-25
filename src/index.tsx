@@ -1,8 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router, useRoutes, Outlet } from "react-router-dom";
 import ReactDOM from "react-dom";
-import Modal from "react-modal";
 import DOTENV from "dotenv";
+
+import Navbar from "./components/UIcomponents/Navbar/Navbar";
+import Map from "./components/Pages/Map/Map";
+import Threats from "./components/Pages/Threats/Threats";
 
 import "typeface-roboto-slab";
 
@@ -14,7 +17,6 @@ import reportWebVitals from "./reportWebVitals";
 import { Provider } from "./store/Provider";
 
 DOTENV.config();
-Modal.setAppElement("#src");
 
 const routesArray = [
   {
@@ -23,10 +25,9 @@ const routesArray = [
       <>
         <Navbar />
         <Outlet />
-        <Footer />
       </>
     ),
-    children: [{ path: "/", element: <Dashboard /> }],
+    children: [{ path: "/", element: <Threats /> }],
   },
 ];
 

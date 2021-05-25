@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import "./Dashboard.scss";
+import "./Threats.scss";
 
 export interface IDashboardProps {
   placeholder?: string;
