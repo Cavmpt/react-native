@@ -6,6 +6,10 @@ export interface INavbarProps {
   placeholder?: null;
 }
 
-export default function Navbar(props: INavbarProps) {
-  return <div></div>;
+export default function Navbar(props: INavbarProps): JSX.Element {
+  return (
+    <div className="navbar">
+      <div></div>
+    </div>
+  );
 }
