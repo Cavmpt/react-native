@@ -1,10 +1,15 @@
 import React, { useContext } from "react";
+
 import "./Threats.scss";
 
-export interface IDashboardProps {
+export interface IThreatsProps {
   placeholder?: string;
 }
 
-export default function Dashboard(props: IDashboardProps): JSX.Element {
-  return <div></div>;
+export default function Threats(props: IThreatsProps): JSX.Element {
+  return (
+    <div>
+      <div></div>
+    </div>
+  );
 }

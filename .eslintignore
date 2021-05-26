@@ -1,0 +1,16 @@
+!**/.eslintrc*
+node_modules*
+dist
+build/**/*
+*.svg
+*.ico
+*.json
+.gitignore
+*.md
+*.log
+*.lock
+build
+config
+jest.config.js
+!**/.eslintrc.js*
+eslintrc.js
