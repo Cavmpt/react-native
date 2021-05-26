@@ -1,22 +1,22 @@
 import React, {useState} from 'react'
 
 export type ContextType = {
-  currentAccount: string
-  setCurrentAccount: (item: string) => void
+  currentThreats: string[]
+  setCurrentThreats: (item: string[]) => void
 }
 
 const Context = React.createContext<ContextType>(undefined!)
 
 const Provider = ({children}: any): any => {
-  const [currentAccount, setCurrentAccount] = useState('')
+  const [currentThreats, setCurrentThreats] = useState<string[]>([])
 
   return (
     <Context.Provider
       value={{
         // values
-        currentAccount,
+        currentThreats,
         // functions
-        setCurrentAccount,
+        setCurrentThreats,
       }}
     >
       {children}

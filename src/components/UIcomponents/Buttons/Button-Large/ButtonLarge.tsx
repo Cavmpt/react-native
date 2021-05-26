@@ -1,21 +1,28 @@
-import * as React from "react";
+import * as React from 'react'
 
-import "./ButtonLarge.scss";
+import './ButtonLarge.scss'
 
 export interface IButtonLargeProps {
-  textValue: string;
-  onClick: () => void;
+  color: string
+  textValue: string
+  onClick: () => void
 }
 
 export default function ButtonLarge(props: IButtonLargeProps) {
-  const { textValue } = props;
+  const handleClick = () => {
+    props.onClick()
+  }
 
-  const HandleClick = () => {
-    props.onClick();
-  };
+  const {textValue, color} = props
+
   return (
-    <button className="ButtonLarge" onClick={() => HandleClick()} type="button">
+    <button
+      className='ButtonLarge'
+      onClick={() => handleClick()}
+      type='button'
+      style={{backgroundColor: color}}
+    >
       <div>{textValue}</div>
     </button>
-  );
+  )
 }
