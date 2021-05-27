@@ -1,11 +1,11 @@
 
 .threatAnalyser-page {
-  display: flex;
-  justify-content: center;
-  text-align: center;
+  margin: 0 auto;
   width: 100%;
   height: 80vh;
   background-color: var(--black);
+  border: 1px solid var(--white);
+  border-radius: 10px;
 
   &__button-wrap {
     margin-top: 60vh;

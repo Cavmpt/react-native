@@ -34,30 +34,29 @@ export default function ThreatAnalyser(props: IThreatAnalyserProps) {
     // DELETE EVENT
   }
   return (
-    <div className='threatAnalyser-page'>
-      <div
-        style={{
-          marginTop: `5vh`,
-          width: `80%`,
-          height: `80vh`,
-          backgroundImage: `url(${currentImage})`,
-        }}
-      >
-        <div className='threatAnalyser-page__button-wrap'>
-          <div className='threatAnalyser-page__buttons'>
-            <ButtonLarge
-              textValue='Investigate'
-              onClick={() => confirmThreat()}
-              color='red'
-            />
-          </div>
-          <div className='threatAnalyser-page__buttons'>
-            <ButtonLarge
-              textValue='Ignore'
-              onClick={() => ignoreEvent()}
-              color='gray'
-            />
-          </div>
+    <div
+      className='threatAnalyser-page'
+      style={{
+        marginTop: `5vh`,
+        width: `70%`,
+        height: `70vh`,
+        backgroundImage: `url(${currentImage})`,
+      }}
+    >
+      <div className='threatAnalyser-page__button-wrap'>
+        <div className='threatAnalyser-page__buttons'>
+          <ButtonLarge
+            textValue='Investigate'
+            onClick={() => confirmThreat()}
+            color='red'
+          />
+        </div>
+        <div className='threatAnalyser-page__buttons'>
+          <ButtonLarge
+            textValue='Ignore'
+            onClick={() => ignoreEvent()}
+            color='gray'
+          />
         </div>
       </div>
     </div>

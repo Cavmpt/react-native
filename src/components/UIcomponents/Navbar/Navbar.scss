@@ -4,12 +4,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 .navbar {
   width: 90%;
+  margin-top: 2rem;
   margin-left: 2rem;
   margin-right: 2rem;
-  border: 1px solid black;
+  border: 1px solid white;
   background-color: gray;
   border-radius: 5px;
   display: inline-flex;
@@ -17,12 +19,10 @@
   &__map {
     @include navbar-element;
     height: 100%;
-    background-color: black;
   }
 
   &__live-feeds {
     @include navbar-element;
     height: 100%;
-    background-color: black;
   }
 }

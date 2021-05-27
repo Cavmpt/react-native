@@ -1,6 +1,8 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
 
+import './Navbar.scss'
+
 export interface INavbarProps {
   placeholder?: any
 }
@@ -10,20 +12,21 @@ export default function Navbar(props: INavbarProps): JSX.Element {
     <div className='navbar'>
       <img src='./xguard-logo.png' alt='Xguard-logo' width='50' height='50' />
       <NavLink
+        end
         to='/'
         activeStyle={{
           fontWeight: 'bold',
-          color: 'red',
+          color: 'black',
         }}
         className='navbar__map'
       >
         Map
       </NavLink>
       <NavLink
-        to='/controls'
+        to='controls'
         activeStyle={{
           fontWeight: 'bold',
-          color: 'red',
+          color: 'black',
         }}
         className='navbar__live-feeds'
       >
