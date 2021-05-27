@@ -27,7 +27,10 @@ const routesArray = [
         <Outlet />
       </>
     ),
-    children: [{path: '/', element: <Control />}],
+    children: [
+      { path: "/", element: <Threats /> },
+      { path: "/map", element: <Map /> },
+    ]
   },
 ]
 

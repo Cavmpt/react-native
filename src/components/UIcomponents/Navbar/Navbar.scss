@@ -1,0 +1,28 @@
+@mixin navbar-element {
+  margin-left: 2rem;
+  margin-right: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.navbar {
+  width: 90%;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  border: 1px solid black;
+  background-color: gray;
+  border-radius: 5px;
+  display: inline-flex;
+
+  &__map {
+    @include navbar-element;
+    height: 100%;
+    background-color: black;
+  }
+
+  &__live-feeds {
+    @include navbar-element;
+    height: 100%;
+    background-color: black;
+  }
+}
