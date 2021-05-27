@@ -1,32 +1,34 @@
+import React from 'react'
+import {NavLink} from 'react-router-dom'
+
+export interface INavbarProps {
+  placeholder?: any
+}
+
 export default function Navbar(props: INavbarProps): JSX.Element {
   return (
-    <div className="navbar">
-      <img
-        src="./xguard-logo.png"
-        alt="Xguard-logo"
-        width="50"
-        height="50"
-      ></img>
+    <div className='navbar'>
+      <img src='./xguard-logo.png' alt='Xguard-logo' width='50' height='50' />
       <NavLink
-        to="/"
+        to='/'
         activeStyle={{
-          fontWeight: "bold",
-          color: "red",
+          fontWeight: 'bold',
+          color: 'red',
         }}
-        className="navbar__map"
+        className='navbar__map'
       >
         Map
       </NavLink>
       <NavLink
-        to="/"
+        to='/controls'
         activeStyle={{
-          fontWeight: "bold",
-          color: "red",
+          fontWeight: 'bold',
+          color: 'red',
         }}
-        className="navbar__live-feeds"
+        className='navbar__live-feeds'
       >
-        Live Feeds
+        Controls
       </NavLink>
     </div>
-  );
+  )
 }

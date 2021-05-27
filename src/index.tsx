@@ -28,9 +28,9 @@ const routesArray = [
       </>
     ),
     children: [
-      { path: "/", element: <Threats /> },
-      { path: "/map", element: <Map /> },
-    ]
+      {path: '/controls', element: <Control />},
+      {path: '/', element: <Map />},
+    ],
   },
 ]
 
