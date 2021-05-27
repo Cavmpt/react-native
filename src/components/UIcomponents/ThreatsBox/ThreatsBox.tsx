@@ -1,12 +1,14 @@
 import React, {useContext} from 'react'
 
-import './Threatbox.scss'
+import './ThreatsBox.scss'
 
-import {Context, ContextType} from '../../../../store/Provider'
+import {Context, ContextType} from '../../../store/Provider'
 
-export interface IThreatsBoxProps {}
+export interface IThreatsBoxProps {
+  placeholder?: any
+}
 
-export function ThreatsBox(props: IThreatsBoxProps) {
+export default function ThreatsBox(props: IThreatsBoxProps) {
   const context = useContext<ContextType>(Context)
   const {currentThreats} = context
   return (

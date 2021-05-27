@@ -1,5 +1,7 @@
 import React, {useContext} from 'react'
 import ButtonLarge from '../../../UIcomponents/Buttons/Button-Large/ButtonLarge'
+import AlertBox from '../../../UIcomponents/AlertBox/AlertBox'
+import ThreatsBox from '../../../UIcomponents/ThreatsBox/ThreatsBox'
 
 import DummyImage from './screenCap.jpg'
 
@@ -43,6 +45,8 @@ export default function ThreatAnalyser(props: IThreatAnalyserProps) {
           backgroundImage: `url(${currentImage})`,
         }}
       >
+        <AlertBox />
+        <ThreatsBox />
         <div className='threatAnalyser-page__button-wrap'>
           <div className='threatAnalyser-page__buttons'>
             <ButtonLarge

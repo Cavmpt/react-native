@@ -2,7 +2,9 @@ import React, {useContext} from 'react'
 
 import {Context, ContextType} from '../../../store/Provider'
 
-export interface IAlertBoxProps {}
+export interface IAlertBoxProps {
+  placeholder?: any
+}
 
 export default function AlertBox(props: IAlertBoxProps) {
   const context = useContext<ContextType>(Context)
@@ -12,9 +14,9 @@ export default function AlertBox(props: IAlertBoxProps) {
       <tr>
         <th>Alerts</th>
       </tr>
-      {currentAlerts.map(Alerts => (
+      {currentAlerts.map(alerts => (
         <tr>
-          <td>{Alerts.name}</td>
+          <td>{alerts.name}</td>
         </tr>
       ))}
     </div>
