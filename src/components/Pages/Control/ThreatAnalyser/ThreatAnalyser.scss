@@ -5,9 +5,15 @@
   text-align: center;
   width: 100%;
   height: 100vh;
-  background-color: gray;
+  background-color: var(--black);
 
   &__button-wrap {
-    display: inline;
+    margin-top: 80vh;
+    display: inline-flex; 
+
+  }
+  &__buttons {
+    margin-left: 2rem;
+    margin-left: 2rem;
   }
 }

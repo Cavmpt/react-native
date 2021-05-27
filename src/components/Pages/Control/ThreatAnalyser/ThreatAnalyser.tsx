@@ -37,22 +37,27 @@ export default function ThreatAnalyser(props: IThreatAnalyserProps) {
     <div className='threatAnalyser-page'>
       <div
         style={{
+          marginTop: `5vh`,
           width: `80%`,
           height: `90vh`,
           backgroundImage: `url(${currentImage})`,
         }}
       >
         <div className='threatAnalyser-page__button-wrap'>
-          <ButtonLarge
-            textValue='Investigate'
-            onClick={() => confirmThreat()}
-            color='red'
-          />
-          <ButtonLarge
-            textValue='Ignore'
-            onClick={() => ignoreEvent()}
-            color='gray'
-          />
+          <div className='threatAnalyser-page__buttons'>
+            <ButtonLarge
+              textValue='Investigate'
+              onClick={() => confirmThreat()}
+              color='red'
+            />
+          </div>
+          <div className='threatAnalyser-page__buttons'>
+            <ButtonLarge
+              textValue='Ignore'
+              onClick={() => ignoreEvent()}
+              color='gray'
+            />
+          </div>
         </div>
       </div>
     </div>
