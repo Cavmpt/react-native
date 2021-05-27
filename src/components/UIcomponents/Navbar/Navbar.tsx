@@ -1,11 +1,3 @@
-import * as React from "react";
-import { NavLink } from "react-router-dom";
-
-import "./Navbar.scss";
-export interface INavbarProps {
-  placeholder?: null;
-}
-
 export default function Navbar(props: INavbarProps): JSX.Element {
   return (
     <div className="navbar">

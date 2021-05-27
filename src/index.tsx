@@ -1,26 +1,26 @@
-import React from "react";
-import { BrowserRouter as Router, useRoutes, Outlet } from "react-router-dom";
-import ReactDOM from "react-dom";
-import DOTENV from "dotenv";
+import React from 'react'
+import {BrowserRouter as Router, useRoutes, Outlet} from 'react-router-dom'
+import ReactDOM from 'react-dom'
+import DOTENV from 'dotenv'
 
-import Navbar from "./components/UIcomponents/Navbar/Navbar";
-import Map from "./components/Pages/Map/Map";
-import Threats from "./components/Pages/Threats/Threats";
+import Navbar from './components/UIcomponents/Navbar/Navbar'
+import Map from './components/Pages/Map/Map'
+import Control from './components/Pages/Control/Control'
 
-import "typeface-roboto-slab";
+import 'typeface-roboto-slab'
 
-import "./colors.css";
-import "./index.css";
+import './colors.css'
+import './index.css'
 
-import reportWebVitals from "./reportWebVitals";
+import reportWebVitals from './reportWebVitals'
 
-import { Provider } from "./store/Provider";
+import {Provider} from './store/Provider'
 
-DOTENV.config();
+DOTENV.config()
 
 const routesArray = [
   {
-    path: "/",
+    path: '/',
     element: (
       <>
         <Navbar />
@@ -30,27 +30,27 @@ const routesArray = [
     children: [
       { path: "/", element: <Threats /> },
       { path: "/map", element: <Map /> },
-    ],
+    ]
   },
-];
+]
 
 const App = () => {
-  const routes = useRoutes(routesArray);
-  return routes;
-};
+  const routes = useRoutes(routesArray)
+  return routes
+}
 
 ReactDOM.render(
-  <div className="wrapper">
+  <div className='wrapper'>
     <Router>
       <Provider>
         <App />
       </Provider>
     </Router>
   </div>,
-  document.getElementById("src")
-);
+  document.getElementById('src'),
+)
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+reportWebVitals()
