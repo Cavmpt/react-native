@@ -1,11 +1,11 @@
-import * as React from "react";
+import * as React from 'react'
 
-import "./Navbar.scss";
+import './Navbar.scss'
 
 export interface INavbarProps {
-  placeholder?: null;
+  placeholder?: null
 }
 
 export default function Navbar(props: INavbarProps) {
-  return <div></div>;
+  return <div />
 }
