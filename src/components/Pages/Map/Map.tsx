@@ -22,24 +22,13 @@ export default function Map(props: IMapProps) {
     googleMapsApiKey: 'YOUR_API_KEY',
   })
 
-  const [map, setMap] = useState(null)
-
-  const onLoad = useCallback(() => {
-    const bounds = new window.google.maps.LatLngBounds()
-    map.fitBounds(bounds)
-    setMap(map)
-  }, [])
-
-  const onUnmount = useCallback(() => {
-    setMap(null)
-  }, [])
   return isLoaded ? (
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={center}
       zoom={10}
-      onLoad={onLoad}
-      onUnmount={onUnmount}
+      // onLoad={onLoad}
+      // onUnmount={onUnmount}
     >
       {/* Child components, such as markers, info windows, etc. */}
       <></>
