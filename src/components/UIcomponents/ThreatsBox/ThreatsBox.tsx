@@ -12,7 +12,7 @@ export default function ThreatsBox(props: IThreatsBoxProps) {
   const context = useContext<ContextType>(Context)
   const {currentThreats} = context
   return (
-    <div>
+    <div className='threatBox'>
       <tr>
         <th>Threats</th>
       </tr>
