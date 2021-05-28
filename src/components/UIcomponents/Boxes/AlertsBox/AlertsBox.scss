@@ -1,10 +1,11 @@
-.threatBox {
+.alertsBox {
   background: #012B39;
   border-collapse: collapse;
-  position: absolute;
   text-align: center;
   font-family: 'Open Sans', sans-serif;
-
+  width: 15rem;
+  height: 60vh;
+  
   &__header {
     border-bottom: 1px solid #364043;
     color: red;

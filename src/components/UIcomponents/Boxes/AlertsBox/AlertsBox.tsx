@@ -8,7 +8,7 @@ export interface IThreatsBoxProps {
   placeholder?: any
 }
 
-export default function AlertsBox(props: IThreatsBoxProps) {
+export default function AlertsBox(props: IThreatsBoxProps): JSX.Element {
   const context = useContext<ContextType>(Context)
   const {currentAlerts} = context
   return (
@@ -24,7 +24,7 @@ export default function AlertsBox(props: IThreatsBoxProps) {
         ))
       ) : (
         <tr className='alertsBox__row'>
-          <td>no alerts detected</td>
+          <td>Currently no alerts present</td>
         </tr>
       )}
     </div>

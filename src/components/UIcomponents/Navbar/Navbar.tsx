@@ -10,7 +10,9 @@ export interface INavbarProps {
 export default function Navbar(props: INavbarProps): JSX.Element {
   return (
     <div className='navbar'>
-      <img src='./xguard-logo.png' alt='Xguard-logo' width='50' height='50' />
+      <div className='navbar__logo-xguard-wrapper'>
+        <img src='./xguard-logo.png' alt='Xguard-logo' width='50' height='50' />
+      </div>
       <NavLink
         end
         to='/'

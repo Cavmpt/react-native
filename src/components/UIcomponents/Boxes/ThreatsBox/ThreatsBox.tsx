@@ -8,7 +8,7 @@ export interface IThreatsBoxProps {
   placeholder?: any
 }
 
-export default function ThreatsBox(props: IThreatsBoxProps) {
+export default function ThreatsBox(props: IThreatsBoxProps): JSX.Element {
   const context = useContext<ContextType>(Context)
   const {currentThreats} = context
 

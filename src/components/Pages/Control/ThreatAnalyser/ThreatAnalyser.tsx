@@ -13,7 +13,8 @@ export interface IThreatAnalyserProps {
 
 export default function ThreatAnalyser(props: IThreatAnalyserProps) {
   const context = useContext<ContextType>(Context)
-  const {setCurrentThreats, currentThreats} = context
+  const {setCurrentAlerts, currentAlerts, setCurrentThreats, currentThreats} =
+    context
   const currentImage = DummyImage
   const threats = {
     droneSerialNumber: 'JE123',
@@ -35,23 +36,20 @@ export default function ThreatAnalyser(props: IThreatAnalyserProps) {
   }
   return (
     <div
-      className='threatAnalyser-page'
+      className='threatAnalyser'
       style={{
-        marginTop: `5vh`,
-        width: `70%`,
-        height: `70vh`,
         backgroundImage: `url(${currentImage})`,
       }}
     >
-      <div className='threatAnalyser-page__button-wrap'>
-        <div className='threatAnalyser-page__buttons'>
+      <div className='threatAnalyser__button-wrap'>
+        <div className='threatAnalyser__buttons'>
           <ButtonLarge
             textValue='Investigate'
             onClick={() => confirmThreat()}
             color='red'
           />
         </div>
-        <div className='threatAnalyser-page__buttons'>
+        <div className='threatAnalyser__buttons'>
           <ButtonLarge
             textValue='Ignore'
             onClick={() => ignoreEvent()}
