@@ -15,7 +15,7 @@ export default function ThreatsBox(props: IThreatsBoxProps): JSX.Element {
   return (
     <div className='threatBox'>
       <tr className='threatBox__header'>
-        <th>Confirmed threats</th>
+        <th>Confirmed threats to be investigated </th>
       </tr>
       {currentThreats.length > 1 ? (
         currentThreats.map(threats => (
