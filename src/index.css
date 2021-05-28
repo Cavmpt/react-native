@@ -27,7 +27,7 @@ body {
   line-height: 1;
 }
 html, body{
-  background: var(--black);
+  background: var(--white);
 }
 ol, ul {
   list-style: none;

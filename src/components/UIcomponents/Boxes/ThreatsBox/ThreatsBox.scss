@@ -1,0 +1,35 @@
+.threatBox {
+  background: #012B39;
+  border-collapse: collapse;
+  position: absolute;
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+
+  &__header {
+    border-bottom: 1px solid #364043;
+    color: red;
+    font-size: 1rem;
+    width: 10rem;
+
+    th {
+      padding: 0.5rem 1rem 0.5rem 1rem;
+    }
+  }
+
+  &__row {
+
+    td {
+      color: #fff;
+      font-weight: 400;
+      padding: 0.65rem 1rem;
+
+      &:first-child {
+        padding-top: 0.5rem;
+      }
+
+      &:last-child {
+        padding-bottom: 0.5rem;
+      }
+    }
+  }
+}
