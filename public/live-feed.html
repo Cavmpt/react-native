@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ipCam</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <h1>ipCam</h1>
+
+    <img id="motionjpeg" src="http://209.206.162.230/mjpg/video.mjpg" width="1280" height="720"/>
+
+    <iframe  src="http://209.206.162.230/mjpg/video.mjpg" width="1280" height="720" style="width:100%; height:100%;top:0;left:0;zoom: 400%;"></iframe>
+
+
+    <script>
+      function motionjpeg(id) {
+          var image = $(id), src;
+      
+          if (!image.length) return;
+      
+          src = image.attr("src");
+          if (src.indexOf("?") < 0) {
+              image.attr("src", src + "?"); // must have querystring
+          }
+      
+          image.on("load", function() {
+              // this cause the load event to be called "recursively"
+              this.src = this.src.replace(/\?[^\n]*$/, "?") +
+                  (new Date()).getTime(); // 'this' refers to the image
+          });
+      }
+        </script>
+    <script>
+        //Using jQuery for simplicity
+
+        $(document).ready(function() {
+            motionjpeg("#motionjpeg"); // Use the function on the image
+        });
+    </script>
+</body>
+
+</html>
+
+

@@ -20,12 +20,12 @@ module.exports = {
     sourceType: 'module',
     ecmaFeatures: {
       jsx: true,
-    }
+    },
   },
   rules: {
     'prettier/prettier': [
       'error',
-      {}, // blank on purpose in order to remove configurations
+      {endOfLine: 'auto',}, // blank on purpose in order to remove configurations
       {
         usePrettierrc: true,
         withNodeModules: false,
