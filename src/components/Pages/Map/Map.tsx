@@ -17,19 +17,37 @@ const center = {
 }
 
 export default function Map(props: IMapProps) {
-  // const {isLoaded} = useJsApiLoader({
-  //   id: 'google-map-script',
-  //   googleMapsApiKey: 'YOUR_API_KEY',
-  // })
+  const {isLoaded} = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: 'AIzaSyBySxXSN4mh-NRYPaMwkR1Pbb71r1DgkB8',
+  })
 
-  return (
-    <div className='container'>
-      <img
-        className='liveFeed'
-        src='http://209.206.162.230/mjpg/video.mjpg'
-        width='1280'
-        height='720'
-      />
-    </div>
+  const onLoad = () => {}
+  const onUnmount = () => {}
+
+  return isLoaded ? (
+    <>
+      <div className='container'>
+        <img
+          className='liveFeed'
+          alt='liveFeed'
+          src='http://209.206.162.230/mjpg/video.mjpg'
+          width='1280'
+          height='720'
+        />
+      </div>
+      <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={center}
+        zoom={10}
+        onLoad={onLoad}
+        onUnmount={onUnmount}
+      >
+        {/* Child components, such as markers, info windows, etc. */}
+        <></>
+      </GoogleMap>
+    </>
+  ) : (
+    <></>
   )
 }
