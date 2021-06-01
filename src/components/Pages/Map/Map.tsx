@@ -3,7 +3,7 @@
 import React, {useCallback, useState, useEffect} from 'react'
 import {GoogleMap, useJsApiLoader} from '@react-google-maps/api'
 
-import deserializer from '../../../helpers/uav-monitor_pb'
+var deserializer = require('../../../helpers/uav-monitor_pb')
 
 import './Map.scss'
 
@@ -22,7 +22,7 @@ const center = {
 
 export default function Map(props: IMapProps) {
   const deserializerFunction =
-    new deserializer.proto.xguardlabs.uav.monitor.UnidentifiedObjectRepository.deserializeBinary()
+    new deserializer.UnidentifiedObjectRepository.deserializeBinary()
 
   const {isLoaded} = useJsApiLoader({
     id: 'google-map-script',
