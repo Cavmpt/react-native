@@ -1,3 +1,6 @@
-React typescript CRA app
+### React typescript APP
 
-npm run start
+https://reactjs.org/
+http://getbem.com/introduction/
+https://reacttraining.com/blog/react-router-v6-pre/
+
