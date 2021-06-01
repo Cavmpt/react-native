@@ -1,5 +1,10 @@
-import React, {useCallback, useState} from 'react'
+/* eslint-disable */
+// @ts-nocheck
+import React, {useCallback, useState, useEffect} from 'react'
 import {GoogleMap, useJsApiLoader} from '@react-google-maps/api'
+
+import deserializer from '../../../helpers/uav-monitor_pb'
+
 import './Map.scss'
 
 export interface IMapProps {
@@ -16,9 +21,18 @@ const center = {
 }
 
 export default function Map(props: IMapProps) {
+  const deserializerFunction =
+    new deserializer.proto.xguardlabs.uav.monitor.UnidentifiedObjectRepository.deserializeBinary()
+
   const {isLoaded} = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: 'AIzaSyBySxXSN4mh-NRYPaMwkR1Pbb71r1DgkB8',
+  })
+
+  useEffect(() => {
+    fetch('ksdjhjkhasdj')
+      .then(response => deserializerFunction(response))
+      .then(data => console.log('data', data))
   })
 
   const onLoad = () => {}
