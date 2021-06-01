@@ -30,13 +30,13 @@ export default function Map(props: IMapProps) {
   })
 
   useEffect(() => {
-    fetch('ksdjhjkhasdj')
-      .then(
-        response =>
-          new deserializer.UnidentifiedObjectRepository.deserializeBinary(
-            response,
-          ),
-      )
+    fetch('ksdjhjkhasdj', {
+      method: 'GET',
+      mode: 'cors',
+      cache: 'no-cache',
+      credentials: 'same-origin',
+    })
+      .then(response => deserializerFunction(response))
       .then(data => console.log('data', data))
   })
 
