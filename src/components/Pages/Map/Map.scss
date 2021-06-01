@@ -1,7 +1,60 @@
-.container{
-    .liveFeed{
-        padding-top:50px;
-        
+.container {
+  &__live-feed {
+      padding-top: 50px;
+  }
+
+  &__google-map {
+      width: 400px;
+      position: relative;
+      left: 30px;
+      bottom: 430px;
+      opacity: 0.4;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: opacity .15s ease-in-out;
+
+      &:hover {
+        opacity: 1;
+        transition: opacity .15s ease-in-out;
     }
+  }
 }
 
+
+// var url = 'ws://localhost:15674/ws'
+// var client = Stomp.client(url)
+// var connect_callback = function () {
+//   // called back after the client is connected and authenticated to the STOMP server
+// }
+// var error_callback = function (error) {
+//   // display the error's message header:
+//   alert(error.headers.message)
+// }
+// var headers = {
+//   login: 'mylogin',
+//   passcode: 'mypasscode',
+//   // additional header
+//   'client-id': 'my-client-id',
+// }
+// client.connect(headers, connectCallback, errorCallback)
+
+// client.connect(
+//   login,
+//   passcode,
+//   connectCallback,
+//   errorCallback,
+//   closeEventCallback,
+//   host,
+// )
+// var subscription = client.subscribe(destination, callback, { id: mysubid });
+// var quote = {symbol: 'APPL', value: 195.46};
+// client.send("/topic/stocks", {}, JSON.stringify(quote));
+
+// client.subcribe("/topic/stocks", function(message) {
+//   var quote = JSON.parse(message.body);
+//   alert(quote.symbol + " is at " + quote.value);
+// });
+
+// client.disconnect(function () {
+//   alert('See you next time!')
+// })

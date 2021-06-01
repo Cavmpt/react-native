@@ -26,27 +26,27 @@ export default function Map(props: IMapProps) {
   const onUnmount = () => {}
 
   return isLoaded ? (
-    <>
-      <div className='container'>
-        <img
-          className='liveFeed'
-          alt='liveFeed'
-          src='http://209.206.162.230/mjpg/video.mjpg'
-          width='1280'
-          height='720'
-        />
+    <div className='container'>
+      <img
+        className='container__live-feed'
+        alt='liveFeed'
+        src='http://209.206.162.230/mjpg/video.mjpg'
+        width='1280'
+        height='720'
+      />
+      <div className='container__google-map'>
+        <GoogleMap
+          mapContainerStyle={containerStyle}
+          center={center}
+          zoom={10}
+          onLoad={onLoad}
+          onUnmount={onUnmount}
+        >
+          {/* Child components, such as markers, info windows, etc. */}
+        </GoogleMap>
       </div>
-      <GoogleMap
-        mapContainerStyle={containerStyle}
-        center={center}
-        zoom={10}
-        onLoad={onLoad}
-        onUnmount={onUnmount}
-      >
-        {/* Child components, such as markers, info windows, etc. */}
-        <></>
-      </GoogleMap>
-    </>
+      <></>
+    </div>
   ) : (
     <></>
   )
