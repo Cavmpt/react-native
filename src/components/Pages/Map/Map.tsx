@@ -1,6 +1,5 @@
 import React, {useCallback, useState} from 'react'
 import {GoogleMap, useJsApiLoader} from '@react-google-maps/api'
-
 import './Map.scss'
 
 export interface IMapProps {
