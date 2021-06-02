@@ -35,10 +35,10 @@ export default function Map(props: IMapProps) {
       cache: 'no-cache',
       credentials: 'same-origin',
     })
-      .then(response => response.body)
+      .then(response => response.body
+      )
       .then(body => {
         const reader = body.getReader()
-
         return new ReadableStream({
           start(controller) {
             function push() {
@@ -50,6 +50,10 @@ export default function Map(props: IMapProps) {
                 }
                 controller.enqueue(value)
                 console.log(done, value)
+                console.log(
+                  '----VALUE-----\n',
+                  message.UnidentifiedObject.deserializeBinary(value)
+                )
                 push()
               })
             }
@@ -60,18 +64,14 @@ export default function Map(props: IMapProps) {
       .then(stream => {
         // Respond with our stream
         return new Response(stream, {
-          headers: {'Content-Type': 'binary/html'},
+          headers: {'Content-Type': 'application/octet-stream'},
         }).text()
       })
       .then(result => {
         // Do things with result
-        new message.UnidentifiedObjectRepository.deserializeBinary(result)
-        console.log(
-          '----RESULT STREAM-----',
-          new message.UnidentifiedObjectRepository.deserializeBinary(result),
-        )
+        console.log("Result: " + result);
       })
-  })
+  }, [])
 
   const onLoad = () => {}
   const onUnmount = () => {}
