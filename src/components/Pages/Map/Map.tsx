@@ -1,6 +1,6 @@
 /* eslint-disable */
 // @ts-nocheck
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import {GoogleMap, useJsApiLoader} from '@react-google-maps/api'
 import './Map.scss'
 import {Timestamp} from 'google-protobuf/google/protobuf/timestamp_pb'
@@ -22,6 +22,7 @@ const center = {
 }
 
 export default function Map(props: IMapProps) {
+  const [image, setImage] = useState('')
   const {isLoaded} = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: 'AIzaSyBySxXSN4mh-NRYPaMwkR1Pbb71r1DgkB8',
@@ -35,8 +36,7 @@ export default function Map(props: IMapProps) {
       cache: 'no-cache',
       credentials: 'same-origin',
     })
-      .then(response => response.body
-      )
+      .then(response => response.body)
       .then(body => {
         const reader = body.getReader()
         return new ReadableStream({
@@ -50,10 +50,6 @@ export default function Map(props: IMapProps) {
                 }
                 controller.enqueue(value)
                 console.log(done, value)
-                console.log(
-                  '----VALUE-----\n',
-                  message.UnidentifiedObject.deserializeBinary(value)
-                )
                 push()
               })
             }
@@ -61,15 +57,14 @@ export default function Map(props: IMapProps) {
           },
         })
       })
-      .then(stream => {
-        // Respond with our stream
-        return new Response(stream, {
-          headers: {'Content-Type': 'application/octet-stream'},
-        }).text()
-      })
       .then(result => {
-        // Do things with result
-        console.log("Result: " + result);
+        console.log(
+          '----RESULT STREAM-----',
+          new message.UnidentifiedObjectRepository.deserializeBinary(result),
+        )
+        setImage(
+          new message.UnidentifiedObjectRepository.deserializeBinary(result),
+        )
       })
   }, [])
 
