@@ -8,9 +8,11 @@
 }
 .navbar {
   width: 100%;
-  background-color: gray;
+  background-color: #0D2C3A;
   display: inline-flex;
   height: 7vh;
+  border-radius: 5px;
+  margin-top: 2rem;
 
   &__logo-xguard-wrapper{
     display: flex;

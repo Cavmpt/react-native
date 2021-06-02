@@ -12,8 +12,8 @@ export interface IMapProps {
 }
 
 const containerStyle = {
-  width: '400px',
-  height: '400px',
+  width: '1200px',
+  height: '600px',
 }
 
 const center = {
@@ -73,13 +73,6 @@ export default function Map(props: IMapProps) {
 
   return isLoaded ? (
     <div className='container'>
-      <img
-        className='container__live-feed'
-        alt='liveFeed'
-        src='http://209.206.162.230/mjpg/video.mjpg'
-        width='1280'
-        height='720'
-      />
       <div className='container__google-map'>
         <GoogleMap
           mapContainerStyle={containerStyle}
@@ -90,6 +83,11 @@ export default function Map(props: IMapProps) {
         >
           {/* Child components, such as markers, info windows, etc. */}
         </GoogleMap>
+        <img
+          className='container__live-feed'
+          alt='liveFeed'
+          src='http://209.206.162.230/mjpg/video.mjpg'
+        />
       </div>
       <></>
     </div>

@@ -1,20 +1,9 @@
-# Getting Started
+### Typescript CRA app
+Drone UI dashboard with tyepscript and React.
 
-### Reference Documentation
+Technologies & Notations:
+  -stompsjs 
+  -BEM
+  -Google Maps
 
-For further reference, please consider the following sections (Documentation inspired by Sandro)
-
-* [Official React documentation](https://reactjs.org/)
-* [Official typescript documentation](https://www.typescriptlang.org/)
-* [BEM](http://getbem.com/introduction/)
-
-### Guides
-
-The following guides illustrate how to use some features concretely:
-
-
-### Additional Links
-
-These additional references should also help you:
-
-
+npm run start

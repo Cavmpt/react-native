@@ -17,8 +17,8 @@ export default function Navbar(props: INavbarProps): JSX.Element {
         end
         to='/'
         activeStyle={{
-          fontWeight: 'bold',
-          color: 'black',
+          color: 'white',
+          textDecoration: 'underline',
         }}
         className='navbar__map'
       >
@@ -27,8 +27,8 @@ export default function Navbar(props: INavbarProps): JSX.Element {
       <NavLink
         to='controls'
         activeStyle={{
-          fontWeight: 'bold',
-          color: 'black',
+          color: 'white',
+          textDecoration: 'underline',
         }}
         className='navbar__live-feeds'
       >

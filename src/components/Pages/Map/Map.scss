@@ -1,20 +1,14 @@
 .container {
-  &__live-feed {
+  &__google-map {
+    width: 50rem;
   }
 
-  &__google-map {
-      width: 400px;
-      position: relative;
-      left: 30px;
-      bottom: 430px;
-      opacity: 0.4;
-      border-radius: 15px;
-      overflow: hidden;
-      transition: opacity .15s ease-in-out;
-
-      &:hover {
-        opacity: 1;
-        transition: opacity .15s ease-in-out;
-    }
+  &__live-feed {
+    position: relative;
+    width: 15rem;
+    height: 10rem;
+    left: 5rem;
+    bottom: 15rem;
+    z-index: 5;
   }
 }
