@@ -8,6 +8,8 @@ import Navbar from './components/UIcomponents/Navbar/Navbar'
 import Map from './components/Pages/Map/Map'
 import Control from './components/Pages/Control/Control'
 
+import {makeServer} from './config/mirageConfig'
+
 import 'typeface-roboto-slab'
 
 import './colors.css'
