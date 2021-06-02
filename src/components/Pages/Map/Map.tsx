@@ -1,15 +1,16 @@
 /* eslint-disable */
 // @ts-nocheck
-import React, {useCallback, useState, useEffect} from 'react'
+import React, {useEffect} from 'react'
 import {GoogleMap, useJsApiLoader} from '@react-google-maps/api'
-
-var deserializer = require('../../../helpers/uav-monitor_pb')
-
 import './Map.scss'
+import {Timestamp} from 'google-protobuf/google/protobuf/timestamp_pb'
+
+const message = require('../../../helpers/uav-monitor_pb')
 
 export interface IMapProps {
   placeholder?: any
 }
+
 const containerStyle = {
   width: '400px',
   height: '400px',
@@ -21,17 +22,15 @@ const center = {
 }
 
 export default function Map(props: IMapProps) {
-  const deserializerFunction =
-    new deserializer.UnidentifiedObjectRepository.deserializeBinary()
-
   const {isLoaded} = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: 'AIzaSyBySxXSN4mh-NRYPaMwkR1Pbb71r1DgkB8',
   })
 
   useEffect(() => {
-    fetch('ksdjhjkhasdj', {
+    fetch('http://localhost:8080/threats/1', {
       method: 'GET',
+      responseType: 'arraybuffer',
       mode: 'cors',
       cache: 'no-cache',
       credentials: 'same-origin',
@@ -66,7 +65,11 @@ export default function Map(props: IMapProps) {
       })
       .then(result => {
         // Do things with result
-        console.log('RESULT STREAM', result)
+        new message.UnidentifiedObjectRepository.deserializeBinary(result)
+        console.log(
+          '----RESULT STREAM-----',
+          new message.UnidentifiedObjectRepository.deserializeBinary(result),
+        )
       })
   })
 
