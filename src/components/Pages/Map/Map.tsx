@@ -23,6 +23,7 @@ const center = {
 
 export default function Map(props: IMapProps) {
   const [image, setImage] = useState('')
+  const [isMapToggled, setToggleMap] = useState(false)
   const {isLoaded} = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: 'AIzaSyBySxXSN4mh-NRYPaMwkR1Pbb71r1DgkB8',
@@ -71,6 +72,8 @@ export default function Map(props: IMapProps) {
   const onLoad = () => {}
   const onUnmount = () => {}
 
+  const togglemap = () => {}
+
   return isLoaded ? (
     <div className='container'>
       <div className='container__google-map'>
@@ -84,6 +87,7 @@ export default function Map(props: IMapProps) {
           {/* Child components, such as markers, info windows, etc. */}
         </GoogleMap>
         <img
+          onClick={() => togglemap()}
           className='container__live-feed'
           alt='liveFeed'
           src='http://209.206.162.230/mjpg/video.mjpg'
