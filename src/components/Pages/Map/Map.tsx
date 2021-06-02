@@ -36,8 +36,38 @@ export default function Map(props: IMapProps) {
       cache: 'no-cache',
       credentials: 'same-origin',
     })
-      .then(response => deserializerFunction(response))
-      .then(data => console.log('data', data))
+      .then(response => response.body)
+      .then(body => {
+        const reader = body.getReader()
+
+        return new ReadableStream({
+          start(controller) {
+            function push() {
+              reader.read().then(({done, value}) => {
+                if (done) {
+                  console.log('done', done)
+                  controller.close()
+                  return
+                }
+                controller.enqueue(value)
+                console.log(done, value)
+                push()
+              })
+            }
+            push()
+          },
+        })
+      })
+      .then(stream => {
+        // Respond with our stream
+        return new Response(stream, {
+          headers: {'Content-Type': 'binary/html'},
+        }).text()
+      })
+      .then(result => {
+        // Do things with result
+        console.log('RESULT STREAM', result)
+      })
   })
 
   const onLoad = () => {}
