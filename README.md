@@ -10,8 +10,8 @@ Technologies & Notations:
 * [Typescript documentation](https://www.typescriptlang.org/docs/)
 * [MirageJs mocking server documentation](https://miragejs.com/)
 * [Redux toolkit documentaion](https://redux-toolkit.js.org/)
-* [BEM]
-
+* [SCSS](https://sass-lang.com/documentation)
+* [BEM](https://en.bem.info/methodology/)
 # To run the project
 Please ensure that you have the node version 14.17 <br>
 
