@@ -1,7 +1,8 @@
-import React, {useContext} from 'react'
+import React, {useContext, useState} from 'react'
 import ButtonLarge from '../../../UIcomponents/Buttons/Button-Large/ButtonLarge'
 
-import DummyImage from './screenCap.jpg'
+import Threat1 from './threat1.jpg'
+import Threat2 from './threat2.jpg'
 
 import './ThreatAnalyser.scss'
 
@@ -15,20 +16,17 @@ export default function ThreatAnalyser(props: IThreatAnalyserProps) {
   const context = useContext<ContextType>(Context)
   const {setCurrentAlerts, currentAlerts, setCurrentThreats, currentThreats} =
     context
-  const currentImage = DummyImage
-  const threats = {
-    droneSerialNumber: 'JE123',
-    signalCount: '123',
-  }
+  const [count, setCount] = useState(1)
+  const currentImage = Threat1
+
   // FETCH VIDEO ACCORDING TO SERIAL NUMBER
 
-  const confirmThreat = () => {
-    const newThreatsArray: string[] = currentThreats.splice(
-      currentThreats.length,
-      0,
-      threats.signalCount,
-    )
-    setCurrentThreats(newThreatsArray)
+  const confirmThreat = async () => {
+    const confirmedThreat = currentAlerts.shift()
+    const dummyCount = currentThreats.push(confirmedThreat)
+    await setCurrentThreats(currentThreats)
+    await setCurrentAlerts(currentAlerts)
+    await setCount(count + 1)
   }
 
   const ignoreEvent = () => {
@@ -38,7 +36,7 @@ export default function ThreatAnalyser(props: IThreatAnalyserProps) {
     <div
       className='threatAnalyser'
       style={{
-        backgroundImage: `url(${currentImage})`,
+        backgroundImage: `url(${Threat1})`,
       }}
     >
       <div className='threatAnalyser__button-wrap'>

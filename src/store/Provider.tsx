@@ -11,13 +11,10 @@ const Context = React.createContext<ContextType>(undefined!)
 
 const Provider = ({children}: any): any => {
   const [currentThreats, setCurrentThreats] = useState<any[]>([
-    {name: 'dogs in the at back'},
-    {name: 'danger at the front'},
-    {name: 'squirrel left'},
+    {name: 'movement detected out at the back door'},
   ])
   const [currentAlerts, setCurrentAlerts] = useState<any[]>([
-    {name: 'Movement Detected at the entrance'},
-    {name: 'Movement Detected at the exit'},
+    {name: 'unidentified individual in the front'},
   ])
   return (
     <Context.Provider
