@@ -9,5 +9,5 @@ Technologies & Notations:
 
 # To run the project
 
-npm i
+npm i <br>
 npm run start
