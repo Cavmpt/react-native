@@ -17,7 +17,7 @@ export default function ThreatsBox(props: IThreatsBoxProps): JSX.Element {
       <tr className='threatBox__header'>
         <th>Confirmed threats to be investigated </th>
       </tr>
-      {currentThreats.length > 1 ? (
+      {currentThreats.length > 0 ? (
         currentThreats.map(threats => (
           <tr className='threatBox__row'>
             <td>{threats.name}</td>
