@@ -6,4 +6,8 @@ Technologies & Notations:
   -BEM
   -Google Maps
 
+
+# To run the project
+
+npm i
 npm run start
