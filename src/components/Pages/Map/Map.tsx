@@ -26,10 +26,14 @@ export default function Map(props: IMapProps) {
   const [isMapToggled, setToggleMap] = useState(false)
   const {isLoaded} = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
   })
 
   useEffect(() => {
+    console.log(
+      '---process.env.GOOGLE_MAPS_API_KEY---',
+      process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+    )
     fetch('http://localhost:8080/threats/1', {
       method: 'GET',
       responseType: 'arraybuffer',

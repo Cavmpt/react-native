@@ -1,7 +1,6 @@
 import React from 'react'
 import {BrowserRouter as Router, useRoutes, Outlet} from 'react-router-dom'
 import ReactDOM from 'react-dom'
-import DOTENV from 'dotenv'
 
 import Navbar from './components/UIcomponents/Navbar/Navbar'
 import Map from './components/Pages/Map/Map'
@@ -18,8 +17,6 @@ import './index.css'
 import reportWebVitals from './reportWebVitals'
 
 import {Provider} from './store/Provider'
-
-DOTENV.config()
 
 if (process.env.NODE_ENV === 'development') {
   makeServer({environment: 'development'})

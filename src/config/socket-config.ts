@@ -1,4 +1,4 @@
-import * as Stomp from 'stompjs'
+import {Stomp} from '@stomp/stompjs'
 
 export default function socketConnect() {
   const successfulConnect = () => {
