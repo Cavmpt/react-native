@@ -26,7 +26,7 @@ export default function Map(props: IMapProps) {
   const [isMapToggled, setToggleMap] = useState(false)
   const {isLoaded} = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: 'AIzaSyBySxXSN4mh-NRYPaMwkR1Pbb71r1DgkB8',
+    googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
   })
 
   useEffect(() => {

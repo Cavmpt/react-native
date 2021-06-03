@@ -27,6 +27,8 @@ export default function ThreatAnalyser(props: IThreatAnalyserProps) {
     await setCurrentThreats(currentThreats)
     await setCurrentAlerts(currentAlerts)
     await setCount(count + 1)
+
+    // client.send('/topic/stocks', {}, JSON.stringify(quote))
   }
 
   const ignoreEvent = () => {

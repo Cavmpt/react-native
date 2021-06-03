@@ -8,7 +8,7 @@ import Navbar from './components/UIcomponents/Navbar/Navbar'
 import Map from './components/Pages/Map/Map'
 import Control from './components/Pages/Control/Control'
 
-// import {makeServer} from './config/mirageConfig'
+import {makeServer} from './config/mirage-config'
 
 import 'typeface-roboto-slab'
 
@@ -19,11 +19,17 @@ import reportWebVitals from './reportWebVitals'
 
 import {Provider} from './store/Provider'
 
+declare let process: {
+  env: {
+    NODE_ENV: string
+  }
+}
+
 DOTENV.config()
 
-// if (process.env.NODE_ENV === 'development') {
-//   makeServer({environment: 'development'})
-// }
+if (process.env.NODE_ENV === 'development') {
+  makeServer({environment: 'development'})
+}
 
 const routesArray = [
   {

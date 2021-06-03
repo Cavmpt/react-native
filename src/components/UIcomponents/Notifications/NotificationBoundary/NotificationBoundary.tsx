@@ -1,9 +1,16 @@
 import * as React from 'react'
 
-export interface INotificationBoundaryProps {}
+export interface INotificationBoundaryProps {
+  children: any
+}
 
 export default function NotificationBoundary(
   props: INotificationBoundaryProps,
-) {
-  return <div></div>
+): JSX.Element {
+  const {children} = props
+  return (
+    <div>
+      <div>{children}</div>
+    </div>
+  )
 }
