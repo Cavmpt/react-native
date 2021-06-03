@@ -1,6 +1,5 @@
 import React from 'react'
 import {BrowserRouter as Router, useRoutes, Outlet} from 'react-router-dom'
-
 import ReactDOM from 'react-dom'
 import DOTENV from 'dotenv'
 
@@ -9,6 +8,7 @@ import Map from './components/Pages/Map/Map'
 import Control from './components/Pages/Control/Control'
 
 import {makeServer} from './config/mirage-config'
+import socketConnect from './config/socket-config'
 
 import 'typeface-roboto-slab'
 
@@ -19,18 +19,13 @@ import reportWebVitals from './reportWebVitals'
 
 import {Provider} from './store/Provider'
 
-declare let process: {
-  env: {
-    NODE_ENV: string
-  }
-}
-
 DOTENV.config()
 
 if (process.env.NODE_ENV === 'development') {
   makeServer({environment: 'development'})
+} else {
+  socketConnect()
 }
-
 const routesArray = [
   {
     path: '/',
