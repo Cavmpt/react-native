@@ -2,17 +2,19 @@ import React, {useContext, useState} from 'react'
 import ButtonLarge from '../../../UIcomponents/Buttons/Button-Large/ButtonLarge'
 
 import Threat1 from './threat1.jpg'
-import Threat2 from './threat2.jpg'
+// import Threat2 from './threat2.jpg'
 
 import './ThreatAnalyser.scss'
 
 import {Context, ContextType} from '../../../../store/Provider'
 
 export interface IThreatAnalyserProps {
-  placeholder?: any
+  placeholder?: null
 }
 
-export default function ThreatAnalyser(props: IThreatAnalyserProps) {
+export default function ThreatAnalyser(
+  props: IThreatAnalyserProps,
+): JSX.Element {
   const context = useContext<ContextType>(Context)
   const {setCurrentAlerts, currentAlerts, setCurrentThreats, currentThreats} =
     context
@@ -22,12 +24,11 @@ export default function ThreatAnalyser(props: IThreatAnalyserProps) {
   // FETCH VIDEO ACCORDING TO SERIAL NUMBER
 
   const confirmThreat = async () => {
-    const confirmedThreat = currentAlerts.shift()
-    const dummyCount = currentThreats.push(confirmedThreat)
-    await setCurrentThreats(currentThreats)
-    await setCurrentAlerts(currentAlerts)
-    await setCount(count + 1)
-
+    // const confirmedThreat = currentAlerts.shift()
+    // const dummyCount = currentThreats.push(confirmedThreat)
+    // await setCurrentThreats(currentThreats)
+    // await setCurrentAlerts(currentAlerts)
+    // await setCount(count + 1)
     // client.send('/topic/stocks', {}, JSON.stringify(quote))
   }
 
@@ -46,7 +47,7 @@ export default function ThreatAnalyser(props: IThreatAnalyserProps) {
           <ButtonLarge
             textValue='Investigate'
             onClick={() => confirmThreat()}
-            color='red'
+            color='grey'
           />
         </div>
         <div className='threatAnalyser__buttons'>

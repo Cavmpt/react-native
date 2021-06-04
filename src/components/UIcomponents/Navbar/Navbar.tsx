@@ -4,7 +4,7 @@ import {NavLink} from 'react-router-dom'
 import './Navbar.scss'
 
 export interface INavbarProps {
-  placeholder?: any
+  placeholder?: null
 }
 
 export default function Navbar(props: INavbarProps): JSX.Element {

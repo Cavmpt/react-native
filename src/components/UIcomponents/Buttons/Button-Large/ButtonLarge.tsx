@@ -8,7 +8,7 @@ export interface IButtonLargeProps {
   onClick: () => void
 }
 
-export default function ButtonLarge(props: IButtonLargeProps) {
+export default function ButtonLarge(props: IButtonLargeProps): JSX.Element {
   const handleClick = () => {
     props.onClick()
   }

@@ -1,5 +1,9 @@
 .control-page {
   display: inline-flex;
+  border: 1px solid black;
+  border-radius: 5px;
+  overflow: hidden;
+
   &__box-wrapper {
   }
 }

@@ -1,14 +1,12 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import ThreatAnalyser from './ThreatAnalyser/ThreatAnalyser'
 import AlertBox from '../../UIcomponents/Boxes/AlertsBox/AlertsBox'
 import ThreatsBox from '../../UIcomponents/Boxes/ThreatsBox/ThreatsBox'
 
-import {Context, ContextType} from '../../../store/Provider'
-
 import './Control.scss'
 
 export interface IThreatsProps {
-  placeholder?: string
+  placeholder?: null
 }
 
 export default function Threats(props: IThreatsProps): JSX.Element {

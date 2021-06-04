@@ -5,7 +5,7 @@ import './ThreatsBox.scss'
 import {Context, ContextType} from '../../../../store/Provider'
 
 export interface IThreatsBoxProps {
-  placeholder?: any
+  placeholder?: null
 }
 
 export default function ThreatsBox(props: IThreatsBoxProps): JSX.Element {

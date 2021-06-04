@@ -5,7 +5,7 @@ import './AlertsBox.scss'
 import {Context, ContextType} from '../../../../store/Provider'
 
 export interface IThreatsBoxProps {
-  placeholder?: any
+  placeholder?: null
 }
 
 export default function AlertsBox(props: IThreatsBoxProps): JSX.Element {
