@@ -4,7 +4,7 @@ import React, {useEffect, useState} from 'react'
 import {GoogleMap, useJsApiLoader} from '@react-google-maps/api'
 import './Map.scss'
 import {Timestamp} from 'google-protobuf/google/protobuf/timestamp_pb'
-
+import AlertBoundary from '../../UIcomponents/Notifications/AlertBoundary/AlertBoundary'
 const message = require('../../../helpers/uav-monitor_pb')
 
 export interface IMapProps {
@@ -78,28 +78,32 @@ export default function Map(props: IMapProps) {
 
   const togglemap = () => {}
 
-  return isLoaded ? (
-    <div className='container'>
-      <div className='container__google-map'>
-        <GoogleMap
-          mapContainerStyle={containerStyle}
-          center={center}
-          zoom={10}
-          onLoad={onLoad}
-          onUnmount={onUnmount}
-        >
-          {/* Child components, such as markers, info windows, etc. */}
-        </GoogleMap>
-        <img
-          onClick={() => togglemap()}
-          className='container__live-feed'
-          alt='liveFeed'
-          src='http://209.206.162.230/mjpg/video.mjpg'
-        />
-      </div>
-      <></>
-    </div>
-  ) : (
-    <></>
+  return (
+    <AlertBoundary>
+      {isLoaded ? (
+        <div className='container'>
+          <div className='container__google-map'>
+            <GoogleMap
+              mapContainerStyle={containerStyle}
+              center={center}
+              zoom={10}
+              onLoad={onLoad}
+              onUnmount={onUnmount}
+            >
+              {/* Child components, such as markers, info windows, etc. */}
+            </GoogleMap>
+            <img
+              onClick={() => togglemap()}
+              className='container__live-feed'
+              alt='liveFeed'
+              src='http://209.206.162.230/mjpg/video.mjpg'
+            />
+          </div>
+          <></>
+        </div>
+      ) : (
+        <></>
+      )}
+    </AlertBoundary>
   )
 }

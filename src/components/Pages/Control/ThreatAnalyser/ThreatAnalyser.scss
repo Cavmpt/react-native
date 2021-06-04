@@ -5,15 +5,14 @@
   background-color: var(--black);
 
   &__button-wrap {
-    width: 65%;
-    position: absolute;
-    bottom: 20vh;
-    display: inline-flex; 
-    text-align: center;
+    width: 100%;
+    margin-top: 70vh;
+    display: flex;
+    align-items: center;
   }
 
   &__buttons {
     margin-left: 2rem;
-    margin-left: 2rem;
+    margin-right: 2rem;
   }
 }
