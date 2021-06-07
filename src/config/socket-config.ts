@@ -1,37 +1,37 @@
-import {Stomp} from '@stomp/stompjs'
+import {Client} from '@stomp/stompjs'
 
-export default function socketConnect() {
-  const successfulConnect = () => {
-    console.log('CONNECTION SUCCESFUL')
+export default async function socketConnect() {
+  const stompConfig = {
+    connectHeaders: {
+      login: '',
+      password: '',
+    },
+    brokerURL: 'ws://xguardlabs-uav-monitor.herokuapp.com',
+    reconnectDelay: 2000,
   }
 
-  const errorConnect = () => {
-    console.log('CONNECTION ERROR')
+  let stompClient = new Client(stompConfig)
+
+  stompClient.onConnect = (frame: any) => {
+    stompClient.subscribe('/topic/threat', function () {
+      console.log('hitCONNECT')
+    })
+
+    stompClient.subscribe('/topic/threat', function () {
+      console.log('hitCONNECTThreat')
+    })
   }
 
-  const closeEvent = () => {}
-  var client = Stomp.client(process.env.WEBSOCKET_BASE_URL as string)
+  stompClient.onStompError = function (frame: any) {
+    console.log('Broker reported error: ' + frame.headers['message'])
+    console.log('Additional details: ' + frame.body)
+  }
 
-  client.connect(
-    '', // login
-    '', // password
-    successfulConnect,
-    errorConnect,
-    process.env.WEBSOCKET_BASE_URL as string,
-  )
+  stompClient.activate()
 
-  client.subscribe('/topic/threats', function (message) {
-    let quote = JSON.parse(message.body)
-    alert(quote.symbol + ' is at ' + quote.value)
-  })
-  client.subscribe('/topic/alerts', function (message) {
-    let quote = JSON.parse(message.body)
-    alert(quote.symbol + ' is at ' + quote.value)
-  })
-
-  // client.send('/topic/stocks', {}, JSON.stringify(quote))
-
-  client.disconnect(function () {
-    alert('See you next time!')
-  })
+  stompClient.debug = (str: any) => {
+    console.log('STOMeP: ' + str)
+  }
 }
+
+//client.deactivate();

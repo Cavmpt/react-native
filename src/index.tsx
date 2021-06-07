@@ -18,11 +18,12 @@ import reportWebVitals from './reportWebVitals'
 
 import {Provider} from './store/Provider'
 
-if (process.env.NODE_ENV === 'development') {
-  makeServer({environment: 'test'})
-} else {
-  socketConnect()
-}
+socketConnect()
+
+// if (process.env.NODE_ENV === 'development') {
+//   makeServer({environment: 'test'})
+// } else {
+// }
 const routesArray = [
   {
     path: '/',

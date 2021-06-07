@@ -29,49 +29,49 @@ export default function Map(props: IMapProps) {
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
   })
 
-  useEffect(() => {
-    console.log(
-      '---process.env.GOOGLE_MAPS_API_KEY---',
-      process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
-    )
-    fetch('http://localhost:8080/threats/1', {
-      method: 'GET',
-      responseType: 'arraybuffer',
-      mode: 'cors',
-      cache: 'no-cache',
-      credentials: 'same-origin',
-    })
-      .then(response => response.body)
-      .then(body => {
-        const reader = body.getReader()
-        return new ReadableStream({
-          start(controller) {
-            function push() {
-              reader.read().then(({done, value}) => {
-                if (done) {
-                  console.log('done', done)
-                  controller.close()
-                  return
-                }
-                controller.enqueue(value)
-                console.log(done, value)
-                push()
-              })
-            }
-            push()
-          },
-        })
-      })
-      .then(result => {
-        console.log(
-          '----RESULT STREAM-----',
-          new message.UnidentifiedObjectRepository.deserializeBinary(result),
-        )
-        setImage(
-          new message.UnidentifiedObjectRepository.deserializeBinary(result),
-        )
-      })
-  }, [])
+  // useEffect(() => {
+  //   console.log(
+  //     '---process.env.GOOGLE_MAPS_API_KEY---',
+  //     process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+  //   )
+  //   fetch(process.env.REACT_APP_WEBSOCKET_BASE_URL + '/threats/1', {
+  //     method: 'GET',
+  //     responseType: 'arraybuffer',
+  //     mode: 'cors',
+  //     cache: 'no-cache',
+  //     credentials: 'same-origin',
+  //   })
+  //     .then(response => response.body)
+  //     .then(body => {
+  //       const reader = body.getReader()
+  //       return new ReadableStream({
+  //         start(controller) {
+  //           function push() {
+  //             reader.read().then(({done, value}) => {
+  //               if (done) {
+  //                 console.log('done', done)
+  //                 controller.close()
+  //                 return
+  //               }
+  //               controller.enqueue(value)
+  //               console.log(done, value)
+  //               push()
+  //             })
+  //           }
+  //           push()
+  //         },
+  //       })
+  //     })
+  //     .then(result => {
+  //       console.log(
+  //         '----RESULT STREAM-----',
+  //         new message.UnidentifiedObjectRepository.deserializeBinary(result),
+  //       )
+  //       setImage(
+  //         new message.UnidentifiedObjectRepository.deserializeBinary(result),
+  //       )
+  //     })
+  // }, [])
 
   const onLoad = () => {}
   const onUnmount = () => {}
