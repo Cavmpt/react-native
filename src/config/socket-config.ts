@@ -6,19 +6,20 @@ export default async function socketConnect() {
       login: '',
       password: '',
     },
-    brokerURL: 'ws://xguardlabs-uav-monitor.herokuapp.com',
+    brokerURL: 'ws://xguardlabs-uav-monitor.herokuapp.com/uav-monitor',
+    // brokerURL: 'ws://localhost:8080/uav-monitor',
     reconnectDelay: 2000,
   }
 
   let stompClient = new Client(stompConfig)
 
   stompClient.onConnect = (frame: any) => {
-    stompClient.subscribe('/topic/threat', function () {
-      console.log('hitCONNECT')
+    stompClient.subscribe('/topic/alert', function () {
+      console.log('hit ALERT')
     })
 
     stompClient.subscribe('/topic/threat', function () {
-      console.log('hitCONNECTThreat')
+      console.log('hit Threat')
     })
   }
 
