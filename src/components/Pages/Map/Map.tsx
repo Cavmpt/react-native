@@ -34,7 +34,7 @@ export default function Map(props: IMapProps) {
       '---process.env.GOOGLE_MAPS_API_KEY---',
       process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     )
-    fetch(process.env.REACT_APP_WEBSOCKET_BASE_URL + '/threats/1', {
+    fetch('http://localhost:8080/threats/3', {
       method: 'GET',
       responseType: 'arraybuffer',
       mode: 'cors',
@@ -69,14 +69,8 @@ export default function Map(props: IMapProps) {
       }).arrayBuffer()
     })
       .then(result => {
-        console.log(
-          '----RESULT STREAM-----',
-          new message.UnidentifiedObject.deserializeBinary(result),
-        )
-        let image1 = new message.UnidentifiedObject.deserializeBinary(result).getImage();
-        console.log('*** IMAGE *** \n' + image1)
         setImage(
-          image1,
+          new message.UnknownObjectEntity.deserializeBinary(result).getUnknownobject().getImage(),
         )
       })
   }, [])
