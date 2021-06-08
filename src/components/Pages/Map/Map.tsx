@@ -34,7 +34,7 @@ export default function Map(props: IMapProps) {
       '---process.env.GOOGLE_MAPS_API_KEY---',
       process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     )
-    fetch('http://localhost:8080/threats/3', {
+    fetch(process.env.REACT_APP_GOOGLE_MAPS_API_KEY + '/threats/3', {
       method: 'GET',
       responseType: 'arraybuffer',
       mode: 'cors',
