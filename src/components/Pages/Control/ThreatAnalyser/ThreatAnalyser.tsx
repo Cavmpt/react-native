@@ -1,9 +1,7 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext, useState, useEffect} from 'react'
 import ButtonLarge from '../../../UIcomponents/Buttons/Button-Large/ButtonLarge'
-
-import Threat1 from './threat1.jpg'
-// import Threat2 from './threat2.jpg'
-
+import deserializeMethod from '../../../../helpers/deserializeMethods'
+import socketMethods from '../../../../helpers/socketMethods'
 import './ThreatAnalyser.scss'
 
 import {Context, ContextType} from '../../../../store/Provider'
@@ -16,10 +14,8 @@ export default function ThreatAnalyser(
   props: IThreatAnalyserProps,
 ): JSX.Element {
   const context = useContext<ContextType>(Context)
-  const {setCurrentAlerts, currentAlerts, setCurrentThreats, currentThreats} =
-    context
+  const {imagesAlerts} = context
   const [count, setCount] = useState(1)
-  const currentImage = Threat1
 
   // FETCH VIDEO ACCORDING TO SERIAL NUMBER
 
@@ -33,15 +29,20 @@ export default function ThreatAnalyser(
   }
 
   const ignoreEvent = () => {
-    // DELETE EVENT
+    console.log(imagesAlerts)
   }
+
+  useEffect(() => {
+    socketMethods()
+    deserializeMethod()
+  })
+
   return (
-    <div
-      className='threatAnalyser'
-      style={{
-        backgroundImage: `url(${Threat1})`,
-      }}
-    >
+    <div className='threatAnalyser'>
+      <img
+        src={`data:image/png;base64, ${imagesAlerts[0].value} `}
+        alt='alert'
+      />
       <div className='threatAnalyser__button-wrap'>
         <div className='threatAnalyser__buttons'>
           <ButtonLarge

@@ -1,9 +1,11 @@
 /* eslint-disable */
 // @ts-nocheck
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useContext} from 'react'
 import {GoogleMap, useJsApiLoader} from '@react-google-maps/api'
 import './Map.scss'
 import AlertBoundary from '../../UIcomponents/Notifications/AlertBoundary/AlertBoundary'
+
+import {Context, ContextType} from '../../../store/Provider'
 
 const message = require('../../../helpers/uav-monitor_pb')
 
@@ -22,7 +24,8 @@ const center = {
 }
 
 export default function Map(props: IMapProps) {
-  const [image, setImage] = useState('')
+  const context = useContext<ContextType>(Context)
+  const {imagesAlerts, setImagesAlerts} = context
   const [isMapToggled, setToggleMap] = useState(false)
   const {isLoaded} = useJsApiLoader({
     id: 'google-map-script',
@@ -34,7 +37,7 @@ export default function Map(props: IMapProps) {
       '---process.env.GOOGLE_MAPS_API_KEY---',
       process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     )
-    fetch(process.env.REACT_APP_GOOGLE_MAPS_API_KEY + '/threats/3', {
+    fetch(process.env.REACT_APP_WEBSOCKET_BASE_URL + '/alerts', {
       method: 'GET',
       responseType: 'arraybuffer',
       mode: 'cors',
@@ -62,32 +65,46 @@ export default function Map(props: IMapProps) {
             push()
           },
         })
-      }).then(stream => {
-      // Respond with our stream
-      return new Response(stream, {
-        headers: {'Content-Type': 'binary/html'},
-      }).arrayBuffer()
-    })
+      })
+      .then(stream => {
+        // Respond with the fetched stream stream
+        return new Response(stream, {
+          headers: {'Content-Type': 'binary/html'},
+        }).arrayBuffer()
+      })
       .then(result => {
-        setImage(
-          new message.UnknownObjectEntity.deserializeBinary(result).getUnknownobject().getImage(),
-        )
+        // GET THE LIST FROM THE PROTOCOL BUFFER
+        const UInt8ImageArray =
+          new message.UnknownObjectEntityRepository.deserializeBinary(
+            result,
+          ).getEntityList()
+        for (let i = 0; i < UInt8ImageArray.length; i++) {
+          // PUSHING IT INTO THE GLOBAL STORE ONE BY ONE
+          const currentUInt8Image = UInt8ImageArray[i]
+            .getUnknownobject()
+            .getImage()
+          const currentObjectOfAlerts = {
+            id: i + 1,
+            message: `ALERT ${i + 1}`,
+            value: currentUInt8Image,
+          }
+          setImagesAlerts(imagesAlerts => [
+            ...imagesAlerts,
+            currentObjectOfAlerts,
+          ])
+        }
       })
   }, [])
 
-  const onLoad = () => {
-  }
-  const onUnmount = () => {
-  }
+  const onLoad = () => {}
+  const onUnmount = () => {}
 
-  const togglemap = () => {
-  }
+  const togglemap = () => {}
 
   return (
     <AlertBoundary>
       {isLoaded ? (
         <div className='container'>
-          <img src={`data:image/png;base64, ${image} `} alt="Red dot" />
           <div className='container__google-map'>
             <GoogleMap
               mapContainerStyle={containerStyle}
@@ -113,3 +130,8 @@ export default function Map(props: IMapProps) {
     </AlertBoundary>
   )
 }
+
+// const imageBackground =
+// new message.UnknownObjectEntityRepository.deserializeBinary(result)
+//   .getUnknownobject()
+//   .getImage()
