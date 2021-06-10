@@ -5,22 +5,23 @@ import React, {useState} from 'react'
 
 export type ContextType = {
   currentThreats: {name: string}[]
-  currentAlerts: {name: string}[]
-  imagesAlerts: {id: number; value: string}[]
-
+  currentAlerts: {id: number; message: string; value: string}[]
+  error: string
   setCurrentThreats: (item: {name: string}[]) => void
-  setCurrentAlerts: (item: {name: string}[]) => void
-  setImagesAlerts: (item: {id: number; value: string}[]) => void
+  setCurrentAlerts: (
+    item: {id: number; message: string; value: string}[],
+  ) => void
+  setErrorMessage: (item: string) => void
 }
 
 const Context = React.createContext<ContextType>(undefined!)
 
 const Provider = ({children}: any): any => {
   const [currentThreats, setCurrentThreats] = useState<{name: string}[]>([])
-  const [currentAlerts, setCurrentAlerts] = useState<{name: string}[]>([])
-  const [imagesAlerts, setImagesAlerts] = useState<
-    {id: number; value: string}[]
+  const [currentAlerts, setCurrentAlerts] = useState<
+    {id: number; message: string; value: string}[]
   >([])
+  const [error, setErrorMessage] = useState<string>('')
 
   return (
     <Context.Provider
@@ -28,12 +29,12 @@ const Provider = ({children}: any): any => {
         // values
         currentThreats,
         currentAlerts,
-        imagesAlerts,
+        error,
 
         // functions
         setCurrentThreats,
         setCurrentAlerts,
-        setImagesAlerts,
+        setErrorMessage,
       }}
     >
       {children}

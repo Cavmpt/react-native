@@ -14,22 +14,39 @@ export default function ThreatAnalyser(
   props: IThreatAnalyserProps,
 ): JSX.Element {
   const context = useContext<ContextType>(Context)
-  const {imagesAlerts} = context
+  const {currentAlerts, setCurrentAlerts} = context
   const [count, setCount] = useState(1)
 
   // FETCH VIDEO ACCORDING TO SERIAL NUMBER
 
   const confirmThreat = async () => {
-    // const confirmedThreat = currentAlerts.shift()
-    // const dummyCount = currentThreats.push(confirmedThreat)
-    // await setCurrentThreats(currentThreats)
-    // await setCurrentAlerts(currentAlerts)
-    // await setCount(count + 1)
-    // client.send('/topic/stocks', {}, JSON.stringify(quote))
+    fetch(`${process.env.REACT_APP_WEBSOCKET_BASE_URL}/threat-ack`, {
+      method: 'POST',
+      mode: 'cors',
+      cache: 'no-cache',
+      credentials: 'same-origin',
+    }).then(resp => {
+      // if ((resp = 'successful')) {
+      // const firstElementOfAlertArray = currentAlerts[0]
+      // const currentAlertMinusFirstElement = currentAlerts.shift()
+      // setCurrentAlerts([...currentAlertMinusFirstElement])
+      // setCurrentAlerts(...firstElementOfAlertArray)
+      // }
+    })
   }
 
   const ignoreEvent = () => {
-    console.log(imagesAlerts)
+    fetch(`${process.env.REACT_APP_WEBSOCKET_BASE_URL}/alerts`, {
+      method: 'POST',
+      mode: 'cors',
+      cache: 'no-cache',
+      credentials: 'same-origin',
+    }).then(resp => {
+      // if ((resp = 'successful')) {
+      // const currentAlertMinusFirstElement = currentAlerts.shift()
+      // setCurrentAlerts([...currentAlertMinusFirstElement])
+      // }
+    })
   }
 
   useEffect(() => {
@@ -40,7 +57,7 @@ export default function ThreatAnalyser(
   return (
     <div className='threatAnalyser'>
       <img
-        src={`data:image/png;base64, ${imagesAlerts[0].value} `}
+        src={`data:image/png;base64, ${currentAlerts[0].value} `}
         alt='alert'
       />
       <div className='threatAnalyser__button-wrap'>

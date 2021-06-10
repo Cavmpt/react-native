@@ -1,0 +1,11 @@
+.error {
+  display: absolute;
+  top: 2rem;
+  left: 5rem;
+
+  &__message {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 2rem;
+    color: black;
+  }
+}

@@ -1,7 +1,16 @@
 import * as React from 'react'
 
-export interface IErrorBoundaProps {}
+import 'ErrorBoundary.scss'
 
-export default function ErrorBounda(props: IErrorBoundaProps) {
-  return <div></div>
+export interface IErrorBoundaProps {
+  error: string
+}
+
+export default function ErrorBounda(props: IErrorBoundaProps): JSX.Element {
+  const {error} = props
+  return (
+    <div>
+      <div>{error}</div>
+    </div>
+  )
 }

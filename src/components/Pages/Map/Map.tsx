@@ -25,7 +25,7 @@ const center = {
 
 export default function Map(props: IMapProps) {
   const context = useContext<ContextType>(Context)
-  const {imagesAlerts, setImagesAlerts} = context
+  const {currentAlerts, setCurrentAlerts} = context
   const [isMapToggled, setToggleMap] = useState(false)
   const {isLoaded} = useJsApiLoader({
     id: 'google-map-script',
@@ -83,15 +83,12 @@ export default function Map(props: IMapProps) {
           const currentUInt8Image = UInt8ImageArray[i]
             .getUnknownobject()
             .getImage()
-          const currentObjectOfAlerts = {
+          const iteratedObjectOfAlerts = {
             id: i + 1,
             message: `ALERT ${i + 1}`,
             value: currentUInt8Image,
           }
-          setImagesAlerts(imagesAlerts => [
-            ...imagesAlerts,
-            currentObjectOfAlerts,
-          ])
+          setCurrentAlerts(() => [...currentAlerts, iteratedObjectOfAlerts])
         }
       })
   }, [])
