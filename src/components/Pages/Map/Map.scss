@@ -1,6 +1,7 @@
 .container {
   &__google-map {
     width: 50rem;
+    position: relative;
   }
 
   &__live-feed {
@@ -9,6 +10,5 @@
     height: 10rem;
     left: 5rem;
     bottom: 15rem;
-    z-index: 5;
   }
 }

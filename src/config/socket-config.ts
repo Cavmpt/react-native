@@ -1,3 +1,5 @@
+/* eslint-disable */
+// @ts-nocheck
 import {Client} from '@stomp/stompjs'
 
 export default async function socketConnect() {
@@ -13,13 +15,62 @@ export default async function socketConnect() {
 
   let stompClient = new Client(stompConfig)
 
-  stompClient.onConnect = (frame: any) => {
-    stompClient.subscribe('/topic/alert', function () {
-      console.log('hit ALERT')
-    })
+  function DFS(body) {
+    const reader = body.getReader()
+    return new ReadableStream({
+      start(controller) {
+        function push() {
+          reader.read().then(({done, value}) => {
+            if (done) {
+              console.log('done', done)
+              controller.close()
+              return
+            }
+            controller.enqueue(value)
+            console.log(done, value)
+            push()
+          })
+        }
 
-    stompClient.subscribe('/topic/threat', function () {
-      console.log('hit Threat')
+        push()
+      },
+    })
+  }
+
+  stompClient.onConnect = (frame: any) => {
+    stompClient.subscribe('/topic/alert', function (message) {
+      const body = message.body
+      if (body) {
+        DFS(body)
+          .then(stream => {
+            // Respond with the fetched stream stream
+            return new Response(stream, {
+              headers: {'Content-Type': 'binary/html'},
+            }).arrayBuffer()
+          })
+          .then(result => {
+            console.log('result:', result)
+          })
+      } else {
+        console.log('got empty message')
+      }
+    })
+    stompClient.subscribe('/topic/threat', function (message) {
+      // to be deserialised tomorrow
+      if (message.body) {
+        DFS(message.body)
+          .then(stream => {
+            // Respond with the fetched stream stream
+            return new Response(stream, {
+              headers: {'Content-Type': 'binary/html'},
+            }).arrayBuffer()
+          })
+          .then(result => {
+            console.log('result:', result)
+          })
+      } else {
+        console.log('got empty message')
+      }
     })
   }
 

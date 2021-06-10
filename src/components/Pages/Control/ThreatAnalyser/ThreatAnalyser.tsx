@@ -1,3 +1,6 @@
+/* eslint-disable */
+// @ts-nocheck
+
 import React, {useContext, useState, useEffect} from 'react'
 import ButtonLarge from '../../../UIcomponents/Buttons/Button-Large/ButtonLarge'
 import deserializeMethod from '../../../../helpers/deserializeMethods'
@@ -20,28 +23,29 @@ export default function ThreatAnalyser(
   // FETCH VIDEO ACCORDING TO SERIAL NUMBER
 
   const confirmThreat = async () => {
-    fetch(`${process.env.REACT_APP_WEBSOCKET_BASE_URL}/threat-ack`, {
-      method: 'POST',
-      mode: 'cors',
-      cache: 'no-cache',
-      credentials: 'same-origin',
-    }).then(resp => {
-      // if ((resp = 'successful')) {
-      // const firstElementOfAlertArray = currentAlerts[0]
-      // const currentAlertMinusFirstElement = currentAlerts.shift()
-      // setCurrentAlerts([...currentAlertMinusFirstElement])
-      // setCurrentAlerts(...firstElementOfAlertArray)
-      // }
-    })
+    fetch(
+      `${process.env.REACT_APP_WEBSOCKET_BASE_URL}/threat-ack?id=${currentAlerts[0].id}`,
+      {
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+      },
+    )
   }
 
   const ignoreEvent = () => {
-    fetch(`${process.env.REACT_APP_WEBSOCKET_BASE_URL}/alerts`, {
-      method: 'POST',
-      mode: 'cors',
-      cache: 'no-cache',
-      credentials: 'same-origin',
-    }).then(resp => {
+    fetch(
+      `${process.env.REACT_APP_WEBSOCKET_BASE_URL}/alerts/${currentAlerts[0].id}`,
+      {
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'same-origin',
+      },
+    ).then(resp => {
       // if ((resp = 'successful')) {
       // const currentAlertMinusFirstElement = currentAlerts.shift()
       // setCurrentAlerts([...currentAlertMinusFirstElement])
@@ -50,6 +54,7 @@ export default function ThreatAnalyser(
   }
 
   useEffect(() => {
+    console.log('TYPE:', typeof JSON.stringify({id: currentAlerts[0].id}))
     socketMethods()
     deserializeMethod()
   })

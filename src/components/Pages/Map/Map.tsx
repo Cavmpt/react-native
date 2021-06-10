@@ -95,42 +95,38 @@ export default function Map(props: IMapProps) {
 
   const onLoad = () => {}
   const onUnmount = () => {}
-
   const togglemap = () => {}
 
   return (
-    <AlertBoundary>
-      <ErrorBoundary>
-        {isLoaded ? (
-          <div className='container'>
-            <div className='container__google-map'>
-              <GoogleMap
-                mapContainerStyle={containerStyle}
-                center={center}
-                zoom={10}
-                onLoad={onLoad}
-                onUnmount={onUnmount}
-              >
-                {/* Child components, such as markers, info windows, etc. */}
-              </GoogleMap>
-              <img
-                onClick={() => togglemap()}
-                className='container__live-feed'
-                alt='liveFeed'
-                src='http://209.206.162.230/mjpg/video.mjpg'
-              />
+    <ErrorBoundary>
+      <AlertBoundary>
+        <>
+          {isLoaded ? (
+            <div className='container'>
+              <div className='container__google-map'>
+                <GoogleMap
+                  mapContainerStyle={containerStyle}
+                  center={center}
+                  zoom={10}
+                  onLoad={onLoad}
+                  onUnmount={onUnmount}
+                >
+                  {/* Child components, such as markers, info windows, etc. */}
+                </GoogleMap>
+                <img
+                  onClick={() => togglemap()}
+                  className='container__live-feed'
+                  alt='liveFeed'
+                  src='http://209.206.162.230/mjpg/video.mjpg'
+                />
+              </div>
+              <></>
             </div>
+          ) : (
             <></>
-          </div>
-        ) : (
-          <></>
-        )}
-      </ErrorBoundary>
-    </AlertBoundary>
+          )}
+        </>
+      </AlertBoundary>
+    </ErrorBoundary>
   )
 }
-
-// const imageBackground =
-// new message.UnknownObjectEntityRepository.deserializeBinary(result)
-//   .getUnknownobject()
-//   .getImage()
