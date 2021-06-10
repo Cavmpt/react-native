@@ -5,11 +5,16 @@ import React, {useState} from 'react'
 
 export type ContextType = {
   currentThreats: {name: string}[]
-  currentAlerts: {id: number; message: string; value: string}[]
+  currentAlerts: {
+    id: number
+    message: string
+    value: string
+    acknowledged: boolean
+  }[]
   error: string
   setCurrentThreats: (item: {name: string}[]) => void
   setCurrentAlerts: (
-    item: {id: number; message: string; value: string}[],
+    item: {id: number; message: string; value: string; acknowledged: boolean}[],
   ) => void
   setErrorMessage: (item: string) => void
 }
@@ -19,7 +24,7 @@ const Context = React.createContext<ContextType>(undefined!)
 const Provider = ({children}: any): any => {
   const [currentThreats, setCurrentThreats] = useState<{name: string}[]>([])
   const [currentAlerts, setCurrentAlerts] = useState<
-    {id: number; message: string; value: string}[]
+    {id: number; message: string; value: string; acknowledged: boolean}[]
   >([])
   const [error, setErrorMessage] = useState<string>('')
 

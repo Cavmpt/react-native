@@ -4,7 +4,7 @@ import React, {useEffect, useState, useContext} from 'react'
 import {GoogleMap, useJsApiLoader} from '@react-google-maps/api'
 import './Map.scss'
 import AlertBoundary from '../../UIcomponents/Notifications/AlertBoundary/AlertBoundary'
-
+import ErrorBoundary from '../../UIcomponents/Notifications/ErrorBoundary/ErrorBoundary'
 import {Context, ContextType} from '../../../store/Provider'
 
 const message = require('../../../helpers/uav-monitor_pb')
@@ -100,30 +100,32 @@ export default function Map(props: IMapProps) {
 
   return (
     <AlertBoundary>
-      {isLoaded ? (
-        <div className='container'>
-          <div className='container__google-map'>
-            <GoogleMap
-              mapContainerStyle={containerStyle}
-              center={center}
-              zoom={10}
-              onLoad={onLoad}
-              onUnmount={onUnmount}
-            >
-              {/* Child components, such as markers, info windows, etc. */}
-            </GoogleMap>
-            <img
-              onClick={() => togglemap()}
-              className='container__live-feed'
-              alt='liveFeed'
-              src='http://209.206.162.230/mjpg/video.mjpg'
-            />
+      <ErrorBoundary>
+        {isLoaded ? (
+          <div className='container'>
+            <div className='container__google-map'>
+              <GoogleMap
+                mapContainerStyle={containerStyle}
+                center={center}
+                zoom={10}
+                onLoad={onLoad}
+                onUnmount={onUnmount}
+              >
+                {/* Child components, such as markers, info windows, etc. */}
+              </GoogleMap>
+              <img
+                onClick={() => togglemap()}
+                className='container__live-feed'
+                alt='liveFeed'
+                src='http://209.206.162.230/mjpg/video.mjpg'
+              />
+            </div>
+            <></>
           </div>
+        ) : (
           <></>
-        </div>
-      ) : (
-        <></>
-      )}
+        )}
+      </ErrorBoundary>
     </AlertBoundary>
   )
 }
