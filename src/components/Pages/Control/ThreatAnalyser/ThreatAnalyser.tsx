@@ -17,14 +17,14 @@ export default function ThreatAnalyser(
   props: IThreatAnalyserProps,
 ): JSX.Element {
   const context = useContext<ContextType>(Context)
-  const {currentAlerts, setCurrentAlerts} = context
+  const {currentThreats, setCurrentAlerts} = context
   const [count, setCount] = useState(1)
 
   // FETCH VIDEO ACCORDING TO SERIAL NUMBER
 
   const confirmThreat = async () => {
     fetch(
-      `${process.env.REACT_APP_WEBSOCKET_BASE_URL}/threat-ack?id=${currentAlerts[0].id}`,
+      `${process.env.REACT_APP_WEBSOCKET_BASE_URL}/threat-ack?id=${currentThreats[0].id}`,
       {
         method: 'POST',
         mode: 'cors',
@@ -35,7 +35,7 @@ export default function ThreatAnalyser(
 
   const ignoreEvent = () => {
     fetch(
-      `${process.env.REACT_APP_WEBSOCKET_BASE_URL}/alerts/${currentAlerts[0].id}`,
+      `${process.env.REACT_APP_WEBSOCKET_BASE_URL}/alerts/${currentThreats[0].id}`,
       {
         method: 'POST',
         mode: 'cors',
@@ -49,7 +49,6 @@ export default function ThreatAnalyser(
   }
 
   useEffect(() => {
-    console.log('TYPE:', typeof JSON.stringify({id: currentAlerts[0].id}))
     socketMethods()
     deserializeMethod()
   })
@@ -57,7 +56,7 @@ export default function ThreatAnalyser(
   return (
     <div className='threatAnalyser'>
       <img
-        src={`data:image/png;base64, ${currentAlerts[0].value} `}
+        src={`data:image/png;base64, ${currentThreats[0].value} `}
         alt='alert'
       />
       <div className='threatAnalyser__button-wrap'>

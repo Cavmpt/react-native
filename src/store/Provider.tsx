@@ -18,6 +18,7 @@ export type ContextType = {
     acknowledged: boolean
   }[]
   errorMessage: string
+
   setCurrentThreats: (item: {name: string}[]) => void
   setCurrentAlerts: (
     item: {id: number; message: string; value: string; acknowledged: boolean}[],

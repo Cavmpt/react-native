@@ -1,5 +1,4 @@
 import React, {useContext} from 'react'
-import {contextType} from 'react-modal'
 import {useNavigate} from 'react-router-dom'
 import ButtonMedium from '../../Buttons/Button-Medium/ButtonMedium'
 

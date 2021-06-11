@@ -1,6 +1,6 @@
 /* eslint-disable */
 // @ts-nocheck
-import React, {useEffect, useState, useContext} from 'react'
+import React, {useState, useContext} from 'react'
 import {GoogleMap, useJsApiLoader} from '@react-google-maps/api'
 import './Map.scss'
 import AlertBoundary from '../../UIcomponents/Notifications/AlertBoundary/AlertBoundary'
@@ -31,67 +31,6 @@ export default function Map(props: IMapProps) {
     id: 'google-map-script',
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
   })
-
-  useEffect(() => {
-    console.log(
-      '---process.env.GOOGLE_MAPS_API_KEY---',
-      process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
-    )
-    fetch(process.env.REACT_APP_WEBSOCKET_BASE_URL + '/alerts', {
-      method: 'GET',
-      responseType: 'arraybuffer',
-      mode: 'cors',
-      cache: 'no-cache',
-      credentials: 'same-origin',
-    })
-      .then(response => response.body)
-      .then(body => {
-        const reader = body.getReader()
-        return new ReadableStream({
-          start(controller) {
-            function push() {
-              reader.read().then(({done, value}) => {
-                if (done) {
-                  console.log('done', done)
-                  controller.close()
-                  return
-                }
-                controller.enqueue(value)
-                console.log(done, value)
-                push()
-              })
-            }
-
-            push()
-          },
-        })
-      })
-      .then(stream => {
-        // Respond with the fetched stream stream
-        return new Response(stream, {
-          headers: {'Content-Type': 'binary/html'},
-        }).arrayBuffer()
-      })
-      .then(result => {
-        // GET THE LIST FROM THE PROTOCOL BUFFER
-        const UInt8ImageArray =
-          new message.UnknownObjectEntityRepository.deserializeBinary(
-            result,
-          ).getEntityList()
-        for (let i = 0; i < UInt8ImageArray.length; i++) {
-          // PUSHING IT INTO THE GLOBAL STORE ONE BY ONE
-          const currentUInt8Image = UInt8ImageArray[i]
-            .getUnknownobject()
-            .getImage()
-          const iteratedObjectOfAlerts = {
-            id: i + 1,
-            message: `ALERT ${i + 1}`,
-            value: currentUInt8Image,
-          }
-          setCurrentAlerts(() => [...currentAlerts, iteratedObjectOfAlerts])
-        }
-      })
-  }, [])
 
   const onLoad = () => {}
   const onUnmount = () => {}
