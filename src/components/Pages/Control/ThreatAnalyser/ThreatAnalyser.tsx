@@ -45,12 +45,7 @@ export default function ThreatAnalyser(
         },
         credentials: 'same-origin',
       },
-    ).then(resp => {
-      // if ((resp = 'successful')) {
-      // const currentAlertMinusFirstElement = currentAlerts.shift()
-      // setCurrentAlerts([...currentAlertMinusFirstElement])
-      // }
-    })
+    ) // THIS WILL TRIGGER WEBSOCKETS
   }
 
   useEffect(() => {
@@ -84,3 +79,5 @@ export default function ThreatAnalyser(
     </div>
   )
 }
+
+//

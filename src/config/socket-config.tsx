@@ -1,6 +1,10 @@
 /* eslint-disable */
 // @ts-nocheck
 import {Client} from '@stomp/stompjs'
+import React, {useContext} from 'react'
+import {Context, ContextType} from '../store/Provider'
+
+const message = require('../helpers/uav-monitor_pb')
 
 export default async function socketConnect() {
   const stompConfig = {
@@ -12,6 +16,8 @@ export default async function socketConnect() {
     // brokerURL: 'ws://localhost:8080/uav-monitor',
     reconnectDelay: 2000,
   }
+  const context = useContext<ContextType>(Context)
+  const {setCurrentAlerts} = context
 
   let stompClient = new Client(stompConfig)
 
@@ -38,36 +44,30 @@ export default async function socketConnect() {
   }
 
   stompClient.onConnect = (frame: any) => {
-    stompClient.subscribe('/topic/alert', function (message) {
-      const body = message.body
+    stompClient.subscribe('/topic/alert', function (response) {
+      const body = response._binaryBody
       if (body) {
-        DFS(body)
-          .then(stream => {
-            // Respond with the fetched stream stream
-            return new Response(stream, {
-              headers: {'Content-Type': 'binary/html'},
-            }).arrayBuffer()
-          })
-          .then(result => {
-            console.log('result:', result)
-          })
+        console.log(
+          'REMOVED',
+          new message.UnknownObjectNotification.deserializeBinary(body)
+            .array[0],
+        )
+        const removedItemIndex =
+          new message.UnknownObjectNotification.deserializeBinary(body).array[0]
+        const currentArrayWithdeselectedElement = array.splice(
+          removedItemIndex,
+          1,
+        )
+        setCurrentAlerts(...currentArrayWithdeselectedElement)
       } else {
         console.log('got empty message')
       }
     })
     stompClient.subscribe('/topic/threat', function (message) {
+      // const body = message._binaryBody
       // to be deserialised tomorrow
       if (message.body) {
-        DFS(message.body)
-          .then(stream => {
-            // Respond with the fetched stream stream
-            return new Response(stream, {
-              headers: {'Content-Type': 'binary/html'},
-            }).arrayBuffer()
-          })
-          .then(result => {
-            console.log('result:', result)
-          })
+        console.log('message-body:', message.body)
       } else {
         console.log('got empty message')
       }
@@ -85,5 +85,3 @@ export default async function socketConnect() {
     console.log('STOMeP: ' + str)
   }
 }
-
-//client.deactivate();
