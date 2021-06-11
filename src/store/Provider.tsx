@@ -4,30 +4,66 @@
 import React, {useState} from 'react'
 
 export type ContextType = {
-  currentThreats: {name: string}[]
-  currentAlerts: {name: string}[]
-  setCurrentThreats: (item: {name: string}[]) => void
-  setCurrentAlerts: (item: {name: string}[]) => void
+  currentThreats: {
+    id: number
+    message: string
+    value: string
+    acknowledged: boolean
+  }[]
+  currentAlerts: {
+    id: number
+    message: string
+    value: string
+    acknowledged: boolean
+  }[]
+  currentAnalyzedAlert: {
+    id: number
+    message: string
+    value: string
+    acknowledged: boolean
+  }[]
+  errorMessage: string
+
+  setCurrentThreats: (
+    item: {id: number; message: string; value: string; acknowledged: boolean}[],
+  ) => void
+  setCurrentAlerts: (
+    item: {id: number; message: string; value: string; acknowledged: boolean}[],
+  ) => void
+  setErrorMessage: (item: string) => void
+  setCurrentAnalyzedAlert: (
+    item: {id: number; message: string; value: string; acknowledged: boolean}[],
+  ) => void
 }
 
 const Context = React.createContext<ContextType>(undefined!)
 
 const Provider = ({children}: any): any => {
-  const [currentThreats, setCurrentThreats] = useState<{name: string}[]>([
-    {name: 'movement detected out at the back door'},
-  ])
-  const [currentAlerts, setCurrentAlerts] = useState<{name: string}[]>([
-    {name: 'unidentified individual in the front'},
-  ])
+  const [currentThreats, setCurrentThreats] = useState<
+    {id: number; message: string; value: string; acknowledged: boolean}[]
+  >([])
+  const [currentAlerts, setCurrentAlerts] = useState<
+    {id: number; message: string; value: string; acknowledged: boolean}[]
+  >([])
+  const [errorMessage, setErrorMessage] = useState<string>('')
+  const [currentAnalyzedAlert, setCurrentAnalyzedAlert] = useState<
+    {id: number; message: string; value: string; acknowledged: boolean}[]
+  >([])
+
   return (
     <Context.Provider
       value={{
         // values
         currentThreats,
         currentAlerts,
+        errorMessage,
+        currentAnalyzedAlert,
+
         // functions
         setCurrentThreats,
         setCurrentAlerts,
+        setErrorMessage,
+        setCurrentAnalyzedAlert,
       }}
     >
       {children}

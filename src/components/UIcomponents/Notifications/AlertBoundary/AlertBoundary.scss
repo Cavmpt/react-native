@@ -1,0 +1,14 @@
+.card-alert {
+  width: 20rem;
+  height: 15rem;
+  background-color: red;
+
+  &__id {
+    color: white;
+  }
+
+  &__image {
+    position: absolute;
+    width: 15rem;
+  }
+}

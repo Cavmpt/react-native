@@ -20,7 +20,7 @@ export default function ThreatsBox(props: IThreatsBoxProps): JSX.Element {
       {currentThreats.length > 0 ? (
         currentThreats.map(threats => (
           <tr className='threatBox__row'>
-            <td>{threats.name}</td>
+            <td>{threats.message}</td>
           </tr>
         ))
       ) : (

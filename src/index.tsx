@@ -7,7 +7,7 @@ import Map from './components/Pages/Map/Map'
 import Control from './components/Pages/Control/Control'
 
 import {makeServer} from './config/mirage-config'
-import socketConnect from './config/socket-config'
+import SocketConfig from './config/socket-config'
 
 import 'typeface-roboto-slab'
 
@@ -18,11 +18,14 @@ import reportWebVitals from './reportWebVitals'
 
 import {Provider} from './store/Provider'
 
-if (process.env.NODE_ENV === 'development') {
-  makeServer({environment: 'test'})
-} else {
-  socketConnect()
-}
+// SOCKET CONNECTION
+
+// SOCKET CONNECTION
+
+// if (process.env.NODE_ENV === 'development') {
+//   makeServer({environment: 'test'})
+// } else {
+// }
 const routesArray = [
   {
     path: '/',
@@ -48,7 +51,9 @@ ReactDOM.render(
   <div className='wrapper'>
     <Router>
       <Provider>
-        <App />
+        <SocketConfig>
+          <App />
+        </SocketConfig>
       </Provider>
     </Router>
   </div>,

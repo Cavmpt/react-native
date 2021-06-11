@@ -1,9 +1,10 @@
-import React, {useContext, useState} from 'react'
+/* eslint-disable */
+// @ts-nocheck
+
+import React, {useContext, useState, useEffect} from 'react'
 import ButtonLarge from '../../../UIcomponents/Buttons/Button-Large/ButtonLarge'
-
-import Threat1 from './threat1.jpg'
-// import Threat2 from './threat2.jpg'
-
+import deserializeMethod from '../../../../helpers/deserializeMethods'
+import socketMethods from '../../../../helpers/socketMethods'
 import './ThreatAnalyser.scss'
 
 import {Context, ContextType} from '../../../../store/Provider'
@@ -16,33 +17,60 @@ export default function ThreatAnalyser(
   props: IThreatAnalyserProps,
 ): JSX.Element {
   const context = useContext<ContextType>(Context)
-  const {setCurrentAlerts, currentAlerts, setCurrentThreats, currentThreats} =
-    context
+  const {currentThreats, setCurrentAlerts} = context
   const [count, setCount] = useState(1)
-  const currentImage = Threat1
 
   // FETCH VIDEO ACCORDING TO SERIAL NUMBER
 
   const confirmThreat = async () => {
-    // const confirmedThreat = currentAlerts.shift()
-    // const dummyCount = currentThreats.push(confirmedThreat)
-    // await setCurrentThreats(currentThreats)
-    // await setCurrentAlerts(currentAlerts)
-    // await setCount(count + 1)
-    // client.send('/topic/stocks', {}, JSON.stringify(quote))
+    fetch(
+      `${process.env.REACT_APP_WEBSOCKET_BASE_URL}/threat-ack?id=${currentThreats[0].id}`,
+      {
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+      },
+    )
   }
 
   const ignoreEvent = () => {
-    // DELETE EVENT
+    fetch(
+      `${process.env.REACT_APP_WEBSOCKET_BASE_URL}/alerts/${currentThreats[0].id}`,
+      {
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'same-origin',
+      },
+    ) // THIS WILL TRIGGER WEBSOCKETS
   }
+
+  useEffect(() => {
+    console.log('WHY IS THREAT EMPTY:', currentThreats)
+    socketMethods()
+    deserializeMethod()
+  })
+
+  const threatDisplay = () => {
+    if (currentThreats.length > 0) {
+      return (
+        <img
+          src={`data:image/png;base64, ${currentThreats[0].value} `}
+          alt='alert'
+        />
+      )
+    } else {
+      return <div>Currently no threats</div>
+    }
+  }
+
   return (
-    <div
-      className='threatAnalyser'
-      style={{
-        backgroundImage: `url(${Threat1})`,
-      }}
-    >
+    <div className='threatAnalyser'>
       <div className='threatAnalyser__button-wrap'>
+        {threatDisplay()}
         <div className='threatAnalyser__buttons'>
           <ButtonLarge
             textValue='Investigate'
@@ -61,3 +89,5 @@ export default function ThreatAnalyser(
     </div>
   )
 }
+
+//

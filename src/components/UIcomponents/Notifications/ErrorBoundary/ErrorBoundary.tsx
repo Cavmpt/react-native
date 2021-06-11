@@ -1,7 +1,27 @@
-import * as React from 'react'
+import React, {useContext} from 'react'
 
-export interface IErrorBoundaProps {}
+import {Context, ContextType} from '../../../../store/Provider'
 
-export default function ErrorBounda(props: IErrorBoundaProps) {
-  return <div></div>
+import './ErrorBoundary.scss'
+
+export interface IErrorBoundaProps {
+  children: React.ReactNode
+  error: string
+}
+
+export default function ErrorBounda(props: IErrorBoundaProps): JSX.Element {
+  const context = useContext<ContextType>(Context)
+  const {errorMessage} = context
+
+  const {children} = props
+  return (
+    <>
+      {errorMessage !== '' && (
+        <div className='error'>
+          <div className='error__message'>{errorMessage}</div>
+        </div>
+      )}
+      {children}
+    </>
+  )
 }
