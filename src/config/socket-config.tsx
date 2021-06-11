@@ -60,14 +60,14 @@ export default function socketConfig(props: ISocketConfigProps) {
           const currentUInt8Image = UInt8ImageArray[i]
             .getUnknownobject()
             .getImage()
-          console.log('---currentAlerts---', currentUInt8Image)
 
-          const iteratedObjectOfAlerts = {
+          const iteratedObjectOfThreats = {
             id: i + 1,
-            message: `ALERT ${i + 1}`,
+            message: `threat ${i + 1}`,
             value: currentUInt8Image,
           }
-          setCurrentAlerts(() => [...currentAlerts, iteratedObjectOfAlerts])
+          setCurrentThreats(() => [...currentThreats, iteratedObjectOfThreats])
+          console.log('currentThreats:', currentThreats)
         }
       })
       .then(() => {
@@ -98,6 +98,7 @@ export default function socketConfig(props: ISocketConfigProps) {
                 threatIndexToBeRemoved,
                 1,
               )
+              console.log('____CURRENTTHREATS____:', currentThreats)
               setCurrentThreats(() => [...currentThreats])
               setCurrentAlerts(() => [
                 ...currentAlerts,

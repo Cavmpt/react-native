@@ -4,7 +4,12 @@
 import React, {useState} from 'react'
 
 export type ContextType = {
-  currentThreats: {name: string}[]
+  currentThreats: {
+    id: number
+    message: string
+    value: string
+    acknowledged: boolean
+  }[]
   currentAlerts: {
     id: number
     message: string
@@ -19,7 +24,9 @@ export type ContextType = {
   }[]
   errorMessage: string
 
-  setCurrentThreats: (item: {name: string}[]) => void
+  setCurrentThreats: (
+    item: {id: number; message: string; value: string; acknowledged: boolean}[],
+  ) => void
   setCurrentAlerts: (
     item: {id: number; message: string; value: string; acknowledged: boolean}[],
   ) => void
@@ -32,7 +39,9 @@ export type ContextType = {
 const Context = React.createContext<ContextType>(undefined!)
 
 const Provider = ({children}: any): any => {
-  const [currentThreats, setCurrentThreats] = useState<{name: string}[]>([])
+  const [currentThreats, setCurrentThreats] = useState<
+    {id: number; message: string; value: string; acknowledged: boolean}[]
+  >([])
   const [currentAlerts, setCurrentAlerts] = useState<
     {id: number; message: string; value: string; acknowledged: boolean}[]
   >([])

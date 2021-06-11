@@ -49,17 +49,28 @@ export default function ThreatAnalyser(
   }
 
   useEffect(() => {
+    console.log('WHY IS THREAT EMPTY:', currentThreats)
     socketMethods()
     deserializeMethod()
   })
 
+  const threatDisplay = () => {
+    if (currentThreats.length > 0) {
+      return (
+        <img
+          src={`data:image/png;base64, ${currentThreats[0].value} `}
+          alt='alert'
+        />
+      )
+    } else {
+      return <div>Currently no threats</div>
+    }
+  }
+
   return (
     <div className='threatAnalyser'>
-      <img
-        src={`data:image/png;base64, ${currentThreats[0].value} `}
-        alt='alert'
-      />
       <div className='threatAnalyser__button-wrap'>
+        {threatDisplay()}
         <div className='threatAnalyser__buttons'>
           <ButtonLarge
             textValue='Investigate'
