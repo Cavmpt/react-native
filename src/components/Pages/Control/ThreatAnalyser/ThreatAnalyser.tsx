@@ -17,14 +17,14 @@ export default function ThreatAnalyser(
   props: IThreatAnalyserProps,
 ): JSX.Element {
   const context = useContext<ContextType>(Context)
-  const {currentThreats, setCurrentAlerts} = context
+  const {currentAlerts, setCurrentAlerts} = context
   const [count, setCount] = useState(1)
 
   // FETCH VIDEO ACCORDING TO SERIAL NUMBER
 
   const confirmThreat = async () => {
     fetch(
-      `${process.env.REACT_APP_WEBSOCKET_BASE_URL}/threat-ack?id=${currentThreats[0].id}`,
+      `${process.env.REACT_APP_WEBSOCKET_BASE_URL}/threat-ack?id=${currentAlerts[0].id}`,
       {
         method: 'POST',
         mode: 'cors',
@@ -49,21 +49,21 @@ export default function ThreatAnalyser(
   }
 
   useEffect(() => {
-    console.log('WHY IS THREAT EMPTY:', currentThreats)
+    console.log('WHY IS THREAT EMPTY:', currentAlerts)
     socketMethods()
     deserializeMethod()
   })
 
   const threatDisplay = () => {
-    if (currentThreats.length > 0) {
+    if (currentAlerts.length > 0) {
       return (
         <img
-          src={`data:image/png;base64, ${currentThreats[0].value} `}
+          src={`data:image/png;base64, ${currentAlerts[0].value} `}
           alt='alert'
         />
       )
     } else {
-      return <div>Currently no threats</div>
+      return <div>Currently no alerts</div>
     }
   }
 

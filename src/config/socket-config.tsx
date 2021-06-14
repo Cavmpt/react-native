@@ -5,6 +5,7 @@ import React, {useContext, useEffect} from 'react'
 import {Context, ContextType} from '../store/Provider'
 
 const message = require('../helpers/uav-monitor_pb')
+
 export interface ISocketConfigProps {
   children: React.ReactNode
 }
@@ -15,7 +16,7 @@ export default function socketConfig(props: ISocketConfigProps) {
     context
 
   useEffect(() => {
-    fetch(process.env.REACT_APP_WEBSOCKET_BASE_URL + '/threats', {
+    fetch(process.env.REACT_APP_WEBSOCKET_BASE_URL + '/alerts', {
       method: 'GET',
       responseType: 'arraybuffer',
       mode: 'cors',
@@ -57,17 +58,20 @@ export default function socketConfig(props: ISocketConfigProps) {
         for (let i = 0; i < UInt8ImageArray.length; i++) {
           // PUSHING IT INTO THE GLOBAL STORE ONE BY ONE
 
+          const currentUInt8Id = UInt8ImageArray[i]
+            .getId()
+
           const currentUInt8Image = UInt8ImageArray[i]
             .getUnknownobject()
             .getImage()
 
-          const iteratedObjectOfThreats = {
-            id: i + 1,
-            message: `threat ${i + 1}`,
+          const iteratedObjectOfAlerts = {
+            id: currentUInt8Id,
+            message: `alert ${currentUInt8Id}`,
             value: currentUInt8Image,
           }
-          setCurrentThreats(() => [...currentThreats, iteratedObjectOfThreats])
-          console.log('currentThreats:', currentThreats)
+          setCurrentAlerts(() => [...currentAlerts, iteratedObjectOfAlerts])
+          console.log('currentAlerts:', currentAlerts)
         }
       })
       .then(() => {
@@ -76,7 +80,7 @@ export default function socketConfig(props: ISocketConfigProps) {
             login: '',
             password: '',
           },
-          brokerURL: 'ws://xguardlabs-uav-monitor.herokuapp.com/uav-monitor',
+          brokerURL: process.env.REACT_APP_WEBSOCKET_BASE_URL_2 + '/uav-monitor',
           // brokerURL: 'ws://localhost:8080/uav-monitor',
           reconnectDelay: 20000,
         }
@@ -86,33 +90,150 @@ export default function socketConfig(props: ISocketConfigProps) {
           stompClient.subscribe('/topic/alert', function (response) {
             const body = response._binaryBody
             if (body) {
+              let deserializeBinary = new message.UnknownObjectNotification.deserializeBinary(body);
+              let action = deserializeBinary.getAction();
+              let id = deserializeBinary.getId();
               console.log(
-                'REMOVED',
-                new message.UnknownObjectNotification.deserializeBinary(body)
-                  .array[0],
+                action,
+                id,
               )
-              const threatIndexToBeRemoved =
-                new message.UnknownObjectNotification.deserializeBinary(body)
-                  .array[0]
-              const selectedThreatToBecomeAnAlert = currentThreats.splice(
-                threatIndexToBeRemoved,
-                1,
-              )
-              console.log('____CURRENTTHREATS____:', currentThreats)
-              setCurrentThreats(() => [...currentThreats])
-              setCurrentAlerts(() => [
-                ...currentAlerts,
-                ...selectedThreatToBecomeAnAlert,
-              ])
+              if (action === message.UnknownObjectNotification.Action.REMOVED) {
+                currentAlerts.splice(
+                  id,
+                  1,
+                )
+                console.log('____CURRENT_ALERTS____:', currentAlerts)
+                setCurrentAlerts(() => [...currentAlerts])
+              } else if (action === message.UnknownObjectNotification.Action.ADDED) {
+
+                fetch(process.env.REACT_APP_WEBSOCKET_BASE_URL + '/alerts/' + id, {
+                  method: 'GET',
+                  responseType: 'arraybuffer',
+                  mode: 'cors',
+                  cache: 'no-cache',
+                  credentials: 'same-origin',
+                })
+                  .then(response => response.body)
+                  .then(body => {
+                    const reader = body.getReader()
+                    return new ReadableStream({
+                      start(controller) {
+                        function push() {
+                          reader.read().then(({done, value}) => {
+                            if (done) {
+                              controller.close()
+                              return
+                            }
+                            controller.enqueue(value)
+                            push()
+                          })
+                        }
+
+                        push()
+                      },
+                    })
+                  })
+                  .then(stream => {
+                    // Respond with the fetched stream stream
+                    return new Response(stream, {
+                      headers: {'Content-Type': 'binary/html'},
+                    }).arrayBuffer()
+                  })
+                  .then(result => {
+                    // GET THE LIST FROM THE PROTOCOL BUFFER
+                    const unknownObjectEntity =
+                      new message.UnknownObjectEntity.deserializeBinary(
+                        result,
+                      )
+
+                    let id = unknownObjectEntity.getId();
+                    let image = unknownObjectEntity.getImage();
+
+                    const Alert = {
+                      id: id,
+                      message: `alert ${id}`,
+                      value: image,
+                    }
+
+                    setCurrentAlerts(() => [...currentAlerts, Alert])
+                  })
+
+              }
             } else {
               console.log('got empty message')
             }
           })
-          stompClient.subscribe('/topic/threat', function (message) {
-            // const body = message._binaryBody
-            // to be deserialised tomorrow
-            if (message.body) {
-              console.log('message-body:', message.body)
+          stompClient.subscribe('/topic/threat', function (response) {
+            const body = response._binaryBody
+            if (body) {
+              let deserializeBinary = new message.UnknownObjectNotification.deserializeBinary(body);
+              let action = deserializeBinary.getAction();
+              let id = deserializeBinary.getId();
+              console.log(
+                action,
+                id,
+              )
+              if (action === message.UnknownObjectNotification.Action.REMOVED) {
+                currentThreats.splice(
+                  id,
+                  1,
+                )
+                console.log('____CURRENT_THREATS____:', currentThreats)
+                setCurrentThreats(() => [...currentThreats])
+              } else if (action === message.UnknownObjectNotification.Action.ADDED) {
+
+                fetch(process.env.REACT_APP_WEBSOCKET_BASE_URL + '/threats/' + id, {
+                  method: 'GET',
+                  responseType: 'arraybuffer',
+                  mode: 'cors',
+                  cache: 'no-cache',
+                  credentials: 'same-origin',
+                })
+                  .then(response => response.body)
+                  .then(body => {
+                    const reader = body.getReader()
+                    return new ReadableStream({
+                      start(controller) {
+                        function push() {
+                          reader.read().then(({done, value}) => {
+                            if (done) {
+                              controller.close()
+                              return
+                            }
+                            controller.enqueue(value)
+                            push()
+                          })
+                        }
+
+                        push()
+                      },
+                    })
+                  })
+                  .then(stream => {
+                    // Respond with the fetched stream stream
+                    return new Response(stream, {
+                      headers: {'Content-Type': 'binary/html'},
+                    }).arrayBuffer()
+                  })
+                  .then(result => {
+                    const unknownObjectEntity =
+                      new message.UnknownObjectEntity.deserializeBinary(
+                        result,
+                      )
+
+                    let id = unknownObjectEntity.getId();
+                    let image = unknownObjectEntity.getUnknownobject().getImage();
+
+                    const Threat = {
+                      id: id,
+                      message: `threat ${id}`,
+                      value: image,
+                    }
+
+                    setCurrentThreats(() => [...currentThreats, Threat])
+                  })
+
+              }
             } else {
               console.log('got empty message')
             }
