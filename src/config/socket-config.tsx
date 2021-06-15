@@ -176,10 +176,10 @@ export default function socketConfig(props: ISocketConfigProps) {
 
               console.log('ACTION:', action, id)
               if (action === message.UnknownObjectNotification.Action.REMOVED) {
-                currentThreats.splice(id, 1)
-                console.log('NOTHITTTTTT')
-
-                setCurrentThreats(() => [...currentThreats])
+                setCurrentThreats(lastCurrentThreat => {
+                  lastCurrentThreat.splice(id, 1)
+                  return [...lastCurrentThreat]
+                })
               } else if (
                 action === message.UnknownObjectNotification.Action.ADDED
               ) {
@@ -231,7 +231,11 @@ export default function socketConfig(props: ISocketConfigProps) {
                       message: `threat ${id}`,
                       value: image,
                     }
-                    setCurrentThreats(() => [...currentThreats, threat])
+
+                    setCurrentThreats(lastCurrentThreat => [
+                      ...lastCurrentThreat,
+                      threat,
+                    ])
                     console.log(
                       '--------------------------------------------------------1',
                       currentThreats,
