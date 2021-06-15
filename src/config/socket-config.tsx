@@ -177,8 +177,8 @@ export default function socketConfig(props: ISocketConfigProps) {
               console.log('ACTION:', action, id)
               if (action === message.UnknownObjectNotification.Action.REMOVED) {
                 setCurrentThreats(lastCurrentThreat => {
-                  lastCurrentThreat.splice(id, 1)
-                  return [...lastCurrentThreat]
+                  let splicedLastThreats = lastCurrentThreat.splice(id, 1)
+                  return [...splicedLastThreats]
                 })
               } else if (
                 action === message.UnknownObjectNotification.Action.ADDED
