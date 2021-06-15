@@ -24,7 +24,7 @@ export default function AlertBoundary(props: IAlertBoundaryProps): JSX.Element {
     <div>
       {currentAlerts.map(item => (
         <div className='card-alert'>
-          <div className='card-alert__id'>Threat {item.id}</div>
+          <div className='card-alert__id'>Alert {item.id}</div>
           <img
             className='card-alert__image'
             alt='alert'
