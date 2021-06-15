@@ -14,7 +14,7 @@ export default function AlertsBox(props: IThreatsBoxProps): JSX.Element {
   return (
     <div className='alertsBox'>
       <tr className='alertsBox__header'>
-        <th>Detected Alerts</th>
+        <th>Detected Alerts to be confirmed</th>
       </tr>
       {currentAlerts.length > 0 ? (
         currentAlerts.map(alerts => (

@@ -17,10 +17,7 @@ export default function ThreatAnalyser(
   props: IThreatAnalyserProps,
 ): JSX.Element {
   const context = useContext<ContextType>(Context)
-  const {currentAlerts, setCurrentAlerts} = context
-  const [count, setCount] = useState(1)
-
-  // FETCH VIDEO ACCORDING TO SERIAL NUMBER
+  const {currentAlerts} = context
 
   const confirmThreat = async () => {
     fetch(
@@ -30,7 +27,7 @@ export default function ThreatAnalyser(
         mode: 'cors',
         cache: 'no-cache',
       },
-    )
+    ) // THIS WILL TRIGGER WEBSOCKETS
   }
 
   const ignoreEvent = () => {
@@ -47,13 +44,6 @@ export default function ThreatAnalyser(
       },
     ) // THIS WILL TRIGGER WEBSOCKETS
   }
-
-  useEffect(() => {
-    console.log('WHY IS THREAT EMPTY:', currentAlerts)
-    socketMethods()
-    deserializeMethod()
-  })
-
   const threatDisplay = () => {
     if (currentAlerts.length > 0) {
       return (
@@ -89,5 +79,3 @@ export default function ThreatAnalyser(
     </div>
   )
 }
-
-//
