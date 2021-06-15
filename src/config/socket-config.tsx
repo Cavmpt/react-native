@@ -140,7 +140,6 @@ export default function socketConfig(props: ISocketConfigProps) {
                     let image = unknownObjectEntity
                       .getUnknownobject()
                       .getImage()
-                    console.log('______WHAT:', image)
 
                     const alert = {
                       id: id,
@@ -148,7 +147,10 @@ export default function socketConfig(props: ISocketConfigProps) {
                       value: image,
                     }
 
-                    setCurrentAlerts(currentAlerts => [...currentAlerts, alert])
+                    setCurrentAlerts(currentAlerts => {
+                      currentAlerts.shift()
+                      return [...currentAlerts, alert]
+                    })
                   })
               }
             } else {
