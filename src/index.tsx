@@ -27,7 +27,9 @@ const routesArray = [
         <Navbar />
         <div className='divide'>
           <Sidebar />
-          <Outlet />
+          <div className='right-side-background'>
+            <Outlet />
+          </div>
         </div>
       </div>
     ),

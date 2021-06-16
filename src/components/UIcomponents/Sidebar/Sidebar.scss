@@ -5,9 +5,10 @@
 }
 
 .sidebar {
-  width: 7rem;
+  width: 9rem;;
   background-color: #1C2C33;
-  border-radius: 5px;
+  border-radius: 0px 0px 0px 15px;
+  border-right: 3px solid #2e3b41;
 
   &__map {
     @include navbar-element;
