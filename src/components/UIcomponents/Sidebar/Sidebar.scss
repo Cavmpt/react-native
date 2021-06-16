@@ -1,0 +1,19 @@
+@mixin navbar-element {
+  display: grid;
+  place-items: center;
+  margin: 2rem 1rem 2rem 1rem;
+}
+
+.sidebar {
+  width: 7rem;
+  background-color: #1C2C33;
+  border-radius: 5px;
+
+  &__map {
+    @include navbar-element;
+  }
+
+  &__controls {
+    @include navbar-element;
+  }
+}

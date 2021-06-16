@@ -5,7 +5,7 @@ import ThreatsBox from '../../UIcomponents/Boxes/ThreatsBox/ThreatsBox'
 
 import ErrorBoundary from '../../UIcomponents/Notifications/ErrorBoundary/ErrorBoundary'
 
-import './Control.scss'
+import './Controls.scss'
 
 export interface IThreatsProps {
   placeholder?: null

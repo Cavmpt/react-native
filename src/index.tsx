@@ -3,8 +3,9 @@ import {BrowserRouter as Router, useRoutes, Outlet} from 'react-router-dom'
 import ReactDOM from 'react-dom'
 
 import Navbar from './components/UIcomponents/Navbar/Navbar'
+import Sidebar from './components/UIcomponents/Sidebar/Sidebar'
 import Map from './components/Pages/Map/Map'
-import Control from './components/Pages/Control/Control'
+import Controls from './components/Pages/Controls/Controls'
 
 import {makeServer} from './config/mirage-config'
 import SocketConfig from './config/socket-config'
@@ -22,15 +23,16 @@ const routesArray = [
   {
     path: '/',
     element: (
-      <>
+      <div className='app'>
+        <Navbar />
         <div className='divide'>
-          <Navbar />
+          <Sidebar />
           <Outlet />
         </div>
-      </>
+      </div>
     ),
     children: [
-      {path: '/controls', element: <Control />},
+      {path: '/controls', element: <Controls />},
       {path: '/', element: <Map />},
     ],
   },

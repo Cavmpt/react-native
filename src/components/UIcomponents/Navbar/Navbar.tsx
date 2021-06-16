@@ -1,7 +1,10 @@
-import React from 'react'
-import {NavLink} from 'react-router-dom'
-import ButtonSquare from '../Buttons/ButtonSquare/ButtonSquare'
+import * as React from 'react'
 import './Navbar.scss'
+
+import StatusSection from './StatusSection/StatusSection'
+import ProfilSection from './ProfilSection/ProfilSection'
+import NotificationSection from './NotificationsSection/NotificationsSection'
+import LanguageSection from './LanguageSection/LanguageSection'
 
 export interface INavbarProps {
   placeholder?: null
@@ -11,41 +14,13 @@ export default function Navbar(props: INavbarProps): JSX.Element {
   return (
     <div className='navbar'>
       <div className='navbar__logo-xguard-wrapper'>
-        <img src='./xguard-logo.png' alt='Xguard-logo' width='50' height='50' />
+        <img src='./xguard-logo.png' alt='Xguard-logo' width='50' height='50' />{' '}
+        <span>Xguard</span>
       </div>
-      <div>
-        <NavLink
-          end
-          to='/'
-          activeStyle={{
-            color: 'white',
-            textDecoration: 'underline',
-          }}
-          className='navbar__map'
-        >
-          <ButtonSquare>
-            <span className='iconify' data-icon='bi:map' data-inline='false' />
-          </ButtonSquare>
-        </NavLink>
-      </div>
-      <div>
-        <NavLink
-          to='controls'
-          activeStyle={{
-            color: 'white',
-            textDecoration: 'underline',
-          }}
-          className='navbar__controls'
-        >
-          <ButtonSquare>
-            <span
-              className='iconify'
-              data-icon='ic:baseline-control-camera'
-              data-inline='false'
-            />
-          </ButtonSquare>
-        </NavLink>
-      </div>
+      <StatusSection />
+      <NotificationSection />
+      <LanguageSection />
+      <ProfilSection />
     </div>
   )
 }

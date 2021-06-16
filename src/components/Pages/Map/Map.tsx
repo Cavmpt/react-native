@@ -1,6 +1,6 @@
 /* eslint-disable */
 // @ts-nocheck
-import React, {useState, useContext} from 'react'
+import React, {useState, useContext, useEffect} from 'react'
 import {GoogleMap, useJsApiLoader} from '@react-google-maps/api'
 import './Map.scss'
 import AlertBoundary from '../../UIcomponents/Notifications/AlertBoundary/AlertBoundary'
@@ -13,20 +13,27 @@ export interface IMapProps {
   placeholder?: any
 }
 
-const containerStyle = {
-  width: '1200px',
-  height: '600px',
-}
-
-const center = {
-  lat: -3.745,
-  lng: -38.523,
-}
-
 export default function Map(props: IMapProps) {
   const context = useContext<ContextType>(Context)
-  const {currentAlerts, setCurrentAlerts} = context
   const [isMapToggled, setToggleMap] = useState(false)
+  const [windowDimensions, setWindowDimensions] = useState(
+    getWindowDimensions(),
+  )
+  const getWindowDimensions = () => {
+    const {innerWidth: width, innerHeight: height} = window
+    return {
+      width,
+      height,
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  // GOOGLE MAPS CONFIG
+
   const {isLoaded} = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -36,6 +43,16 @@ export default function Map(props: IMapProps) {
   const onUnmount = () => {}
   const togglemap = () => {}
 
+  const containerStyle = {
+    width: '100%',
+    height: '600px',
+  }
+
+  const center = {
+    lat: -3.745,
+    lng: -38.523,
+  }
+  // GOOGLE MAPS CONFIG
   return (
     <ErrorBoundary>
       <AlertBoundary>
@@ -52,12 +69,6 @@ export default function Map(props: IMapProps) {
                 >
                   {/* Child components, such as markers, info windows, etc. */}
                 </GoogleMap>
-                <img
-                  onClick={() => togglemap()}
-                  className='container__live-feed'
-                  alt='liveFeed'
-                  src='http://209.206.162.230/mjpg/video.mjpg'
-                />
               </div>
               <></>
             </div>

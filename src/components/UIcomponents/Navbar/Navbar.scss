@@ -1,35 +1,20 @@
-@mixin navbar-element {
-  display: grid;
-  place-items: center;
-  margin: 2rem 1rem 2rem 1rem;
-}
-
 .navbar {
-  width: 7rem;
-  background-color: #0D2C3A;
-  border-radius: 5px;
+  display: inline-flex;
+  width: 100%;
+  height: 4rem;
+  border-bottom: 1px solid white;
+  background-color: #1C2C33;
 
   &__logo-xguard-wrapper{
+    place-items: center;
+    height: 100%;
     display: flex;
-    justify-content: center;
-    text-align: center;
-    height: 5rem;
-    border-bottom: 1px solid white;
+    color: white;
+    border-right: 1px solid white;
+    width: 7rem;
 
     img {
-      margin-top: 10%;
-      margin-left: 1rem;
-      margin-right: 1rem;
-      width: 3rem;
-      vertical-align: bottom;
+      transform: scale(0.5);
     }
-  }
-
-  &__map {
-    @include navbar-element;
-  }
-
-  &__controls {
-    @include navbar-element;
   }
 }

@@ -27,7 +27,7 @@ body {
   line-height: 1;
 }
 html, body{
-  background: #1C2C33;
+  background: var(--black-150);
 }
 ol, ul {
   list-style: none;
@@ -59,6 +59,14 @@ a {
   grid-column: 2;
 }
 
+.app {
+  margin-top: 2%;
+  border: 1px solid white;
+  border-radius: 5px;
+}
+
 .divide {
   display: flex;
+  width: 100%;
+  background-color: #1C2C33;
 }
