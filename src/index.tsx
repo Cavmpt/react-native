@@ -18,21 +18,15 @@ import reportWebVitals from './reportWebVitals'
 
 import {Provider} from './store/Provider'
 
-// SOCKET CONNECTION
-
-// SOCKET CONNECTION
-
-// if (process.env.NODE_ENV === 'development') {
-//   makeServer({environment: 'test'})
-// } else {
-// }
 const routesArray = [
   {
     path: '/',
     element: (
       <>
-        <Navbar />
-        <Outlet />
+        <div className='divide'>
+          <Navbar />
+          <Outlet />
+        </div>
       </>
     ),
     children: [

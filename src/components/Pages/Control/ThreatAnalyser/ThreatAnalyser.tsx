@@ -2,7 +2,7 @@
 // @ts-nocheck
 
 import React, {useContext, useState, useEffect} from 'react'
-import ButtonLarge from '../../../UIcomponents/Buttons/Button-Large/ButtonLarge'
+import ButtonLarge from '../../../UIcomponents/Buttons/ButtonLarge/ButtonLarge'
 import deserializeMethod from '../../../../helpers/deserializeMethods'
 import socketMethods from '../../../../helpers/socketMethods'
 import './ThreatAnalyser.scss'

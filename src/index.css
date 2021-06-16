@@ -58,3 +58,7 @@ a {
 .wrapper > * {
   grid-column: 2;
 }
+
+.divide {
+  display: flex;
+}

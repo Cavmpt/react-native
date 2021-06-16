@@ -1,6 +1,6 @@
 import React, {useContext} from 'react'
 import {useNavigate} from 'react-router-dom'
-import ButtonMedium from '../../Buttons/Button-Medium/ButtonMedium'
+import ButtonMedium from '../../Buttons/ButtonMedium/ButtonMedium'
 
 import {Context, ContextType} from '../../../../store/Provider'
 
