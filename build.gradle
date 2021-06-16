@@ -1,0 +1,27 @@
+plugins {
+  id 'base'
+  id 'com.github.node-gradle.node' version '3.0.1'
+}
+
+repositories {
+  mavenCentral()
+}
+
+node {
+  version = '14.17.1'
+  npmVersion = '7.17.0'
+  download = true
+}
+
+task bundle(type: NpmTask, dependsOn: npmInstall) {
+  args = ['run', 'build']
+}
+
+assemble.dependsOn(bundle)
+
+task test(type: NpmTask) {
+  environment = ['CI': 'true']
+  args = ['run', 'test']
+}
+
+check.dependsOn(test)
