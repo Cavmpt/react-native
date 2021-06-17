@@ -3,6 +3,10 @@ plugins {
   id 'com.github.node-gradle.node' version '3.0.1'
 }
 
+ext {
+  dockerImageName = "165.22.227.230:5000/${project.name}"
+}
+
 repositories {
   mavenCentral()
 }
@@ -25,3 +29,15 @@ task test(type: NpmTask) {
 }
 
 check.dependsOn(test)
+
+task buildDockerImage(type: Exec) {
+  dependsOn test
+
+  commandLine 'docker', 'build', '-t', "${dockerImageName}", '.'
+}
+
+task publishDockerImage(type: Exec) {
+  dependsOn buildDockerImage
+
+  commandLine 'docker', 'push', "${dockerImageName}"
+}
