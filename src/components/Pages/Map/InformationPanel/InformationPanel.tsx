@@ -2,7 +2,7 @@ import React from 'react'
 
 import './InformationPanel.scss'
 import InformationFooter from './InfoFooter/InformationFooter'
-import InformationHeader from './InfoHeader/InformationHeader'
+import InfoThreat from './InfoThreat/InfoThreat'
 import InformationAlerts from './InfoAlerts/InformationAlerts'
 import InformationInfo from './InfoInfo/InformationInfo'
 
@@ -15,6 +15,7 @@ export default function InformationPanel(
 ): JSX.Element {
   return (
     <div className='information-panel'>
+      <InfoThreat />
       <InformationAlerts />
       <InformationInfo />
       <InformationFooter />
