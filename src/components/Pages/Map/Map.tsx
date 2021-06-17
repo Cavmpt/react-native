@@ -4,8 +4,8 @@ import React, {useState, useContext} from 'react'
 import './Map.scss'
 import GMap from './GMap/GMap'
 import LiveFeed from './LiveFeed/LiveFeed'
-import {AlertsFeed} from './AlertsFeed/AlertsFeed'
-import InformationPanel from '../../UIcomponents/InformationPanel/InformationPanel'
+import NotificationFeed from './NotificationFeed/NotificationFeed'
+import InformationPanel from './InformationPanel/InformationPanel'
 
 import AlertBoundary from '../../UIcomponents/Notifications/AlertBoundary/AlertBoundary'
 import {Context, ContextType} from '../../../store/Provider'
@@ -23,9 +23,16 @@ export default function Map(props: IMapProps) {
 
   return (
     <AlertBoundary>
-      <LiveFeed />
-      <GMap />
-      <InformationPanel />
+      <div className='map-page'>
+        <div>
+          <LiveFeed />
+          <div className='notification-gmap-flex'>
+            <GMap />
+            <NotificationFeed />
+          </div>
+        </div>
+        <InformationPanel />
+      </div>
     </AlertBoundary>
   )
 }

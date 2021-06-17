@@ -49,6 +49,7 @@ export default function ThreatAnalyser(
       return (
         <img
           src={`data:image/png;base64, ${currentAlerts[0].value} `}
+          className='threat-image'
           alt='alert'
         />
       )
@@ -59,8 +60,8 @@ export default function ThreatAnalyser(
 
   return (
     <div className='threatAnalyser'>
+      {threatDisplay()}
       <div className='threatAnalyser__button-wrap'>
-        {threatDisplay()}
         <div className='threatAnalyser__buttons'>
           <ButtonLarge
             textValue='Investigate'

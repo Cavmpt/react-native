@@ -1,6 +1,8 @@
 import * as React from 'react'
 import {GoogleMap, useJsApiLoader} from '@react-google-maps/api'
 
+import './GMap.scss'
+
 export interface IGmapProps {
   placeholder?: null
 }
@@ -12,7 +14,8 @@ export default function Gmap(props: IGmapProps): JSX.Element {
   })
 
   const containerStyle = {
-    width: '500px',
+    marginTop: '0.5rem',
+    width: '28rem',
     height: '300px',
   }
 
@@ -26,14 +29,15 @@ export default function Gmap(props: IGmapProps): JSX.Element {
   const togglemap = () => {}
 
   return (
-    <div>
+    <>
       {isLoaded ? (
-        <div className='container'>
-          <div className='container__google-map'>
+        <div className='map-container'>
+          <div className='map-container__google-map'>
+            <span className='map-container__title'>Location map</span>
             <GoogleMap
               mapContainerStyle={containerStyle}
               center={center}
-              zoom={10}
+              zoom={15}
               onLoad={onLoad}
               onUnmount={onUnmount}
               options={{
@@ -133,6 +137,6 @@ export default function Gmap(props: IGmapProps): JSX.Element {
       ) : (
         <></>
       )}
-    </div>
+    </>
   )
 }
