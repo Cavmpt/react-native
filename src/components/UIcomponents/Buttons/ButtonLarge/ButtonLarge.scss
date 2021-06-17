@@ -1,7 +1,10 @@
 .ButtonLarge {
-  width: 8rem;
-  height: 4rem;
+  width: 15rem;
+  height: 3rem;
   border-radius: 5px;
+  background-color: #273F4A;
+  border: none;
+
   &:hover {
     cursor: pointer;
   }
