@@ -13,7 +13,7 @@ export interface IThreatsProps {
 
 export default function Threats(props: IThreatsProps): JSX.Element {
   return (
-    <ErrorBoundary error='test'>
+    <ErrorBoundary>
       <div className='control-page'>
         <div className='control-page__box-wrapper'>
           <AlertBox />

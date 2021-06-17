@@ -7,13 +7,16 @@ import Sidebar from './components/UIcomponents/Sidebar/Sidebar'
 import Map from './components/Pages/Map/Map'
 import Controls from './components/Pages/Controls/Controls'
 
+import ErrorBoundary from './components/UIcomponents/Notifications/ErrorBoundary/ErrorBoundary'
+
 import {makeServer} from './config/mirage-config'
 import SocketConfig from './config/socket-config'
 
 import 'typeface-roboto-slab'
 
-import './colors.css'
-import './index.css'
+import './styles/colors.css'
+import './styles/index.css'
+import './styles/fonts.css'
 
 import reportWebVitals from './reportWebVitals'
 
@@ -50,7 +53,9 @@ ReactDOM.render(
     <Router>
       <Provider>
         <SocketConfig>
-          <App />
+          <ErrorBoundary>
+            <App />
+          </ErrorBoundary>
         </SocketConfig>
       </Provider>
     </Router>

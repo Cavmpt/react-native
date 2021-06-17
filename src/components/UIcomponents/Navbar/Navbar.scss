@@ -12,7 +12,12 @@
     display: flex;
     color: white;
     border-right: 3px solid #2e3b41;
-    width: 7rem;
+    max-width: 8.5rem;
+    min-width: 8.5rem;
+    font-family: 'orbitron';
+    font-size: normal;
+    font-weight: bold;
+    margin-left: 0.5rem;
 
     img {
       transform: scale(0.5);

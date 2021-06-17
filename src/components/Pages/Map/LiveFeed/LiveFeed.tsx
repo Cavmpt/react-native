@@ -6,12 +6,14 @@ export interface ILiveFeedProps {
   placeholder?: null
 }
 
-export function LiveFeed(props: ILiveFeedProps): JSX.Element {
+export default function LiveFeed(props: ILiveFeedProps): JSX.Element {
   return (
-    <img
-      className='container__live-feed'
-      alt='liveFeed'
-      src='http://209.206.162.230/mjpg/video.mjpg'
-    />
+    <div className='live-feed-page'>
+      <img
+        className='live-feed-page__live-feed'
+        alt='liveFeed'
+        src='http://209.206.162.230/mjpg/video.mjpg'
+      />
+    </div>
   )
 }

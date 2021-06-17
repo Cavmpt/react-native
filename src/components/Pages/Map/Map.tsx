@@ -3,9 +3,10 @@
 import React, {useState, useContext} from 'react'
 import './Map.scss'
 import GMap from './GMap/GMap'
+import LiveFeed from './LiveFeed/LiveFeed'
+import {AlertsFeed} from './AlertsFeed/AlertsFeed'
 
 import AlertBoundary from '../../UIcomponents/Notifications/AlertBoundary/AlertBoundary'
-import ErrorBoundary from '../../UIcomponents/Notifications/ErrorBoundary/ErrorBoundary'
 import {Context, ContextType} from '../../../store/Provider'
 
 const message = require('../../../helpers/uav-monitor_pb')
@@ -20,18 +21,9 @@ export default function Map(props: IMapProps) {
   const [isMapToggled, setToggleMap] = useState(false)
 
   return (
-    <ErrorBoundary>
-      <AlertBoundary>
-        <GMap />
-        <>
-          <img
-            onClick={() => togglemap()}
-            className='container__live-feed'
-            alt='liveFeed'
-            src='http://209.206.162.230/mjpg/video.mjpg'
-          />
-        </>
-      </AlertBoundary>
-    </ErrorBoundary>
+    <AlertBoundary>
+      <LiveFeed />
+      <GMap />
+    </AlertBoundary>
   )
 }

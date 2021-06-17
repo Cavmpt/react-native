@@ -5,7 +5,8 @@
 }
 
 .sidebar {
-  width: 7.5rem;
+  width: 10rem;
+  min-height: 50rem;
   background-color: #1C2C33;
   border-radius: 0px 0px 0px 15px;
   border-right: 3px solid #2e3b41;
@@ -17,4 +18,14 @@
   &__controls {
     @include navbar-element;
   }
+}
+
+.iconify {
+  width: 30px;
+  height: 30px;
+}
+
+.iconify {
+  width: 30px;
+  height: 30px;
 }
