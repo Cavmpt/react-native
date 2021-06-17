@@ -19,7 +19,10 @@ export default function AlertsBox(props: IThreatsBoxProps): JSX.Element {
       {currentAlerts.length > 0 ? (
         currentAlerts.map(alerts => (
           <tr className='alertsBox__row'>
-            <td>{alerts.message}</td>
+            <td>
+              <i className='fas fa-question-circle' />
+              {alerts.message}
+            </td>
           </tr>
         ))
       ) : (

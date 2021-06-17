@@ -5,6 +5,7 @@ import './Map.scss'
 import GMap from './GMap/GMap'
 import LiveFeed from './LiveFeed/LiveFeed'
 import {AlertsFeed} from './AlertsFeed/AlertsFeed'
+import InformationPanel from '../../UIcomponents/InformationPanel/InformationPanel'
 
 import AlertBoundary from '../../UIcomponents/Notifications/AlertBoundary/AlertBoundary'
 import {Context, ContextType} from '../../../store/Provider'
@@ -24,6 +25,7 @@ export default function Map(props: IMapProps) {
     <AlertBoundary>
       <LiveFeed />
       <GMap />
+      <InformationPanel />
     </AlertBoundary>
   )
 }

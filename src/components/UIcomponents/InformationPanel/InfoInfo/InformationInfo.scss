@@ -1,0 +1,19 @@
+.panel-info{
+    display:flex;    
+    border-bottom: 1px solid #5c6d76;
+    justify-content:space-between;
+    
+    ul li{
+        margin: 1rem 0 1rem 1rem;
+    }
+
+    h4{
+        color:#5c6d76;
+        font-size:0.8em;
+    }
+
+    h2{
+        color:#ddd2db;
+        font-size:1em;
+    }  
+}

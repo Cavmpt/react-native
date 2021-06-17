@@ -1,0 +1,13 @@
+.panel-header{
+    display:flex;
+    height:5rem;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #5c6d76;
+
+    h1{
+        font-size:3rem;
+        color:white;
+        font-weight: bold;
+    }
+}
