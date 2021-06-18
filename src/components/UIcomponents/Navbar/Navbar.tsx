@@ -1,7 +1,10 @@
-import React from 'react'
-import {NavLink} from 'react-router-dom'
-
+import * as React from 'react'
 import './Navbar.scss'
+
+import StatusSection from './StatusSection/StatusSection'
+import ProfilSection from './ProfilSection/ProfilSection'
+import NotificationSection from './NotificationsSection/NotificationsSection'
+import LanguageSection from './LanguageSection/LanguageSection'
 
 export interface INavbarProps {
   placeholder?: null
@@ -11,29 +14,13 @@ export default function Navbar(props: INavbarProps): JSX.Element {
   return (
     <div className='navbar'>
       <div className='navbar__logo-xguard-wrapper'>
-        <img src='./xguard-logo.png' alt='Xguard-logo' width='50' height='50' />
+        <img src='./xguard-logo.png' alt='Xguard-logo' width='50' height='50' />{' '}
+        <span>Xguard</span>
       </div>
-      <NavLink
-        end
-        to='/'
-        activeStyle={{
-          color: 'white',
-          textDecoration: 'underline',
-        }}
-        className='navbar__map'
-      >
-        Map
-      </NavLink>
-      <NavLink
-        to='controls'
-        activeStyle={{
-          color: 'white',
-          textDecoration: 'underline',
-        }}
-        className='navbar__live-feeds'
-      >
-        Controls
-      </NavLink>
+      <StatusSection />
+      <NotificationSection />
+      <LanguageSection />
+      <ProfilSection />
     </div>
   )
 }

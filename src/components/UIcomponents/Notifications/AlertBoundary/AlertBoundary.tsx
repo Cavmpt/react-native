@@ -1,6 +1,6 @@
 import React, {useContext} from 'react'
 import {useNavigate} from 'react-router-dom'
-import ButtonMedium from '../../Buttons/Button-Medium/ButtonMedium'
+import ButtonMedium from '../../Buttons/ButtonMedium/ButtonMedium'
 
 import {Context, ContextType} from '../../../../store/Provider'
 
@@ -17,7 +17,7 @@ export default function AlertBoundary(props: IAlertBoundaryProps): JSX.Element {
   const navigate = useNavigate()
 
   const AnalyzeThreat = () => {
-    navigate('success')
+    navigate('controls')
   }
 
   return (
@@ -30,11 +30,13 @@ export default function AlertBoundary(props: IAlertBoundaryProps): JSX.Element {
             alt='alert'
             src={`data:image/png;base64, ${item.value} `}
           />
-          <ButtonMedium
-            textValue='investigate'
-            onClick={() => AnalyzeThreat()}
-            color='gray'
-          />
+          <div className='card-alert__button-wrap'>
+            <ButtonMedium
+              textValue='investigate'
+              onClick={() => AnalyzeThreat()}
+              color='gray'
+            />
+          </div>
           <div />
         </div>
       ))}

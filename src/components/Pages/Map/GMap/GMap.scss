@@ -1,0 +1,14 @@
+.map-container {
+  margin: 1rem;
+
+  &__google-map {
+    width: 50rem;
+    width: 100%;
+  }
+
+  &__title {
+    font-family: 'orbitron';
+    color: white;
+    margin-bottom: 0.5rem;
+  }
+}

@@ -1,0 +1,64 @@
+@mixin alert-element {
+    flex: 1 1 calc(37%);
+    margin:1rem;
+    height:5rem;
+
+    h1{
+        font-size:2em;
+        color: white;
+        margin: 1rem 0 0 0.5rem;
+        display:flex;
+        justify-content: right;
+        i{
+            font-size: 1rem;
+            margin:0 0.2rem 0.2rem 0.2rem;
+        }
+    }
+    h4{
+        font-size:0.8em;
+        color:#5c6d76; 
+        margin-left:0.5rem;   
+    }
+}
+
+.panel-alerts{
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #5c6d76;
+
+    &__hazardous{
+        @include alert-element;
+        background-color: #9d2b4b;
+
+        i{
+            color: #e94157;
+        }
+    }
+    
+    &__unidentified{
+        @include alert-element;
+        background-color: #6a74b5;
+
+        i{
+            color: #989bfd;
+        }
+    }
+    
+    &__interruptions{
+        @include alert-element;
+        background-color: #a6883f;
+
+        i{
+            color: #f7be3e;
+        }
+    }
+    
+    &__snapshots{
+        @include alert-element;
+        background-color: #84a0b7;
+
+        i{
+            color: #c1e1fd;
+        }
+    }
+}

@@ -1,10 +1,9 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import React, {useContext, useState, useEffect} from 'react'
-import ButtonLarge from '../../../UIcomponents/Buttons/Button-Large/ButtonLarge'
-import deserializeMethod from '../../../../helpers/deserializeMethods'
-import socketMethods from '../../../../helpers/socketMethods'
+import React, {useContext} from 'react'
+import ButtonLarge from '../../../UIcomponents/Buttons/ButtonLarge/ButtonLarge'
+
 import './ThreatAnalyser.scss'
 
 import {Context, ContextType} from '../../../../store/Provider'
@@ -21,7 +20,7 @@ export default function ThreatAnalyser(
 
   const confirmThreat = async () => {
     fetch(
-      `${process.env.REACT_APP_WEBSOCKET_BASE_URL}/threat-ack?id=${currentAlerts[0].id}`,
+      `${process.env.REACT_APP_REST_BASE_URL}/threat-ack?id=${currentAlerts[0].id}`,
       {
         method: 'POST',
         mode: 'cors',
@@ -32,11 +31,15 @@ export default function ThreatAnalyser(
 
   const ignoreEvent = () => {
     fetch(
-      `${process.env.REACT_APP_WEBSOCKET_BASE_URL}/threat-dis?id=${currentAlerts[0].id}`,
+      `${process.env.REACT_APP_REST_BASE_URL}/alerts/${currentThreats[0].id}`,
       {
         method: 'POST',
         mode: 'cors',
         cache: 'no-cache',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'same-origin',
       },
     ) // THIS WILL TRIGGER WEBSOCKETS
   }
@@ -45,6 +48,7 @@ export default function ThreatAnalyser(
       return (
         <img
           src={`data:image/png;base64, ${currentAlerts[0].value} `}
+          className='threat-image'
           alt='alert'
         />
       )
@@ -55,8 +59,8 @@ export default function ThreatAnalyser(
 
   return (
     <div className='threatAnalyser'>
+      {threatDisplay()}
       <div className='threatAnalyser__button-wrap'>
-        {threatDisplay()}
         <div className='threatAnalyser__buttons'>
           <ButtonLarge
             textValue='Investigate'
@@ -65,11 +69,7 @@ export default function ThreatAnalyser(
           />
         </div>
         <div className='threatAnalyser__buttons'>
-          <ButtonLarge
-            textValue='Ignore'
-            onClick={() => ignoreEvent()}
-            color='gray'
-          />
+          <ButtonLarge textValue='Ignore' onClick={() => ignoreEvent()} />
         </div>
       </div>
     </div>

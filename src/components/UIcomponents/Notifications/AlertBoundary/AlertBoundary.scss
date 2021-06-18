@@ -1,10 +1,20 @@
 .card-alert {
   width: 20rem;
   height: 15rem;
-  background-color: red;
+  background-color: #1D2D33;
+  position: absolute;
+  display: grid;
+  place-items: center;
+  top: 7rem;
+  left: 72rem;
+  display: none;
 
   &__id {
     color: white;
+  }
+
+  &__button-wrap {
+    margin-top: 15rem;
   }
 
   &__image {

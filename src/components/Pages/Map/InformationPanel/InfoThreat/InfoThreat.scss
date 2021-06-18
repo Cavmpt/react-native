@@ -1,0 +1,14 @@
+.info-alert {
+  height: 8rem;
+
+  &__card {
+    display: grid;
+    place-items: center;
+  }
+
+  &__image {
+    width: 7rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+}

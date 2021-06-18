@@ -6,7 +6,6 @@ import './ErrorBoundary.scss'
 
 export interface IErrorBoundaProps {
   children: React.ReactNode
-  error: string
 }
 
 export default function ErrorBounda(props: IErrorBoundaProps): JSX.Element {

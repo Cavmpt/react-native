@@ -20,7 +20,7 @@ export default function socketConfig(props: ISocketConfigProps) {
     context
 
   useEffect(() => {
-    fetch(process.env.REACT_APP_WEBSOCKET_BASE_URL + '/threats', {
+    fetch(process.env.REACT_APP_REST_BASE_URL + '/threats', {
       method: 'GET',
       responseType: 'arraybuffer',
       mode: 'cors',
@@ -55,7 +55,7 @@ export default function socketConfig(props: ISocketConfigProps) {
         }
       })
       .then(() => {
-        fetch(process.env.REACT_APP_WEBSOCKET_BASE_URL + '/alerts', {
+        fetch(process.env.REACT_APP_REST_BASE_URL + '/alerts', {
           method: 'GET',
           responseType: 'arraybuffer',
           mode: 'cors',
@@ -96,8 +96,7 @@ export default function socketConfig(props: ISocketConfigProps) {
             login: '',
             password: '',
           },
-          brokerURL:
-            process.env.REACT_APP_WEBSOCKET_BASE_URL_2 + '/uav-monitor',
+          brokerURL: process.env.REACT_APP_WEBSOCKET_BASE_URL + '/uav-monitor',
           reconnectDelay: 20000,
         }
         let stompClient = new Client(stompConfig)
@@ -118,16 +117,13 @@ export default function socketConfig(props: ISocketConfigProps) {
               } else if (
                 action === message.UnknownObjectNotification.Action.ADDED
               ) {
-                fetch(
-                  process.env.REACT_APP_WEBSOCKET_BASE_URL + '/alerts/' + id,
-                  {
-                    method: 'GET',
-                    responseType: 'arraybuffer',
-                    mode: 'cors',
-                    cache: 'no-cache',
-                    // credentials: 'same-origin',
-                  },
-                )
+                fetch(process.env.REACT_APP_REST_BASE_URL + '/alerts/' + id, {
+                  method: 'GET',
+                  responseType: 'arraybuffer',
+                  mode: 'cors',
+                  cache: 'no-cache',
+                  // credentials: 'same-origin',
+                })
                   .then(response => response.body)
                   .then(body => createReadableStream(body))
                   .then(stream => createArrayBuffer(stream))
@@ -170,16 +166,13 @@ export default function socketConfig(props: ISocketConfigProps) {
               } else if (
                 action === message.UnknownObjectNotification.Action.ADDED
               ) {
-                fetch(
-                  process.env.REACT_APP_WEBSOCKET_BASE_URL + '/threats/' + id,
-                  {
-                    method: 'GET',
-                    responseType: 'arraybuffer',
-                    mode: 'cors',
-                    cache: 'no-cache',
-                    // credentials: 'same-origin',
-                  },
-                )
+                fetch(process.env.REACT_APP_REST_BASE_URL + '/threats/' + id, {
+                  method: 'GET',
+                  responseType: 'arraybuffer',
+                  mode: 'cors',
+                  cache: 'no-cache',
+                  // credentials: 'same-origin',
+                })
                   .then(response => response.body)
                   .then(body => {
                     console.log('body___:', body)

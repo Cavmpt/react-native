@@ -116,4 +116,6 @@
   --highlight-variable: #54790d;
   --highlight-addition: #2f6f44;
   --highlight-deletion: #c02d2e;
+
+  --normal-radius: 3px;
 }

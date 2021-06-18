@@ -3,40 +3,41 @@ import {BrowserRouter as Router, useRoutes, Outlet} from 'react-router-dom'
 import ReactDOM from 'react-dom'
 
 import Navbar from './components/UIcomponents/Navbar/Navbar'
+import Sidebar from './components/UIcomponents/Sidebar/Sidebar'
 import Map from './components/Pages/Map/Map'
-import Control from './components/Pages/Control/Control'
+import Controls from './components/Pages/Controls/Controls'
+
+import ErrorBoundary from './components/UIcomponents/Notifications/ErrorBoundary/ErrorBoundary'
 
 import {makeServer} from './config/mirage-config'
 import SocketConfig from './config/socket-config'
 
 import 'typeface-roboto-slab'
 
-import './colors.css'
-import './index.css'
+import './styles/colors.css'
+import './styles/index.css'
+import './styles/fonts.css'
 
 import reportWebVitals from './reportWebVitals'
 
 import {Provider} from './store/Provider'
 
-// SOCKET CONNECTION
-
-// SOCKET CONNECTION
-
-// if (process.env.NODE_ENV === 'development') {
-//   makeServer({environment: 'test'})
-// } else {
-// }
 const routesArray = [
   {
     path: '/',
     element: (
-      <>
+      <div className='app'>
         <Navbar />
-        <Outlet />
-      </>
+        <div className='divide'>
+          <Sidebar />
+          <div className='content'>
+            <Outlet />
+          </div>
+        </div>
+      </div>
     ),
     children: [
-      {path: '/controls', element: <Control />},
+      {path: '/controls', element: <Controls />},
       {path: '/', element: <Map />},
     ],
   },
@@ -52,7 +53,9 @@ ReactDOM.render(
     <Router>
       <Provider>
         <SocketConfig>
-          <App />
+          <ErrorBoundary>
+            <App />
+          </ErrorBoundary>
         </SocketConfig>
       </Provider>
     </Router>

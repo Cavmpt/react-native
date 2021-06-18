@@ -1,0 +1,8 @@
+.ButtonSquare {
+  height: 4rem;
+  width: 4rem;
+  background-color: #5F62DD;
+  display: grid;
+  place-items: center;
+  border-radius: var(--normal-radius)
+}

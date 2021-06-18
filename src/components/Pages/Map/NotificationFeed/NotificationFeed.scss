@@ -1,0 +1,26 @@
+
+.notification-feed {
+  margin-top: 1rem;
+
+  &__title {
+    font-family: 'orbitron';
+    color: white;
+  }
+
+  &__feed {
+    margin-top: 0.5rem;
+    width: 30rem;
+    height: 90%;
+    overflow: scroll;
+  }
+
+  &__item {
+    background-color:#273e4a;
+    color:#ddd2db;
+    font-weight: 400;
+    padding: 0.8rem 0.7rem;
+    border-radius: 2px;
+    margin: 0.5rem;
+    font-family: 'orbitron';
+  }
+}

@@ -3,7 +3,6 @@ import * as React from 'react'
 import './ButtonLarge.scss'
 
 export interface IButtonLargeProps {
-  color: string
   textValue: string
   onClick: () => void
 }
@@ -13,15 +12,10 @@ export default function ButtonLarge(props: IButtonLargeProps): JSX.Element {
     props.onClick()
   }
 
-  const {textValue, color} = props
+  const {textValue} = props
 
   return (
-    <button
-      className='ButtonLarge'
-      onClick={() => handleClick()}
-      type='button'
-      style={{backgroundColor: color}}
-    >
+    <button className='ButtonLarge' onClick={() => handleClick()} type='button'>
       <div>{textValue}</div>
     </button>
   )

@@ -1,6 +1,4 @@
-
 .threatAnalyser {
-  width: 100%;
   height: 80vh;
 
   &__button-wrap {
@@ -13,4 +11,12 @@
     margin-left: 5rem;
     margin-right: 5rem;
   }
+}
+
+.threat-image {
+  width: 60rem;
+  height: 40rem;
+  padding: 1rem;
+  border-radius: 5px;
+  overflow: hidden;
 }
