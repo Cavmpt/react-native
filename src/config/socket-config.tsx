@@ -96,7 +96,7 @@ export default function socketConfig(props: ISocketConfigProps) {
             login: '',
             password: '',
           },
-          brokerURL: process.env.REACT_APP_WEBSOCKET_BASE_URL + '/uav-monitor',
+          brokerURL: process.env.REACT_APP_WEBSOCKET_BASE_URL_2 + '/uav-monitor',
           reconnectDelay: 20000,
         }
         let stompClient = new Client(stompConfig)
