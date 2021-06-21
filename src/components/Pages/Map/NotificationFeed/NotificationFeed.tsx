@@ -13,6 +13,9 @@ const notifications = [
   {message: 'alert 1'},
   {message: 'drone 2 battery change'},
   {message: 'solar pannel issue'},
+  {message: 'solar pannel issue'},
+  {message: 'solar pannel issue'},
+  {message: 'solar pannel issue'},
 ]
 
 export default function NotificationFeed(

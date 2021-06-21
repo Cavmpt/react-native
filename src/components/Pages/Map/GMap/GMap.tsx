@@ -1,5 +1,7 @@
 import * as React from 'react'
+import {useState} from 'react'
 import {GoogleMap, useJsApiLoader} from '@react-google-maps/api'
+import Skeleton from '../../../UIcomponents/Skeleton/Skeleton'
 
 import './GMap.scss'
 
@@ -8,6 +10,7 @@ export interface IGmapProps {
 }
 
 export default function Gmap(props: IGmapProps): JSX.Element {
+  const [loading, setLoading] = useState({state: false, style: 'none'})
   const {isLoaded} = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY as string,
@@ -24,7 +27,9 @@ export default function Gmap(props: IGmapProps): JSX.Element {
     lng: -38.523,
   }
 
-  const onLoad = () => {}
+  const onLoad = () => {
+    setLoading({state: true, style: 'block'})
+  }
   const onUnmount = () => {}
   const togglemap = () => {}
 
@@ -135,7 +140,16 @@ export default function Gmap(props: IGmapProps): JSX.Element {
           <></>
         </div>
       ) : (
-        <></>
+        <>
+          <div className='skeleton-container'>
+            {!loading.state && (
+              <Skeleton
+                width={containerStyle.width}
+                height={containerStyle.height}
+              />
+            )}
+          </div>
+        </>
       )}
     </>
   )
