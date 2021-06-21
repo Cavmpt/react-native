@@ -31,18 +31,15 @@ export default function ThreatAnalyser(
 
   const ignoreEvent = () => {
     fetch(
-      `${process.env.REACT_APP_REST_BASE_URL}/alerts/${currentThreats[0].id}`,
+      `${process.env.REACT_APP_REST_BASE_URL}/threat-dis?id=${currentAlerts[0].id}`,
       {
         method: 'POST',
         mode: 'cors',
         cache: 'no-cache',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'same-origin',
       },
     ) // THIS WILL TRIGGER WEBSOCKETS
   }
+
   const threatDisplay = () => {
     if (currentAlerts.length > 0) {
       return (
