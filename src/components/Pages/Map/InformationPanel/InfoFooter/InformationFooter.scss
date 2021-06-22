@@ -34,3 +34,26 @@
         font-size:0.8em;
     }  
 }
+// @media only screen and (max-width : 1290px) {
+//     .panel-footer{
+//         display:flex;
+//         flex-direction: column;
+        
+//         &__top{
+//             display: flex;
+//             // flex-direction: column;
+            
+//             .test{
+//                 display: flex;
+//                 margin:2em;
+//                 flex-direction: column;
+//             }
+//         }
+       
+//         &__bottom{
+//             display: flex;
+//             flex-direction: column;
+//         }
+    
+//     }
+//   }

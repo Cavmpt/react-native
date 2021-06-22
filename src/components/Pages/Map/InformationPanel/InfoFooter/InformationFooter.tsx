@@ -19,7 +19,7 @@ export default function InformationFooter(
           </h2>
           <h4>scattered clouds</h4>
         </div>
-        <div>
+        <div className='test'>
           <h2>
             2 kt
             <i className='fas fa-wind' />

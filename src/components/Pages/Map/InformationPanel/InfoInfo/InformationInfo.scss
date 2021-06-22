@@ -17,3 +17,10 @@
         font-size:1em;
     }  
 }
+
+@media only screen and (max-width : 1290px) {
+    .panel-info{
+      border:none;
+    //   display:;
+    }
+  }

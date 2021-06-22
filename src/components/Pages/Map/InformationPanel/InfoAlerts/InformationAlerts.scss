@@ -66,3 +66,18 @@
         }
     }
 }
+
+@media only screen and (max-width : 1290px) {
+    .panel-alerts{
+      border:none;
+      justify-content: center;
+      align-items: center;
+      div{
+        margin:0.1rem;
+        margin-bottom:0;
+        margin-top:0;
+        padding-top:0;
+        padding-bottom:0;
+        }
+    }
+  }
