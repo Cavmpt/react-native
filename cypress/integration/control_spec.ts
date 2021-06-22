@@ -13,6 +13,13 @@ describe('control page works as expected', () => {
 
   it('Visits the map page', () => {
     cy.visit('http://localhost:3000/')
+    cy.intercept(
+      {
+        method: 'GET',
+        url: '/threat',
+      },
+      [],
+    )
     cy.get('src').should('exist')
   })
 
