@@ -16,7 +16,7 @@ describe('control page works as expected', () => {
     cy.get('src').should('exist')
   })
 
-  it('Visits the controls page', () => {
+  it('Visits the controls page and renders', () => {
     cy.visit('http://localhost:3000/controls')
     cy.get('control-page').should('exist')
   })
