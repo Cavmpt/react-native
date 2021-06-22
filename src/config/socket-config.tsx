@@ -20,6 +20,7 @@ export default function socketConfig(props: ISocketConfigProps) {
     context
 
   useEffect(() => {
+    console.log('----HIT:')
     fetch(process.env.REACT_APP_REST_BASE_URL + '/threats', {
       method: 'GET',
       responseType: 'arraybuffer',
@@ -31,6 +32,7 @@ export default function socketConfig(props: ISocketConfigProps) {
       .then(body => createReadableStream(body))
       .then(stream => createArrayBuffer(stream))
       .then(result => {
+        console.log('----HIT:', result)
         // GET THE LIST FROM THE PROTOCOL BUFFER
         const UInt8ImageArray =
           new message.UnknownObjectEntityRepository.deserializeBinary(
