@@ -9,7 +9,10 @@ import Controls from './components/Pages/Controls/Controls'
 
 import ErrorBoundary from './components/UIcomponents/Notifications/ErrorBoundary/ErrorBoundary'
 
-import setupMirageServerIfProduction from './config/mirage-config'
+import {
+  setupMirageServerIfDevelopment,
+  setupMirageServerIfTest,
+} from './config/mirage-config'
 import SocketConfig from './config/socket-config'
 
 import 'typeface-roboto-slab'
@@ -22,7 +25,8 @@ import reportWebVitals from './reportWebVitals'
 
 import {Provider} from './store/Provider'
 
-setupMirageServerIfProduction()
+setupMirageServerIfDevelopment()
+setupMirageServerIfTest()
 
 const routesArray = [
   {
