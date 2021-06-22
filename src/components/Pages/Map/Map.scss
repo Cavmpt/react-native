@@ -1,6 +1,56 @@
 .map-page {
   display: flex;
+  justify-content: center;
+
+  .notification-gmap-flex {
+    display: flex;
+  
+    .google-map{
+      display:flex;
+    }
+  }
 }
-.notification-gmap-flex {
-  display: flex;
+
+
+@media only screen and (max-width : 1024px) {
+  .map-page {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  
+    .notification-gmap-flex {
+      display: flex;
+      flex-direction: column;
+    }
+  }
 }
+
+
+// .map-page {
+//   display: flex;
+  
+// }
+
+// .test{
+//   display:flex;
+//   flex:1;
+// }
+
+// .notification-gmap-flex {
+//   display: flex;
+//   flex-direction:row;
+// }
+
+// @media only screen and (max-width : 1400px) {
+//   .map-page {
+//     display: flex;
+//     flex-direction: column;
+//   }
+//   .notification-gmap-flex {
+//     display: flex;
+//     flex-direction: column;
+//   }
+
+
+
+// }

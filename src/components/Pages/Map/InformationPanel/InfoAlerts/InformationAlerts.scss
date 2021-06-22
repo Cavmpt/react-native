@@ -1,6 +1,6 @@
 @mixin alert-element {
     flex: 1 1 calc(37%);
-    margin:1rem;
+    margin:0.5rem;
     height:5rem;
 
     h1{
@@ -26,8 +26,12 @@
     flex-wrap: wrap;
     border-bottom: 1px solid #5c6d76;
 
-    &__hazardous{
+    div{
         @include alert-element;
+    }
+
+    &__hazardous{
+        // @include alert-element;
         background-color: #9d2b4b;
 
         i{
@@ -36,7 +40,7 @@
     }
     
     &__unidentified{
-        @include alert-element;
+        // @include alert-element;
         background-color: #6a74b5;
 
         i{
@@ -45,7 +49,7 @@
     }
     
     &__interruptions{
-        @include alert-element;
+        // @include alert-element;
         background-color: #a6883f;
 
         i{
@@ -54,7 +58,7 @@
     }
     
     &__snapshots{
-        @include alert-element;
+        // @include alert-element;
         background-color: #84a0b7;
 
         i{

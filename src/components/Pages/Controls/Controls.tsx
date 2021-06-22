@@ -18,8 +18,12 @@ export default function Threats(props: IThreatsProps): JSX.Element {
       <div className='control-page'>
         <ThreatAnalyser />
         <div className='control-page__box-wrapper'>
-          <AlertBox />
-          <ThreatsBox />
+          <div>
+            <AlertBox />
+          </div>
+          <div>
+            <ThreatsBox />
+          </div>
         </div>
       </div>
     </ErrorBoundary>

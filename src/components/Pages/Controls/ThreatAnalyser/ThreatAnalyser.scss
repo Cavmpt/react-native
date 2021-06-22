@@ -1,5 +1,5 @@
 .threatAnalyser {
-  height: 80vh;
+  height: 100%;
 
   &__button-wrap {
     width: 100%;
@@ -8,16 +8,29 @@
   }
 
   &__buttons {
-    margin-left: 5rem;
-    margin-right: 5rem;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
 .threat-image {
-  width: auto;
-  height: auto;
+  width: 100%;
+  height:auto;
   padding: 1rem;
   border-radius: 5px;
-  // overflow: hidden;
+  overflow: hidden;
 }
 
+@media only screen and (max-width : 680px) {
+  .threatAnalyser{
+
+    &__button-wrap {
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    &__buttons:first-of-type{
+      padding-bottom:1rem;
+    }
+  }
+}

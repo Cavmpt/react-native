@@ -1,9 +1,28 @@
 .info-alert {
-  height: 8rem;
+  height: 10rem;
+  border-bottom: 1px solid #5c6d76;
 
   &__card {
     display: grid;
     place-items: center;
+  
+  
+    button{
+      height: 2em;
+      width: auto;
+      background-color: #9d2b4b;
+      color:#ddd2db;
+      font-weight: bold;
+      border: none;
+      border-radius: 3px;
+      text-transform: uppercase;
+      letter-spacing: 0.1rem;
+      transition: all 0.2s cubic-bezier(.4,0,.2,1);
+    
+      &:hover {
+        background-color: #e94157;
+      }
+    }
   }
 
   &__image {

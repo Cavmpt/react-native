@@ -27,8 +27,12 @@ export default function Map(props: IMapProps) {
         <div>
           <LiveFeed />
           <div className='notification-gmap-flex'>
-            <GMap />
-            <NotificationFeed />
+              <div className='google-map'>
+                <GMap />
+              </div>
+              <div className='notifcation-feed'>
+                <NotificationFeed />
+              </div>
           </div>
         </div>
         <InformationPanel />
@@ -36,3 +40,24 @@ export default function Map(props: IMapProps) {
     </AlertBoundary>
   )
 }
+
+{/* <AlertBoundary>
+<div className='map-page'>
+  <div>
+    <LiveFeed />
+    <div className='notification-gmap-flex'>
+      <div className='google-map'>
+        <GMap />
+      </div>
+      <div className='notifcation-feed'>
+      <NotificationFeed />
+      </div>
+      
+    </div>
+    
+  </div>
+  <div className='test'>
+  <InformationPanel />
+  </div>
+</div>
+</AlertBoundary> */}
