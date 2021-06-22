@@ -19,7 +19,7 @@ export default function NotificationFeed(
   props: INotificationFeedProps,
 ): JSX.Element {
   return (
-    <div className='notification-feed'>
+    <div className='notification-feed' data-testid='notification-feed'>
       <span className='notification-feed__title'>Activity</span>
       <div className='notification-feed__feed'>
         {notifications.map(item => (

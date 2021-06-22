@@ -28,6 +28,7 @@ export default function Sidebar(props: ISidebarProps): JSX.Element {
       <div>
         <NavLink
           to='controls'
+          data-testid='control-button'
           activeStyle={{
             color: 'white',
             textDecoration: 'underline',
