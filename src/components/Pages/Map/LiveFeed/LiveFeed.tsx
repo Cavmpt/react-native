@@ -11,7 +11,7 @@ export interface ILiveFeedProps {
 export default function LiveFeed(props: ILiveFeedProps): JSX.Element {
   const [loading, setLoading] = useState({state: false, style: 'none'})
   // const dimenstion = {width: '60rem', height: '25rem'}
-  const dimenstion = {width: '74vw', height: '50vw'}
+  const dimenstion = {width: '70vw', height: '47.6vw'}
 
   const setImage = () => {
     setLoading({state: true, style: 'block'})

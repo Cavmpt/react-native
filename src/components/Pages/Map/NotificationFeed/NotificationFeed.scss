@@ -46,3 +46,15 @@
   }
 }
 
+
+@media only screen and (max-width : 1090px) {
+  .notification-feed {
+    max-width:35vw;
+  }
+}
+
+@media only screen and (max-width : 991px) {
+  .notification-feed {
+    max-width:80vw;
+  }
+}
