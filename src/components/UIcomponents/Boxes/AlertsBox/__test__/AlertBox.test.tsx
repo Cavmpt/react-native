@@ -1,5 +1,4 @@
 import React from 'react'
-// import MockStompBroker from 'mock-stomp-broker'
 import {render, screen} from '@testing-library/react'
 import {makeServer} from '../../../../../config/mirage-config'
 import AlertBox from '../AlertsBox'

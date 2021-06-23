@@ -1,6 +1,7 @@
 // @ts-nocheck
 import {createServer, Model} from 'miragejs'
-import {imageOne} from './base64Store/imageStore'
+
+import unknownEntityRepoSeedBinary from './../helpers/protobufSeed/protobufSeed'
 
 export function makeServer({environment = 'test'} = {}) {
   let server = createServer({
@@ -16,18 +17,8 @@ export function makeServer({environment = 'test'} = {}) {
 
     seeds(server) {
       server.db.loadData({
-        threats: [
-          {id: 1, message: 'Treat 1', value: imageOne, acknowledged: false},
-          {id: 2, message: 'Treat 2', value: imageOne, acknowledged: false},
-          {id: 3, message: 'Treat 3', value: imageOne, acknowledged: false},
-          {id: 4, message: 'Treat 4', value: imageOne, acknowledged: false},
-        ],
-        alerts: [
-          {id: 1, message: 'Alerts 1', value: imageOne, acknowledged: false},
-          {id: 1, message: 'Alerts 1', value: imageOne, acknowledged: false},
-          {id: 1, message: 'Alerts 1', value: imageOne, acknowledged: false},
-          {id: 1, message: 'Alerts 1', value: imageOne, acknowledged: false},
-        ],
+        threats: unknownEntityRepoSeedBinary(),
+        alerts: unknownEntityRepoSeedBinary(),
       })
     },
 
@@ -41,6 +32,7 @@ export function makeServer({environment = 'test'} = {}) {
       })
     },
   })
+  console.log('unknownEntityRepoSeedBinary:', unknownEntityRepoSeedBinary())
   return server
 }
 
