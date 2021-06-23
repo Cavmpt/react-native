@@ -17,3 +17,10 @@
     }
 
 }
+@media only screen and (max-width : 520px) {
+    .information-panel{
+        flex-direction: column;
+        width:20%;
+    }
+
+}

@@ -11,7 +11,7 @@ export interface ILiveFeedProps {
 export default function LiveFeed(props: ILiveFeedProps): JSX.Element {
   const [loading, setLoading] = useState({state: false, style: 'none'})
   // const dimenstion = {width: '60rem', height: '25rem'}
-  const dimenstion = {width: '55vw', height: '37.4vw'}
+  const dimenstion = {width: '74vw', height: '50vw'}
 
   const setImage = () => {
     setLoading({state: true, style: 'block'})
@@ -28,8 +28,10 @@ export default function LiveFeed(props: ILiveFeedProps): JSX.Element {
           display: loading.style,
           width: dimenstion.width,
           height: dimenstion.height,
-          maxHeight: '41rem',
-          maxWidth: '60rem',
+          maxHeight: '668px',
+          maxWidth: '996px',
+          minHeight: '170px',
+          minWidth: '250px',
         }}
         src='http://209.206.162.230/mjpg/video.mjpg'
         onLoad={() => setImage()}

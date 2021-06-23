@@ -29,7 +29,9 @@ const routesArray = [
       <div className='app'>
         <Navbar />
         <div className='divide'>
+          {/* <div className='test-side'> */}
           <Sidebar />
+          {/* </div> */}
           <div className='content'>
             <Outlet />
           </div>

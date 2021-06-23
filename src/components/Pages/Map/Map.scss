@@ -1,6 +1,5 @@
 .map-page {
   display: flex;
-
   .notification-gmap-flex {
     display: flex;
   
@@ -23,6 +22,31 @@
     }
   }
 }
+
+
+@media only screen and (max-width : 991px) {
+  .map-page {
+    display: flex;
+    flex-wrap: wrap;
+
+    .notification-gmap-flex {
+      display: flex;
+      flex-direction: column;
+      // justify-content: center;
+
+      .google-map{
+        justify-content: center;
+      }
+
+      .notifcation-feed{
+        justify-content: center !important;
+        margin-left:auto;
+        margin-right:auto;
+      }
+    }
+  }
+}
+
 
 
 // .map-page {

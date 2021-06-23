@@ -1,10 +1,13 @@
 
 .notification-feed {
   margin-top: 1rem;
+  display:flex;
+  max-width:80vw;
 
   &__title {
     font-family: 'orbitron';
     color: white;
+
   }
 
   &__feed {

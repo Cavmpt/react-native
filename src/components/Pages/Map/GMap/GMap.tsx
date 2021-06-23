@@ -18,8 +18,10 @@ export default function Gmap(props: IGmapProps): JSX.Element {
 
   const containerStyle = {
     marginTop: '0.5rem',
-    width: '28rem',
-    height: '300px',
+    width: '80vw',
+    height: '53vw',
+    maxHeight: '300px',
+    maxWidth: '448px',
   }
 
   const center = {
