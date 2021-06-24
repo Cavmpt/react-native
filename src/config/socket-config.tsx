@@ -29,7 +29,10 @@ export default function socketConfig(props: ISocketConfigProps) {
       credentials: 'same-origin',
     })
       .then(response => response.body)
-      .then(body => createReadableStream(body))
+      .then(body => {
+        console.log('--body--', body)
+        createReadableStream(body)
+      })
       .then(stream => createArrayBuffer(stream))
       .then(result => {
         console.log('----HIT:', result)

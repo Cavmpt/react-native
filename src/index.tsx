@@ -7,7 +7,10 @@ import Sidebar from './components/UIcomponents/Sidebar/Sidebar'
 import Map from './components/Pages/Map/Map'
 import Controls from './components/Pages/Controls/Controls'
 
-import protobufSeed from './helpers/protobufSeed/protobufSeed'
+import {
+  unknownEntityRepoSeedBinary,
+  unknownObject,
+} from './helpers/protobufSeed/protobufSeed'
 
 import ErrorBoundary from './components/UIcomponents/Notifications/ErrorBoundary/ErrorBoundary'
 
@@ -29,7 +32,9 @@ import {Provider} from './store/Provider'
 
 setupMirageServerIfDevelopment()
 setupMirageServerIfTest()
-protobufSeed()
+
+unknownEntityRepoSeedBinary()
+unknownObject()
 
 const routesArray = [
   {

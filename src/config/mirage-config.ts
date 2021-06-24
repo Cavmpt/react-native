@@ -1,7 +1,7 @@
 // @ts-nocheck
 import {createServer, Model} from 'miragejs'
 
-import unknownEntityRepoSeedBinary from './../helpers/protobufSeed/protobufSeed'
+import {unknownEntityRepoSeedBinary} from './../helpers/protobufSeed/protobufSeed'
 
 export function makeServer({environment = 'test'} = {}) {
   let server = createServer({
