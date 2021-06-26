@@ -23,12 +23,42 @@
       transform: scale(0.5);
     }
   }
+
+  &__burger{
+    display:none;
+    width:2rem;
+    height:2rem;
+    margin-top:auto;
+    margin-bottom:auto;
+    margin-right:50px;
+    z-index:1000;
+
+    &:hover{
+      cursor: pointer;
+    }
+
+    div{
+      width:2.5rem;
+      height: 0.5rem;
+      background-color: var(--white);
+      border-radius: 10px;
+      margin:3px;
+      transform-origin: 4.7px;
+    }
+  }
 }
 
-@media only screen and (max-width : 991px) {
+@media only screen and (max-width : 1090px) {
   .navbar {  
     &__logo-xguard-wrapper{
       display:none;
     }  
+
+    &__burger{
+      display:block;
+    }
   }
 }
+
+
+

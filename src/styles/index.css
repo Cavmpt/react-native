@@ -75,9 +75,12 @@ a {
   border-radius: 0px 0px 15px 0px;
 }
 
+.menu-sidebar{
+  display: flex;
+}
 
 @media only screen and (max-width : 1090px) {
-  .test-side{
-    overflow: visible;
+  .menu-sidebar{
+    display:none;
   }
 }
