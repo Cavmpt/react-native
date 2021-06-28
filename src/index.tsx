@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom'
 
 import Navbar from './components/UIcomponents/Navbar/Navbar'
 import Sidebar from './components/UIcomponents/Sidebar/Sidebar'
+import Navigation from './components/UIcomponents/Navigation/Navigation'
 import Map from './components/Pages/Map/Map'
 import Controls from './components/Pages/Controls/Controls'
 
@@ -27,7 +28,7 @@ const routesArray = [
     path: '/',
     element: (
       <div className='app'>
-        <Navbar />
+        {/* <Navbar />
         <div className='divide'>
           <div className='menu-sidebar'>
             <Sidebar />
@@ -35,7 +36,8 @@ const routesArray = [
           <div className='content'>
             <Outlet />
           </div>
-        </div>
+        </div> */}
+        <Navigation />
       </div>
     ),
     children: [

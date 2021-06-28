@@ -6,7 +6,7 @@
 
 .sidebar {
   // display:absolute;
-  width: 9rem;
+  width: 10rem;
   min-height: 50rem;
   background-color: #1C2C33;
   border-radius: 0px 0px 0px 15px;
@@ -32,8 +32,24 @@
 }
 
 @media only screen and (max-width : 1090px) {
-  .sidebar {
-    // display:block;
-
+  .sidebar-none{
+    display:none;
   }
+
+  .sidebar-test{
+    // display:flex;
+    position:absolute;
+    z-index: 54000;
+    height:100vh;
+    // overflow: hidden;
+    // overflow-y: hidden;
+  }
+
+  .sidebar{
+    // overflow: hidden;
+    // position: fixed;
+    // overflow-y: hidden;
+  }
+
+ 
 }

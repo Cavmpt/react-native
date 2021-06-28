@@ -8,11 +8,14 @@ import NotificationSection from './NotificationsSection/NotificationsSection'
 import LanguageSection from './LanguageSection/LanguageSection'
 
 export interface INavbarProps {
-  placeholder?: null
+  open: boolean
+  test: () => void
+  // placeholder?: null
 }
 
 export default function Navbar(props: INavbarProps): JSX.Element {
-  const [open, setOpen] = useState(false)
+  const {open} = props
+  const {test} = props
 
   return (
     <div className='navbar'>
@@ -21,12 +24,7 @@ export default function Navbar(props: INavbarProps): JSX.Element {
         <span>Xguard</span>
       </div>
 
-      <div
-        aria-hidden='true'
-        className={
-          open ? 'navbar__burger burger-close' : 'navbar__burger burger-open'
-        }
-      >
+      <div onClick={test} aria-hidden='true' className='navbar__burger'>
         <div />
         <div />
         <div />
