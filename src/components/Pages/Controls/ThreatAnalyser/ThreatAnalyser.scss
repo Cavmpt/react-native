@@ -35,9 +35,11 @@
   }
 }
 .empty-threat {
-  width: 60rem;
-  height: 40rem;
+  width: 60vw;
+  height: 40vw;
   border-radius: 5px;
+  margin-left:auto;
+  margin-right: auto;
   background-color: #273F4A;
   display: grid;
   align-items: center;
