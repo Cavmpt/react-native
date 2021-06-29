@@ -6,7 +6,7 @@
   border-spacing: 0.4rem 0.5rem;
 
   &__header {
-    color:#9d2b4b;
+    color:var(--highlight-red-500);
     font-weight: bold;
     font-size: 1rem;
     width: 10rem;
@@ -20,16 +20,22 @@
   &__row {
 
     td {
-      background-color:#273e4a;
-      color:#ddd2db;
+      background-color:var(--main-blue-600);
+      color:var(--hightlight-pink-100);
       font-weight: 400;
       padding: 0.8rem 0.7rem;
       border-radius: 2px;
 
       i{
         padding:0 0.6rem 0.3rem 0;
-        color:#e94157;
+        color:var(--highlight-red-400);
       }
     }
+  }
+}
+
+@media only screen and (max-width: 400px){
+  .threatBox {
+    width:70vw;
   }
 }

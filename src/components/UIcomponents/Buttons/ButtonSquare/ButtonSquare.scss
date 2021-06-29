@@ -1,7 +1,7 @@
 .ButtonSquare {
   height: 4rem;
   width: 4rem;
-  background-color: #5F62DD;
+  background-color: var(--highlight-purple-700);
   display: grid;
   place-items: center;
   border-radius: var(--normal-radius)

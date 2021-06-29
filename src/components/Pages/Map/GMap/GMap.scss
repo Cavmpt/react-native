@@ -8,7 +8,11 @@
 
   &__title {
     font-family: 'orbitron';
-    color: white;
+    color: var(--white);
     margin-bottom: 0.5rem;
   }
+}
+
+.skeleton-container{
+  margin:2.5rem 1rem 1rem 1rem;
 }
