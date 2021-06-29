@@ -1,9 +1,9 @@
 import React from 'react'
 import {render, screen} from '@testing-library/react'
 import {makeServer} from '../../../../../config/mirage-config'
-import AlertBox from '../AlertsBox'
+import ThreatsBox from '../ThreatsBox'
 
-describe('Alert Box behavior works as expected', () => {
+describe('Threat Box behavior works as expected', () => {
   let server: any
 
   beforeEach(() => {
@@ -15,7 +15,7 @@ describe('Alert Box behavior works as expected', () => {
   })
 
   it('displays the threats correctly', async () => {
-    render(<AlertBox />)
-    expect(screen.getAllByTestId('alertBox-td')).toHaveTextContent('Alerts 1')
+    render(<ThreatsBox />)
+    expect(screen.getAllByTestId('threatBox-tr')).toHaveTextContent('Threat 1')
   })
 })

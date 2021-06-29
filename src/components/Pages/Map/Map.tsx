@@ -23,7 +23,7 @@ export default function Map(props: IMapProps) {
 
   return (
     <AlertBoundary>
-      <div className='map-page'>
+      <div className='map-page' data-testid='map-page'>
         <div>
           <LiveFeed />
           <div className='notification-gmap-flex'>

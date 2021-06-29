@@ -38,6 +38,7 @@ export default function Gmap(props: IGmapProps): JSX.Element {
               mapContainerStyle={containerStyle}
               center={center}
               zoom={15}
+              data-testid='GMap'
               onLoad={onLoad}
               onUnmount={onUnmount}
               options={{
