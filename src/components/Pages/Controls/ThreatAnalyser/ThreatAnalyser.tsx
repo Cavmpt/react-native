@@ -49,11 +49,16 @@ export default function ThreatAnalyser(
         <img
           src={`data:image/png;base64, ${currentAlerts[0].value} `}
           className='threat-image'
+          data-testid='threat-Box'
           alt='alert'
         />
       )
     } else {
-      return <div className='empty-threat'>Currently no alerts</div>
+      return (
+        <div data-testid='threat-Box' className='empty-threat'>
+          Currently no alerts
+        </div>
+      )
     }
   }
 

@@ -16,7 +16,7 @@ export default function ButtonLarge(props: IButtonLargeProps): JSX.Element {
 
   return (
     <button className='ButtonLarge' onClick={() => handleClick()} type='button'>
-      <div>{textValue}</div>
+      <div data-testid='button-large'>{textValue}</div>
     </button>
   )
 }

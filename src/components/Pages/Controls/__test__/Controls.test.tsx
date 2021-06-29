@@ -1,11 +1,8 @@
 /* eslint-disable */
 // @ts-nocheck
-import React, {useContext} from 'react'
+import React from 'react'
 import {render, screen} from '@testing-library/react'
-import fetchMock from 'jest-fetch-mock'
-import {makeServer} from '../../../../../config/mirage-config'
-import AlertBox from '../AlertsBox'
-import {Context, ContextType} from '../../../../../store/Provider'
+import Controls from '../Controls'
 
 describe('Alert Box behavior works as expected', () => {
   it('displays the threats correctly', async () => {
@@ -16,14 +13,9 @@ describe('Alert Box behavior works as expected', () => {
     ]
     render(
       <Context.Provider value={{currentAlerts}}>
-        <AlertBox />
+        <Controls />
       </Context.Provider>,
     )
-    expect(screen.getAllByTestId('alertBox-td')[0]).toHaveTextContent(
-      'Alerts 1',
-    )
-    expect(screen.getAllByTestId('alertBox-td')[1]).toHaveTextContent(
-      'Alerts 2',
-    )
+    expect(screen.getByTestId('threat-Box')).toBeTruthy()
   })
 })

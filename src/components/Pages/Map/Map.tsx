@@ -25,7 +25,6 @@ export default function Map(props: IMapProps) {
     <AlertBoundary>
       <div className='map-page' data-testid='map-page'>
         <div>
-          <LiveFeed />
           <div className='notification-gmap-flex'>
             <GMap />
             <NotificationFeed />

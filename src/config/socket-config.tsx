@@ -28,7 +28,10 @@ export default function socketConfig(props: ISocketConfigProps) {
       cache: 'no-cache',
       credentials: 'same-origin',
     })
-      .then(response => response.body)
+      .then(response => {
+        console.log('response:', response)
+        response.body
+      })
       .then(body => {
         console.log('--body--', body)
         createReadableStream(body)

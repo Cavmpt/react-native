@@ -4,18 +4,52 @@ import message from '../uav-monitor_pb'
 import core from '../uav-core_pb'
 import Base64 from './exportBase64'
 import {Readable} from 'stream'
+
+import {ObjectReadableMock, ObjectWritableMock} from 'stream-mock'
+
 const google_protobuf_timestamp_pb = require('../../../node_modules/google-protobuf/google/protobuf/timestamp_pb')
 
 function bufferToStream(binary) {
   const readableInstanceStream = new Readable({
     read() {
       this.push(binary)
-      this.push(null)
     },
   })
-
   return readableInstanceStream
 }
+
+// function bufferToStream(binary) {
+//   return Promise.resolve({
+//     body: {
+//       getReader() {
+//         let i = 0
+
+//         return {
+//           read() {
+//             return Promise.resolve(
+//               i < binary.length
+//                 ? {value: binary[i++], done: false}
+//                 : {value: undefined, done: true},
+//             )
+//           },
+//         }
+//       },
+//     },
+//   })
+// }
+
+// return new ReadableStream({
+//   start(controller) {
+//     // The following function handles each data chunk
+//     function push() {
+
+//       }
+//     }
+
+//     push();
+//   }
+// });
+// })
 
 function unknownEntityRepoSeedBinary(): void {
   const unknownObject = new core.UnknownObject()
@@ -38,7 +72,9 @@ function unknownEntityRepoSeedBinary(): void {
 
   const endBuffer = unknownEntityRepo.addEntity(unknownEntity).serializeBinary()
 
-  return bufferToStream(endBuffer)
+  console.log('endBuffer:', endBuffer)
+  console.log('TYPE OF END BUFFER:', endBuffer.length)
+  return endBuffer
 }
 
 function unknownObject(): void {
