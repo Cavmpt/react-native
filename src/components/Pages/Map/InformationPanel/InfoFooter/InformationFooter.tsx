@@ -12,14 +12,14 @@ export default function InformationFooter(
   return (
     <div className='panel-footer'>
       <div className='panel-footer__top'>
-        <div>
+        <div className='test-celcius'>
           <h2>
             25°C
             <i className='fas fa-sun' />
           </h2>
           <h4>scattered clouds</h4>
         </div>
-        <div>
+        <div className='test-wind'>
           <h2>
             2 kt
             <i className='fas fa-wind' />

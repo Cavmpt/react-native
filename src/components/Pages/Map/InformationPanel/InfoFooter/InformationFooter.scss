@@ -11,7 +11,7 @@
 
         div h2{
             font-size:1.6em;
-            color:#ddd2db;
+            color:var(--hightlight-pink-100);
             margin-bottom:10px;
             display: flex;
             i{
@@ -19,7 +19,7 @@
                 align-items: center;
                 font-size: 1.1rem;
                 margin-left:0.4rem;
-                color:#5c6d76;
+                color:var(--main-blue-200);
             }
         }
     }
@@ -30,7 +30,35 @@
     }
 
     h4{
-        color:#5c6d76;
+        color:var(--main-blue-200);
         font-size:0.8em;
     }  
 }
+@media only screen and (max-width : 1290px) {
+    .panel-footer{
+        display:flex;
+        flex-direction: column;
+        justify-content: space-around;
+        
+        &__top{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            .test-celcius{
+                flex-direction: row;
+            }
+
+            .test-wind{
+                padding-top:1em;
+                flex-direction: row;
+            }
+        }
+       
+        &__bottom{
+            display: flex;
+            flex-direction: row;
+        }
+    
+    }
+  }

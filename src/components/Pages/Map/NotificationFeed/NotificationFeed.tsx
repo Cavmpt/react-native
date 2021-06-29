@@ -20,8 +20,8 @@ export default function NotificationFeed(
 ): JSX.Element {
   return (
     <div className='notification-feed' data-testid='notification-feed'>
-      <span className='notification-feed__title'>Activity</span>
       <div className='notification-feed__feed'>
+        <span className='notification-feed__title'>Activity</span>
         {notifications.map(item => (
           <div className='notification-feed__item'>
             <i className='fas fa-question-circle' />

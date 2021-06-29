@@ -1,11 +1,19 @@
+
 .ButtonLarge {
   width: 15rem;
   height: 3rem;
+  color:var(--hightlight-pink-100);
   border-radius: 5px;
-  background-color: #273F4A;
+  background-color: var(--main-blue-600);
   border: none;
 
   &:hover {
     cursor: pointer;
+  }
+}
+
+@media only screen and (max-width: 400px){
+  .ButtonLarge {
+    width:70vw;
   }
 }

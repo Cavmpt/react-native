@@ -1,5 +1,5 @@
 .threatAnalyser {
-  height: 80vh;
+  height: 100%;
 
   &__button-wrap {
     width: 100%;
@@ -8,28 +8,42 @@
   }
 
   &__buttons {
-    margin-left: 5rem;
-    margin-right: 5rem;
-    margin-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
 .threat-image {
-  width: 60rem;
-  height: 40rem;
+  width: 100%;
+  height:auto;
+  padding: 1rem;
   border-radius: 5px;
   overflow: hidden;
 }
 
+@media only screen and (max-width : 680px) {
+  .threatAnalyser{
+
+    &__button-wrap {
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    &__buttons:first-of-type{
+      padding-bottom:1rem;
+    }
+  }
+}
 .empty-threat {
-  width: 60rem;
-  height: 40rem;
+  width: 60vw;
+  height: 40vw;
   border-radius: 5px;
+  margin-left:auto;
+  margin-right: auto;
   background-color: #273F4A;
   display: grid;
   align-items: center;
-  font-family: 'orbitron';
   text-align: center;
+  font-family: 'orbitron';
   color: white;
 }
-

@@ -1,4 +1,24 @@
 :root {
+
+  /* Primarily used colors */
+  --main-blue-200: #5c6d76;
+  --main-blue-400: #2e3b41;
+  --main-blue-500: #2d4450;
+  --main-blue-600: #273e4a;
+  --main-blue-800: #1C2C33;
+  --hightlight-pink-100: #ddd2db;
+  --highlight-light-blue-400:#c1e1fd;
+  --highlight-light-blue-500:#84a0b7;
+  --highlight-purple-400:#989bfd;
+  --highlight-purple-500:#6a74b5;
+  --highlight-purple-700:#5F62DD;
+  --highlight-yellow-400:#a6883f;
+  --highlight-yellow-500:#f7be3e;
+  --highlight-red-400: #e94157;
+  --highlight-red-500: #9d2b4b;
+  
+
+
   --white: #fff;
   --black: #0c0d0e;
   --orange: #f48024;
