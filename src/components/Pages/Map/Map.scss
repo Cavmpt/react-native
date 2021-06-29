@@ -11,6 +11,9 @@
 
 
 @media only screen and (max-width : 1290px) {
+  .google-map{
+    justify-content: center;
+  }
   .map-page {
     display: flex;
     flex-wrap: wrap;
@@ -24,7 +27,7 @@
 }
 
 
-@media only screen and (max-width : 991px) {
+@media only screen and (max-width : 1090px) {
   .map-page {
     display: flex;
     flex-wrap: wrap;
@@ -32,7 +35,6 @@
     .notification-gmap-flex {
       display: flex;
       flex-direction: column;
-      // justify-content: center;
 
       .google-map{
         justify-content: center;

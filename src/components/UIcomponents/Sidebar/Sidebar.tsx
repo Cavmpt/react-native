@@ -4,18 +4,12 @@ import ButtonSquare from '../Buttons/ButtonSquare/ButtonSquare'
 import './Sidebar.scss'
 
 export interface ISidebarProps {
-  open: boolean
-  // placeholder?: null
+  placeholder?: null
 }
 
 export default function Sidebar(props: ISidebarProps): JSX.Element {
-  const {open} = props
-
-  console.log(`log open`)
-  console.log(open)
-
   return (
-    <div className={open ? 'sidebar sidebar-test' : 'sidebar sidebar-none'}>
+    <div className='sidebar'>
       <div>
         <NavLink
           end

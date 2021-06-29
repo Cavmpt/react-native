@@ -5,7 +5,7 @@
 
     h1{
         font-size:2em;
-        color: white;
+        color: var(--white);
         margin: 1rem 0 0 0.5rem;
         display:flex;
         justify-content: right;
@@ -16,7 +16,7 @@
     }
     h4{
         font-size:0.8em;
-        color:#5c6d76; 
+        color:var(--main-blue-200); 
         margin-left:0.5rem;   
     }
 }
@@ -24,45 +24,41 @@
 .panel-alerts{
     display: flex;
     flex-wrap: wrap;
-    border-bottom: 1px solid #5c6d76;
+    border-bottom: 1px solid var(--main-blue-200);
 
     div{
         @include alert-element;
     }
 
     &__hazardous{
-        // @include alert-element;
-        background-color: #9d2b4b;
+        background-color: var(--highlight-red-500);
 
         i{
-            color: #e94157;
+            color: var(--highlight-red-400);
         }
     }
     
     &__unidentified{
-        // @include alert-element;
-        background-color: #6a74b5;
+        background-color: var(--highlight-purple-500);
 
         i{
-            color: #989bfd;
+            color: var(--highlight-purple-400);
         }
     }
     
     &__interruptions{
-        // @include alert-element;
-        background-color: #a6883f;
+        background-color: var(--highlight-yellow-400);
 
         i{
-            color: #f7be3e;
+            color: var(--highlight-yellow-500);
         }
     }
     
     &__snapshots{
-        // @include alert-element;
-        background-color: #84a0b7;
+        background-color: var(--highlight-light-blue-500);
 
         i{
-            color: #c1e1fd;
+            color: var(--highlight-light-blue-400);
         }
     }
 }

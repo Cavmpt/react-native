@@ -18,8 +18,8 @@ export default function Gmap(props: IGmapProps): JSX.Element {
 
   const containerStyle = {
     marginTop: '0.5rem',
-    width: '80vw',
-    height: '53vw',
+    width: '60vw',
+    height: '40vw',
     maxHeight: '300px',
     maxWidth: '448px',
   }
@@ -148,6 +148,8 @@ export default function Gmap(props: IGmapProps): JSX.Element {
               <Skeleton
                 width={containerStyle.width}
                 height={containerStyle.height}
+                maxWidth={containerStyle.maxWidth}
+                maxHeight={containerStyle.maxHeight}
               />
             )}
           </div>

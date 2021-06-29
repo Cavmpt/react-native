@@ -1,6 +1,6 @@
 .information-panel {
     margin: 1rem;
-    background-color: #2d4450;
+    background-color: var(--main-blue-500);
     font-family: 'Open Sans', sans-serif;
     width: 20%;
     min-width:12rem;
@@ -17,7 +17,7 @@
     }
 
 }
-@media only screen and (max-width : 520px) {
+@media only screen and (max-width : 620px) {
     .information-panel{
         flex-direction: column;
         width:20%;

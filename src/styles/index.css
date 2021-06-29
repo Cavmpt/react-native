@@ -71,7 +71,7 @@ a {
 
 .content {
   width: 100%;
-  background-color: #1C2C33;
+  background-color: var(--main-blue-800);
   border-radius: 0px 0px 15px 0px;
 }
 

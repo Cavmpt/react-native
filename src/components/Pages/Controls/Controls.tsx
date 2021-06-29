@@ -21,7 +21,7 @@ export default function Threats(props: IThreatsProps): JSX.Element {
           <div>
             <AlertBox />
           </div>
-          <div>
+          <div className='control-page__box-wrapper__threat-box'>
             <ThreatsBox />
           </div>
         </div>

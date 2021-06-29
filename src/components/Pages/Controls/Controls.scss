@@ -27,6 +27,10 @@
       margin-left: auto;
       margin-right:auto;
       flex-direction: column;
+
+      &__threat-box{
+        margin-bottom:5rem;
+      }
     }
   }
 }

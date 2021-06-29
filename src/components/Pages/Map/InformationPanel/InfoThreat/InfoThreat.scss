@@ -1,6 +1,6 @@
 .info-alert {
   height: 10rem;
-  border-bottom: 1px solid #5c6d76;
+  border-bottom: 1px solid var(--main-blue-200);
 
   &__card {
     display: grid;
@@ -10,8 +10,8 @@
     button{
       height: 2em;
       width: auto;
-      background-color: #9d2b4b;
-      color:#ddd2db;
+      background-color: var(--highlight-red-500);
+      color:var(--hightlight-pink-100);
       font-weight: bold;
       border: none;
       border-radius: 3px;
@@ -20,7 +20,7 @@
       transition: all 0.2s cubic-bezier(.4,0,.2,1);
     
       &:hover {
-        background-color: #e94157;
+        background-color: var(--highlight-red-400);
       }
     }
   }

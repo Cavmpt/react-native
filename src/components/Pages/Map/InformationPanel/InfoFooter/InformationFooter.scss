@@ -11,7 +11,7 @@
 
         div h2{
             font-size:1.6em;
-            color:#ddd2db;
+            color:var(--hightlight-pink-100);
             margin-bottom:10px;
             display: flex;
             i{
@@ -19,7 +19,7 @@
                 align-items: center;
                 font-size: 1.1rem;
                 margin-left:0.4rem;
-                color:#5c6d76;
+                color:var(--main-blue-200);
             }
         }
     }
@@ -30,7 +30,7 @@
     }
 
     h4{
-        color:#5c6d76;
+        color:var(--main-blue-200);
         font-size:0.8em;
     }  
 }
@@ -39,7 +39,6 @@
         display:flex;
         flex-direction: column;
         justify-content: space-around;
-        // justify-content: ;
         
         &__top{
             display: flex;
@@ -48,7 +47,6 @@
 
             .test-celcius{
                 flex-direction: row;
-                // margin-top:1em;
             }
 
             .test-wind{
@@ -60,8 +58,6 @@
         &__bottom{
             display: flex;
             flex-direction: row;
-            // justify-content:end;
-            
         }
     
     }
