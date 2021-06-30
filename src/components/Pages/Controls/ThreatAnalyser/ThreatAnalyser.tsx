@@ -56,7 +56,7 @@ export default function ThreatAnalyser(
 
   return (
     <div className='threatAnalyser'>
-      {threatDisplay()}
+      <div data-testid='threat-Box'>{threatDisplay()}</div>
       <div className='threatAnalyser__button-wrap'>
         <div className='threatAnalyser__buttons'>
           <ButtonLarge

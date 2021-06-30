@@ -34,6 +34,7 @@ export default function LiveFeed(props: ILiveFeedProps): JSX.Element {
       )}
       <img
         className='live-feed'
+        data-testid='liveFeed'
         alt='liveFeed'
         style={{
           display: loading.style,
