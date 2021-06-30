@@ -1,26 +1,66 @@
 
 .notification-feed {
   margin-top: 1rem;
+  display:flex;
+  max-width:80vw;
 
   &__title {
     font-family: 'orbitron';
-    color: white;
+    color: var(--white);
+
   }
 
   &__feed {
     margin-top: 0.5rem;
     width: 30rem;
     height: 90%;
-    overflow: scroll;
+    max-height:20rem;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar-track{
+      -webkit-box-shadow: inset 0 0 6px var(--main-blue-800);
+      border-radius: 10px;
+      background-color: var(--main-blue-800);
+    }
+
+    &::-webkit-scrollbar{
+      width: 12px;
+      background-color: var(--main-blue-800);
+    }
+
+    &::-webkit-scrollbar-thumb{
+      border-radius: 10px;
+      -webkit-box-shadow: inset 0 0 6px var(--main-blue-200);
+      background-color: var(--main-blue-200);
+    }
   }
 
   &__item {
-    background-color:#273e4a;
-    color:#ddd2db;
+    background-color:var(--main-blue-600);
+    color:var(--hightlight-pink-100);
     font-weight: 400;
     padding: 0.8rem 0.7rem;
     border-radius: 2px;
     margin: 0.5rem;
-    font-family: 'orbitron';
+    font-family: 'Open Sans', sans-serif;
+  }
+}
+
+
+@media only screen and (max-width : 1090px) {
+  .notification-feed {
+    max-width:35vw;
+  }
+}
+
+@media only screen and (max-width : 991px) {
+  .notification-feed {
+    max-width:80vw;
+  }
+}
+
+@media only screen and (max-width : 620px) {
+  .notification-feed {
+    max-width:70vw;
   }
 }

@@ -14,3 +14,4 @@ config
 jest.config.js
 !**/.eslintrc.js*
 eslintrc.js
+rtspServer.js

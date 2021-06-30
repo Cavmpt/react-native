@@ -50,7 +50,7 @@ export default function ThreatAnalyser(
         />
       )
     } else {
-      return <div>Currently no alerts</div>
+      return <div className='empty-threat'>Currently no alerts</div>
     }
   }
 

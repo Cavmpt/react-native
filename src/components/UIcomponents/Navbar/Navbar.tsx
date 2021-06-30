@@ -14,8 +14,8 @@ export default function Navbar(props: INavbarProps): JSX.Element {
   return (
     <div className='navbar'>
       <div className='navbar__logo-xguard-wrapper'>
-        <img src='./xguard-logo.png' alt='Xguard-logo' width='50' height='50' />{' '}
-        <span>Xguard</span>
+        <img src='./xguard-logo.png' alt='Xguard-logo' width='45' />{' '}
+        <span>XGuard</span>
       </div>
       <StatusSection />
       <NotificationSection />
