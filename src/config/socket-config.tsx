@@ -29,12 +29,10 @@ export default function socketConfig(props: ISocketConfigProps) {
       credentials: 'same-origin',
     })
       .then(response => {
-        console.log('response:', response)
-        response.body
+        return response.body
       })
       .then(body => {
-        console.log('--body--', body)
-        createReadableStream(body)
+        return createReadableStream(body)
       })
       .then(stream => createArrayBuffer(stream))
       .then(result => {
@@ -105,7 +103,7 @@ export default function socketConfig(props: ISocketConfigProps) {
             login: '',
             password: '',
           },
-          brokerURL: process.env.REACT_APP_WEBSOCKET_BASE_URL_2 + '/uav-monitor',
+          brokerURL: process.env.REACT_APP_WEBSOCKET_BASE_URL + '/uav-monitor',
           reconnectDelay: 20000,
         }
         let stompClient = new Client(stompConfig)

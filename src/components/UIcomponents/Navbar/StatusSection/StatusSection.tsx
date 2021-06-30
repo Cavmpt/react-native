@@ -10,7 +10,6 @@ export default function StatusDisplay(props: IStatusDisplayProps): JSX.Element {
   return (
     <div>
       <div className='dot-status' />
-      Systems currently online
     </div>
   )
 }

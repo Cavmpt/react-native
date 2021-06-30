@@ -45,7 +45,7 @@ export default function LiveFeed(props: ILiveFeedProps): JSX.Element {
           minHeight: dimensions.minHeight,
           minWidth: dimensions.minWidth,
         }}
-        src='http://192.82.150.11:8086/mjpg/video.mjpg'
+        src={process.env.REACT_APP_LIVE_FEED_URL}
         onLoad={() => setImage()}
       />
     </div>

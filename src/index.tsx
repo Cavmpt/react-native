@@ -30,11 +30,11 @@ import reportWebVitals from './reportWebVitals'
 
 import {Provider} from './store/Provider'
 
-setupMirageServerIfDevelopment()
-setupMirageServerIfTest()
+// setupMirageServerIfDevelopment()
+// setupMirageServerIfTest()
 
-unknownEntityRepoSeedBinary()
-unknownObject()
+// unknownEntityRepoSeedBinary()
+// unknownObject()
 
 const routesArray = [
   {

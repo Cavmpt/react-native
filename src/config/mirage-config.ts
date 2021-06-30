@@ -1,4 +1,4 @@
-// @ts-nocheck
+//@ts-nocheck
 import {createServer, Model} from 'miragejs'
 
 import {unknownEntityRepoSeedBinary} from './../helpers/protobufSeed/protobufSeed'
@@ -70,3 +70,4 @@ export function setupMirageServerIfTest() {
     })
   }
 }
+export {}
