@@ -9,7 +9,7 @@ export interface IInfoThreatProps {
   placeholder?: null
 }
 
-export default function InfoThreat(props: IInfoThreatProps) {
+export default function InfoThreat(props: IInfoThreatProps): JSX.Element {
   const context = useContext<ContextType>(Context)
   const {currentAlerts} = context
   const navigate = useNavigate()
@@ -21,13 +21,17 @@ export default function InfoThreat(props: IInfoThreatProps) {
   return (
     <div className='info-alert'>
       <div className='info-alert__card'>
-        <img
-          className='info-alert__image'
-          alt='alert'
-          src={`data:image/png;base64, ${currentAlerts[0]?.value} `}
-        />
+        {currentAlerts.length > 0 ? (
+          <img
+            className='info-alert__image'
+            alt='alert'
+            src={`data:image/png;base64, ${currentAlerts[0]?.value} `}
+          />
+        ) : (
+          <div className='info-alert__no-image'>Currently no threats</div>
+        )}
         <button type='button' onClick={() => AnalyzeThreat()}>
-          investigate
+          Analyze
         </button>
       </div>
     </div>

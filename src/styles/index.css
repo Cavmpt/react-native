@@ -28,7 +28,7 @@ body {
   line-height: 1;
 }
 html, body{
-  background: var(--black-300);
+  background:#253941;
 }
 ol, ul {
   list-style: none;
@@ -71,6 +71,6 @@ a {
 
 .content {
   width: 100%;
-  background-color: #1C2C33;
+  background-color: var(--main-blue-800);
   border-radius: 0px 0px 15px 0px;
 }

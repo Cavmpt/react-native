@@ -1,8 +1,26 @@
 .information-panel {
     margin: 1rem;
-    background-color: #2d4450;
+    background-color: var(--main-blue-500);
     font-family: 'Open Sans', sans-serif;
     width: 20%;
+    min-width:12rem;
     display: flex;
     flex-direction: column;
+}
+
+
+
+@media only screen and (max-width : 1290px) {
+    .information-panel{
+        flex-direction: row;
+        width:auto;
+    }
+
+}
+@media only screen and (max-width : 620px) {
+    .information-panel{
+        flex-direction: column;
+        width:20%;
+    }
+
 }

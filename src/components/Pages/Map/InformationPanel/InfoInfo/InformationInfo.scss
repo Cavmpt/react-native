@@ -1,6 +1,6 @@
 .panel-info{
     display:flex;    
-    border-bottom: 1px solid #5c6d76;
+    border-bottom: 1px solid var(--main-blue-200);
     justify-content:space-between;
     
     ul li{
@@ -8,12 +8,18 @@
     }
 
     h4{
-        color:#5c6d76;
+        color:var(--main-blue-200);
         font-size:0.8em;
     }
 
     h2{
-        color:#ddd2db;
+        color:var(--hightlight-pink-100);
         font-size:1em;
     }  
 }
+
+@media only screen and (max-width : 1290px) {
+    .panel-info{
+      border:none;
+    }
+  }

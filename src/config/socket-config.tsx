@@ -48,6 +48,7 @@ export default function socketConfig(props: ISocketConfigProps) {
         function setThreats() {
           let threatsArray = []
           for (let i = 0; i < UInt8ImageArray.length; i++) {
+            console.log(threatsArray)
             const currentUInt8Id = UInt8ImageArray[i].getId()
             const currentUInt8Image = UInt8ImageArray[i]
               .getUnknownobject()

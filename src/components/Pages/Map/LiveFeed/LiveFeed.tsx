@@ -10,25 +10,41 @@ export interface ILiveFeedProps {
 
 export default function LiveFeed(props: ILiveFeedProps): JSX.Element {
   const [loading, setLoading] = useState({state: false, style: 'none'})
-  const dimenstion = {width: '60rem', height: '25rem'}
+  const dimensions = {
+    width: '60vw',
+    height: '40vw',
+    maxWidth: '996px',
+    maxHeight: '668px',
+    minHeight: '0px',
+    minWidth: '0px',
+  }
+
   const setImage = () => {
     setLoading({state: true, style: 'block'})
   }
   return (
     <div className='live-feed-wrap'>
       {!loading.state && (
-        <Skeleton width={dimenstion.width} height={dimenstion.height} />
+        <Skeleton
+          width={dimensions.width}
+          height={dimensions.height}
+          maxWidth={dimensions.maxWidth}
+          maxHeight={dimensions.maxHeight}
+        />
       )}
       <img
         className='live-feed'
         alt='liveFeed'
-        data-testid='liveFeed'
         style={{
           display: loading.style,
-          width: dimenstion.width,
-          height: dimenstion.height,
+          width: dimensions.width,
+          height: dimensions.height,
+          maxHeight: dimensions.maxHeight,
+          maxWidth: dimensions.maxWidth,
+          minHeight: dimensions.minHeight,
+          minWidth: dimensions.minWidth,
         }}
-        src='http://209.206.162.230/mjpg/video.mjpg'
+        src='http://192.82.150.11:8086/mjpg/video.mjpg'
         onLoad={() => setImage()}
       />
     </div>
