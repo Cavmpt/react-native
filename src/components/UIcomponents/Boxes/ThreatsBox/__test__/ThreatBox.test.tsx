@@ -7,7 +7,7 @@ import ThreatsBox from '../ThreatsBox'
 import {Context, ContextType} from '../../../../../store/Provider'
 
 describe('Threat Box behavior works as expected', () => {
-  it('displays the threats correctly', async () => {
+  it('displays the threats 1 and 2 correctly whenever an array of threats is passed', async () => {
     const currentThreats = [
       {id: 1, message: 'Threat 1', value: '12341234123ff'},
       {id: 2, message: 'Threat 2', value: '12341234123ff'},

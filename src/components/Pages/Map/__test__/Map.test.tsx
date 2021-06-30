@@ -6,8 +6,8 @@ import {BrowserRouter} from 'react-router-dom'
 import {Context, ContextType} from '../../../../store/Provider'
 import Map from '../Map'
 
-describe('Alert Box behavior works as expected', () => {
-  it('expect the sidebar to display the correct url', async () => {
+describe('Map renders as expected', () => {
+  it('the map renders correctly', async () => {
     const currentThreats = [
       {id: 1, message: 'Threat 1', value: '12341234123ff'},
       {id: 2, message: 'Threat 2', value: '12341234123ff'},

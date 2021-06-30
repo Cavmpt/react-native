@@ -4,7 +4,7 @@ import {BrowserRouter} from 'react-router-dom'
 import SideBar from '../Sidebar'
 
 describe('Sidebar Renders', () => {
-  it('expect control button from the sidebar to be not null', async () => {
+  it('expect control button from the sidebar to be not null and have a functionning routing component', async () => {
     render(
       <BrowserRouter>
         <SideBar />
