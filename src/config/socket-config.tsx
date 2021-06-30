@@ -29,6 +29,7 @@ export default function socketConfig(props: ISocketConfigProps) {
       credentials: 'same-origin',
     })
       .then(response => {
+        console.log('response:', response)
         return response.body
       })
       .then(body => {
@@ -36,7 +37,6 @@ export default function socketConfig(props: ISocketConfigProps) {
       })
       .then(stream => createArrayBuffer(stream))
       .then(result => {
-        console.log('----HIT:', result)
         // GET THE LIST FROM THE PROTOCOL BUFFER
         const UInt8ImageArray =
           new message.UnknownObjectEntityRepository.deserializeBinary(

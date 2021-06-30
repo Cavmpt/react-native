@@ -18,7 +18,7 @@ export default function ThreatsBox(props: IThreatsBoxProps): JSX.Element {
         <th>Confirmed threats to be investigated </th>
       </tr>
       {currentThreats.length > 0 ? (
-        currentThreats.map(threats => (
+        currentThreats.map((threats, i) => (
           <tr className='threatBox__row' data-testid='threatBox-tr'>
             <td>
               <i className='fas fa-exclamation-triangle' />

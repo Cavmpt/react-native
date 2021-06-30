@@ -9,7 +9,7 @@ export default function NotificationSection(
 ): JSX.Element {
   return (
     <div>
-      <div>ds</div>
+      <div />
     </div>
   )
 }

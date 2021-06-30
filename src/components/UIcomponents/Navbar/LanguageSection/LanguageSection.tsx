@@ -11,7 +11,7 @@ export default function LanguageSection(
 ): JSX.Element {
   return (
     <div>
-      <div>d</div>
+      <div />
     </div>
   )
 }

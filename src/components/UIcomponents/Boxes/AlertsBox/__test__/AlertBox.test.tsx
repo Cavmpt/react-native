@@ -2,8 +2,6 @@
 // @ts-nocheck
 import React, {useContext} from 'react'
 import {render, screen} from '@testing-library/react'
-import fetchMock from 'jest-fetch-mock'
-import {makeServer} from '../../../../../config/mirage-config'
 import AlertBox from '../AlertsBox'
 import {Context, ContextType} from '../../../../../store/Provider'
 

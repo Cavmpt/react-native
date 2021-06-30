@@ -7,7 +7,7 @@ export interface IProfilSectionProps {
 export default function ProfilSection(props: IProfilSectionProps) {
   return (
     <div>
-      <div>dd</div>
+      <div />
     </div>
   )
 }
