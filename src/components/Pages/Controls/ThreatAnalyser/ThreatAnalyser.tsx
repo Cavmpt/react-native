@@ -19,25 +19,33 @@ export default function ThreatAnalyser(
   const {currentAlerts} = context
 
   const confirmThreat = async () => {
-    fetch(
-      `${process.env.REACT_APP_REST_BASE_URL}/threat-ack?id=${currentAlerts[0].id}`,
-      {
-        method: 'POST',
-        mode: 'cors',
-        cache: 'no-cache',
-      },
-    ) // THIS WILL TRIGGER WEBSOCKETS
+    if (currentAlerts.length > 0) {
+      fetch(
+        `${process.env.REACT_APP_REST_BASE_URL}/threat-ack?id=${currentAlerts[0].id}`,
+        {
+          method: 'POST',
+          mode: 'cors',
+          cache: 'no-cache',
+        },
+      ) // THIS WILL TRIGGER WEBSOCKETS
+    } else {
+      return
+    }
   }
 
   const ignoreEvent = () => {
-    fetch(
-      `${process.env.REACT_APP_REST_BASE_URL}/threat-dis?id=${currentAlerts[0].id}`,
-      {
-        method: 'POST',
-        mode: 'cors',
-        cache: 'no-cache',
-      },
-    ) // THIS WILL TRIGGER WEBSOCKETS
+    if (currentAlerts.length > 0) {
+      fetch(
+        `${process.env.REACT_APP_REST_BASE_URL}/threat-dis?id=${currentAlerts[0].id}`,
+        {
+          method: 'POST',
+          mode: 'cors',
+          cache: 'no-cache',
+        },
+      ) // THIS WILL TRIGGER WEBSOCKETS
+    } else {
+      return
+    }
   }
 
   const threatDisplay = () => {
