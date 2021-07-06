@@ -1,6 +1,7 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 import Skeleton from '../../../UIcomponents/Skeleton/Skeleton'
+import StaticSkeleton from '../../../UIcomponents/Skeleton/StaticSkeleton/StaticSkeleton'
 
 import './LiveFeed.scss'
 
@@ -10,6 +11,8 @@ export interface ILiveFeedProps {
 
 export default function LiveFeed(props: ILiveFeedProps): JSX.Element {
   const [loading, setLoading] = useState({state: false, style: 'none'})
+  const [noFeed, setNoFeed] = useState(true)
+
   const dimensions = {
     width: '60vw',
     height: '40vw',
@@ -22,9 +25,18 @@ export default function LiveFeed(props: ILiveFeedProps): JSX.Element {
   const setImage = () => {
     setLoading({state: true, style: 'block'})
   }
+
+  useEffect(() => {
+    const loadingTimer = window.setTimeout(() => {
+      setNoFeed(!noFeed)
+    }, 4000)
+
+    return () => window.clearTimeout(loadingTimer)
+  }, [])
+
   return (
     <div className='live-feed-wrap'>
-      {!loading.state && (
+      {!loading.state && noFeed && (
         <Skeleton
           width={dimensions.width}
           height={dimensions.height}
@@ -32,9 +44,19 @@ export default function LiveFeed(props: ILiveFeedProps): JSX.Element {
           maxHeight={dimensions.maxHeight}
         />
       )}
+
+      {!loading.state && !noFeed && (
+        <StaticSkeleton
+          width={dimensions.width}
+          height={dimensions.height}
+          maxWidth={dimensions.maxWidth}
+          maxHeight={dimensions.maxHeight}
+          message='Live Feed Unavailable'
+        />
+      )}
+
       <img
         className='live-feed'
-        data-testid='liveFeed'
         alt='liveFeed'
         style={{
           display: loading.style,
