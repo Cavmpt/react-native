@@ -58,6 +58,7 @@ export default function LiveFeed(props: ILiveFeedProps): JSX.Element {
       <img
         className='live-feed'
         alt='liveFeed'
+        data-testid='liveFeed'
         style={{
           display: loading.style,
           width: dimensions.width,
