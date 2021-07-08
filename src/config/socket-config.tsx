@@ -123,10 +123,15 @@ export default function socketConfig(props: ISocketConfigProps) {
               let action = deserializeBinary.getAction()
               let id = deserializeBinary.getId()
               if (action === message.UnknownObjectNotification.Action.REMOVED) {
-                setCurrentAlerts(currentAlerts => {
-                  currentAlerts.shift()
-                  return [...currentAlerts]
-                })
+                //shift the actual id
+                for (let i = 0; i < currentAlerts.length; i++) {
+                  if (currentAlerts[i].id === id) {
+                    currentAlerts.splice(i, 1)
+                    setCurrentAlerts(currentAlerts => {
+                      return [...currentAlerts]
+                    })
+                  }
+                }
               } else if (
                 action === message.UnknownObjectNotification.Action.ADDED
               ) {
