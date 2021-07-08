@@ -11,7 +11,7 @@ export default function ButtonMedium(props: IButtonMediumProps): JSX.Element {
     props.onClick()
   }
 
-  const {textValue, color} = props
+  const {textValue} = props
 
   return (
     <button className='ButtonLarge' onClick={() => handleClick()} type='button'>

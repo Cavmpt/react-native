@@ -33,7 +33,6 @@ export default function Gmap(props: IGmapProps): JSX.Element {
     setLoading({state: true, style: 'block'})
   }
   const onUnmount = () => {}
-  const togglemap = () => {}
 
   return (
     <>

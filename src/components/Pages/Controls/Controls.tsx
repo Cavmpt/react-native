@@ -2,7 +2,6 @@ import React from 'react'
 import ThreatAnalyser from './ThreatAnalyser/ThreatAnalyser'
 import AlertBox from '../../UIcomponents/Boxes/AlertsBox/AlertsBox'
 import ThreatsBox from '../../UIcomponents/Boxes/ThreatsBox/ThreatsBox'
-import InformationPanel from '../Map/InformationPanel/InformationPanel'
 
 import ErrorBoundary from '../../UIcomponents/Notifications/ErrorBoundary/ErrorBoundary'
 

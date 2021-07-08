@@ -8,48 +8,47 @@ export type ContextType = {
     id: number
     message: string
     value: string
-    acknowledged: boolean
   }[]
   currentAlerts: {
     id: number
     message: string
     value: string
-    acknowledged: boolean
   }[]
-  currentAnalyzedAlert: {
-    id: number
-    message: string
-    value: string
-    acknowledged: boolean
-  }[]
+  currentAnalyzedThreatOrAlert:
+    | {message: string; value: string; type: string}
+    | undefined
   errorMessage: string
 
   setCurrentThreats: (
-    item: {id: number; message: string; value: string; acknowledged: boolean}[],
+    item: {id: number; message: string; value: string}[],
   ) => void
   setCurrentAlerts: (
-    item: {id: number; message: string; value: string; acknowledged: boolean}[],
+    item: {id: number; message: string; value: string}[],
+  ) => void
+  setCurrentAnalyzedThreatOrAlert: (
+    item:
+      | {
+          message: string
+          value: string
+          type: string
+        }
+      | undefined,
   ) => void
   setErrorMessage: (item: string) => void
-  setCurrentAnalyzedAlert: (
-    item: {id: number; message: string; value: string; acknowledged: boolean}[],
-  ) => void
 }
 
 const Context = React.createContext<ContextType>(undefined!)
 
 const Provider = ({children}: any): any => {
   const [currentThreats, setCurrentThreats] = useState<
-    {id: number; message: string; value: string; acknowledged: boolean}[]
+    {id: number; message: string; value: string}[]
   >([])
   const [currentAlerts, setCurrentAlerts] = useState<
-    {id: number; message: string; value: string; acknowledged: boolean}[]
+    {id: number; message: string; value: string}[]
   >([])
   const [errorMessage, setErrorMessage] = useState<string>('')
-  const [currentAnalyzedAlert, setCurrentAnalyzedAlert] = useState<
-    {id: number; message: string; value: string; acknowledged: boolean}[]
-  >([])
-
+  const [currentAnalyzedThreatOrAlert, setCurrentAnalyzedThreatOrAlert] =
+    useState<{message: string; value: string; type: string}>()
   return (
     <Context.Provider
       value={{
@@ -57,13 +56,13 @@ const Provider = ({children}: any): any => {
         currentThreats,
         currentAlerts,
         errorMessage,
-        currentAnalyzedAlert,
+        currentAnalyzedThreatOrAlert,
 
         // functions
         setCurrentThreats,
         setCurrentAlerts,
         setErrorMessage,
-        setCurrentAnalyzedAlert,
+        setCurrentAnalyzedThreatOrAlert,
       }}
     >
       {children}

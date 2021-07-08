@@ -16,8 +16,14 @@ export interface ISocketConfigProps {
 
 export default function socketConfig(props: ISocketConfigProps) {
   const context = useContext<ContextType>(Context)
-  const {setCurrentAlerts, currentAlerts, setCurrentThreats, currentThreats} =
-    context
+  const {
+    setCurrentAlerts,
+    currentAlerts,
+    setCurrentThreats,
+    currentThreats,
+    currentAnalyzedThreatOrAlert,
+    setCurrentAnalyzedThreatOrAlert,
+  } = context
 
   useEffect(() => {
     console.log('----HIT:')

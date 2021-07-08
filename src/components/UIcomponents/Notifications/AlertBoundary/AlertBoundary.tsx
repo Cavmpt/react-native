@@ -12,7 +12,7 @@ export interface IAlertBoundaryProps {
 
 export default function AlertBoundary(props: IAlertBoundaryProps): JSX.Element {
   const context = useContext<ContextType>(Context)
-  const {currentAlerts, currentAnalyzedAlert, setCurrentAnalyzedAlert} = context
+  const {currentAlerts} = context
   const {children} = props
   const navigate = useNavigate()
 

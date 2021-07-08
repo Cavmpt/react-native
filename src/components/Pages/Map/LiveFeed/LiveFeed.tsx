@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react'
 
 import Skeleton from '../../../UIcomponents/Skeleton/Skeleton'
@@ -28,11 +29,11 @@ export default function LiveFeed(props: ILiveFeedProps): JSX.Element {
 
   useEffect(() => {
     const loadingTimer = window.setTimeout(() => {
-      setNoFeed(!noFeed)
-    }, 4000)
+      setNoFeed(() => !noFeed)
+    }, 3000)
 
     return () => window.clearTimeout(loadingTimer)
-  }, [])
+  }, [noFeed])
 
   return (
     <div className='live-feed-wrap'>
