@@ -38,10 +38,20 @@ export default function ThreatAnalyser(
     }
   }, [currentAnalyzedThreatOrAlert])
 
+
   const confirmThreat = async () => {
     if (currentAlerts.length > 0) {
+
+      let alertKey = 0;
+      for(let i = 0; i < currentAlerts.length; i++){
+        if(currentAnalyzedThreatOrAlert.id == currentAlerts[i].id){
+          alertKey = i;
+        }
+      }
+
+      currentAlerts.splice(alertKey, 1)
       fetch(
-        `${process.env.REACT_APP_REST_BASE_URL}/threat-ack?id=${currentAlerts[0].id}`,
+        `${process.env.REACT_APP_REST_BASE_URL}/threat-ack?id=${currentAnalyzedThreatOrAlert.id}`,
         {
           method: 'POST',
           mode: 'cors',
@@ -55,8 +65,17 @@ export default function ThreatAnalyser(
 
   const ignoreEvent = () => {
     if (currentAlerts.length > 0) {
+
+      let alertKey = 0;
+      for(let i = 0; i < currentAlerts.length; i++){
+        if(currentAnalyzedThreatOrAlert.id == currentAlerts[i].id){
+          alertKey = i;
+        }
+      }
+
+      currentAlerts.splice(alertKey, 1)
       fetch(
-        `${process.env.REACT_APP_REST_BASE_URL}/threat-dis?id=${currentAlerts[0].id}`,
+        `${process.env.REACT_APP_REST_BASE_URL}/threat-dis?id=${currentAnalyzedThreatOrAlert.id}`,
         {
           method: 'POST',
           mode: 'cors',
@@ -97,7 +116,7 @@ export default function ThreatAnalyser(
             textValue='Investigate'
             onClick={() => confirmThreat()}
             color='grey'
-            disabled={isCurrentAnalyzedAThreat}
+            disable={isCurrentAnalyzedAThreat}
           />
         </div>
         <div className='threatAnalyser__buttons'>

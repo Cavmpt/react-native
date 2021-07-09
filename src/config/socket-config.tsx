@@ -86,6 +86,7 @@ export default function socketConfig(props: ISocketConfigProps) {
             await setCurrentAlerts(() => {
               return [...setAlerts()]
             })
+
             function setAlerts() {
               let alertsArray = []
               for (let i = 0; i < UInt8ImageArray.length; i++) {
@@ -138,6 +139,7 @@ export default function socketConfig(props: ISocketConfigProps) {
                  * TESTING IN CREATING new Current Analyzed Threat
                  *
                  */
+
                 for (let i = 0; i < currentAlerts.length; i++) {
                   if (currentAlerts[i].id === id) {
                     currentAlerts.splice(i, 1)
@@ -200,7 +202,6 @@ export default function socketConfig(props: ISocketConfigProps) {
                     await setCurrentAlerts(currentAlerts => {
                       return [...currentAlerts, alert]
                     })
-
                     await setCurrentAnalyzedThreatOrAlert()
                   })
               }
