@@ -4,13 +4,13 @@ import './AlertsBox.scss'
 
 import {Context, ContextType} from '../../../../store/Provider'
 
-export interface IThreatsBoxProps {
+export interface IalertsBoxProps {
   placeholder?: null
 }
 
-export default function AlertsBox(props: IThreatsBoxProps): JSX.Element {
+export default function AlertsBox(props: IalertsBoxProps): JSX.Element {
   const context = useContext<ContextType>(Context)
-  const {currentAlerts} = context
+  const {currentAlerts, setCurrentAnalyzedThreatOrAlert} = context
   return (
     <div className='alertsBox'>
       <tr className='alertsBox__header'>
@@ -18,7 +18,18 @@ export default function AlertsBox(props: IThreatsBoxProps): JSX.Element {
       </tr>
       {currentAlerts.length > 0 ? (
         currentAlerts.map(alerts => (
-          <tr className='alertsBox__row'>
+          <tr
+            className='alertsBox__row'
+            key={alerts.id}
+            onClick={() =>
+              setCurrentAnalyzedThreatOrAlert({
+                id: alerts.id,
+                message: alerts.message,
+                value: alerts.value,
+                type: 'alert',
+              })
+            }
+          >
             <td data-testid='alertBox-td'>
               <i className='fas fa-question-circle' />
               {alerts.message}

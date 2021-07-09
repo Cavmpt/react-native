@@ -1,7 +1,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import React, {useContext, useEffect} from 'react'
+import React, {useContext, useState, useEffect} from 'react'
 import ButtonLarge from '../../../UIcomponents/Buttons/ButtonLarge/ButtonLarge'
 
 import './ThreatAnalyser.scss'
@@ -21,8 +21,22 @@ export default function ThreatAnalyser(
     setCurrentAnalyzedThreatOrAlert,
     currentAnalyzedThreatOrAlert,
   } = context
-
-  useEffect(() => {})
+  const [isCurrentAnalyzedAThreat, setIsCurrentAnalyzedAThreat] =
+    useState<boolean>(false)
+  useEffect(() => {
+    if (
+      currentAnalyzedThreatOrAlert !== {} &&
+      currentAnalyzedThreatOrAlert !== undefined
+    ) {
+      if (currentAnalyzedThreatOrAlert.type === 'threat') {
+        setIsCurrentAnalyzedAThreat(true)
+      } else if (currentAnalyzedThreatOrAlert.type === 'alert') {
+        setIsCurrentAnalyzedAThreat(false)
+      } else {
+        setIsCurrentAnalyzedAThreat(false)
+      }
+    }
+  }, [currentAnalyzedThreatOrAlert])
 
   const confirmThreat = async () => {
     if (currentAlerts.length > 0) {
@@ -56,7 +70,7 @@ export default function ThreatAnalyser(
 
   const threatDisplay = () => {
     if (
-      currentAnalyzedThreatOrAlert !== {} ||
+      currentAnalyzedThreatOrAlert !== {} &&
       currentAnalyzedThreatOrAlert !== undefined
     ) {
       return (
@@ -83,6 +97,7 @@ export default function ThreatAnalyser(
             textValue='Investigate'
             onClick={() => confirmThreat()}
             color='grey'
+            disabled={isCurrentAnalyzedAThreat}
           />
         </div>
         <div className='threatAnalyser__buttons'>
@@ -90,6 +105,7 @@ export default function ThreatAnalyser(
             textValue='Ignore'
             onClick={() => ignoreEvent()}
             color='grey'
+            disable={isCurrentAnalyzedAThreat}
           />
         </div>
       </div>

@@ -4,6 +4,11 @@
   border-collapse: separate;
   border-spacing: 0.4rem 0.5rem;
   overflow-y: scroll;
+  max-height: 20rem;
+
+  &:hover {
+    cursor: pointer;
+  }
 
   &::-webkit-scrollbar-track{
 	-webkit-box-shadow: inset 0 0 6px var(--main-blue-800);
@@ -21,7 +26,7 @@
 	-webkit-box-shadow: inset 0 0 6px var(--main-blue-200);
 	background-color: var(--main-blue-200);
   }
-  
+
   &__header {
     color: #a6873f;
     font-weight: bold;

@@ -10,7 +10,7 @@ export interface IThreatsBoxProps {
 
 export default function ThreatsBox(props: IThreatsBoxProps): JSX.Element {
   const context = useContext<ContextType>(Context)
-  const {currentThreats} = context
+  const {currentThreats, setCurrentAnalyzedThreatOrAlert} = context
 
   return (
     <div className='threatBox'>
@@ -18,8 +18,20 @@ export default function ThreatsBox(props: IThreatsBoxProps): JSX.Element {
         <th>Confirmed threats to be investigated </th>
       </tr>
       {currentThreats.length > 0 ? (
-        currentThreats.map((threats, i) => (
-          <tr className='threatBox__row' data-testid='threatBox-tr'>
+        currentThreats.map(threats => (
+          <tr
+            className='threatBox__row'
+            key={threats.id}
+            onClick={() =>
+              setCurrentAnalyzedThreatOrAlert({
+                id: threats.id,
+                message: threats.message,
+                value: threats.value,
+                type: 'threat',
+              })
+            }
+            data-testid='threatBox-tr'
+          >
             <td>
               <i className='fas fa-exclamation-triangle' />
               {threats.message}

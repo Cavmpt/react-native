@@ -35,7 +35,6 @@ export default function socketConfig(props: ISocketConfigProps) {
       credentials: 'same-origin',
     })
       .then(response => {
-        console.log('response:', response)
         return response.body
       })
       .then(body => {
@@ -78,13 +77,15 @@ export default function socketConfig(props: ISocketConfigProps) {
           .then(response => response.body)
           .then(body => createReadableStream(body))
           .then(stream => createArrayBuffer(stream))
-          .then(result => {
+          .then(async result => {
             // GET THE LIST FROM THE PROTOCOL BUFFER
             const UInt8ImageArray =
               new message.UnknownObjectEntityRepository.deserializeBinary(
                 result,
               ).getEntityList()
-            setCurrentAlerts(() => [...setAlerts()])
+            await setCurrentAlerts(() => {
+              return [...setAlerts()]
+            })
             function setAlerts() {
               let alertsArray = []
               for (let i = 0; i < UInt8ImageArray.length; i++) {
@@ -101,6 +102,14 @@ export default function socketConfig(props: ISocketConfigProps) {
               }
               return alertsArray
             }
+            // ugly code bear with me
+            const firstAlert = () => {
+              if ([...setAlerts()].length > 0) {
+                return [...setAlerts()][0]
+              } else return {}
+            }
+            await setCurrentAnalyzedThreatOrAlert(() => firstAlert())
+            await console.log('firstAlert:', firstAlert())
           })
       })
       .then(() => {
@@ -126,7 +135,7 @@ export default function socketConfig(props: ISocketConfigProps) {
                 /**
                  *
                  *
-                 * TESTING IN CREATING
+                 * TESTING IN CREATING new Current Analyzed Threat
                  *
                  */
                 for (let i = 0; i < currentAlerts.length; i++) {
@@ -167,7 +176,7 @@ export default function socketConfig(props: ISocketConfigProps) {
                   .then(response => response.body)
                   .then(body => createReadableStream(body))
                   .then(stream => createArrayBuffer(stream))
-                  .then(result => {
+                  .then(async result => {
                     // GET THE LIST FROM THE PROTOCOL BUFFER
                     const unknownObjectEntity =
                       new message.UnknownObjectEntity.deserializeBinary(result)
@@ -181,15 +190,18 @@ export default function socketConfig(props: ISocketConfigProps) {
                       message: `alert ${id}`,
                       value: image,
                     }
-
-                    setCurrentAlerts(currentAlerts => {
-                      return [...currentAlerts, alert]
-                    }).then(() => {
+                    const setCurrentAnalyzedThreatOrAlert = () => {
                       if (currentAlerts.length > 0) {
                         const firstAlert = currentAlerts[0]
                         setCurrentAnalyzedThreatOrAlert(() => firstAlert)
                       }
+                    }
+
+                    await setCurrentAlerts(currentAlerts => {
+                      return [...currentAlerts, alert]
                     })
+
+                    await setCurrentAnalyzedThreatOrAlert()
                   })
               }
             } else {
