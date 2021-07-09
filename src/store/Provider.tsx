@@ -15,8 +15,9 @@ export type ContextType = {
     value: string
   }[]
   currentAnalyzedThreatOrAlert:
-    | {message: string; value: string; type: string}
+    | {id: number; message: string; value: string; type: string}
     | undefined
+
   errorMessage: string
 
   setCurrentThreats: (
@@ -28,6 +29,7 @@ export type ContextType = {
   setCurrentAnalyzedThreatOrAlert: (
     item:
       | {
+          id: number
           message: string
           value: string
           type: string
@@ -48,7 +50,7 @@ const Provider = ({children}: any): any => {
   >([])
   const [errorMessage, setErrorMessage] = useState<string>('')
   const [currentAnalyzedThreatOrAlert, setCurrentAnalyzedThreatOrAlert] =
-    useState<{message: string; value: string; type: string}>()
+    useState<{id: number; message: string; value: string; type: string}>()
   return (
     <Context.Provider
       value={{

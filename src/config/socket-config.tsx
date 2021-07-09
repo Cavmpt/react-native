@@ -123,13 +123,35 @@ export default function socketConfig(props: ISocketConfigProps) {
               let action = deserializeBinary.getAction()
               let id = deserializeBinary.getId()
               if (action === message.UnknownObjectNotification.Action.REMOVED) {
-                //shift the actual id
+                /**
+                 *
+                 *
+                 * TESTING IN CREATING
+                 *
+                 */
                 for (let i = 0; i < currentAlerts.length; i++) {
                   if (currentAlerts[i].id === id) {
                     currentAlerts.splice(i, 1)
                     setCurrentAlerts(currentAlerts => {
                       return [...currentAlerts]
                     })
+                    if (
+                      currentAlerts.length > 0 &&
+                      currentAnalyzedThreatOrAlert !== undefined &&
+                      currentAnalyzedThreatOrAlert.type === 'alert' &&
+                      currentAnalyzedThreatOrAlert.id === id
+                    ) {
+                      setCurrentAnalyzedThreatOrAlert(currentAlerts => {
+                        return {
+                          id: currentAlerts.id,
+                          message: currentAlerts.message,
+                          value: currentAlerts.value,
+                          type: 'alert',
+                        }
+                      })
+                    } else if (currentAlerts.length < 0) {
+                      setCurrentAnalyzedThreatOrAlert()
+                    }
                   }
                 }
               } else if (
@@ -162,6 +184,11 @@ export default function socketConfig(props: ISocketConfigProps) {
 
                     setCurrentAlerts(currentAlerts => {
                       return [...currentAlerts, alert]
+                    }).then(() => {
+                      if (currentAlerts.length > 0) {
+                        const firstAlert = currentAlerts[0]
+                        setCurrentAnalyzedThreatOrAlert(() => firstAlert)
+                      }
                     })
                   })
               }
@@ -177,10 +204,7 @@ export default function socketConfig(props: ISocketConfigProps) {
               let action = deserializeBinary.getAction()
               let id = deserializeBinary.getId()
               if (action === message.UnknownObjectNotification.Action.REMOVED) {
-                setCurrentThreats(currentThreat => {
-                  let splicedcurrentThreat = currentThreat.splice(0, 1)
-                  return [...splicedcurrentThreat]
-                })
+                v
               } else if (
                 action === message.UnknownObjectNotification.Action.ADDED
               ) {

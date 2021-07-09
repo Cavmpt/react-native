@@ -1,7 +1,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import React, {useContext} from 'react'
+import React, {useContext, useEffect} from 'react'
 import ButtonLarge from '../../../UIcomponents/Buttons/ButtonLarge/ButtonLarge'
 
 import './ThreatAnalyser.scss'
@@ -16,7 +16,13 @@ export default function ThreatAnalyser(
   props: IThreatAnalyserProps,
 ): JSX.Element {
   const context = useContext<ContextType>(Context)
-  const {currentAlerts} = context
+  const {
+    currentAlerts,
+    setCurrentAnalyzedThreatOrAlert,
+    currentAnalyzedThreatOrAlert,
+  } = context
+
+  useEffect(() => {})
 
   const confirmThreat = async () => {
     if (currentAlerts.length > 0) {
@@ -49,16 +55,22 @@ export default function ThreatAnalyser(
   }
 
   const threatDisplay = () => {
-    if (currentAlerts.length > 0) {
+    if (
+      currentAnalyzedThreatOrAlert !== {} ||
+      currentAnalyzedThreatOrAlert !== undefined
+    ) {
       return (
         <img
-          src={`data:image/png;base64, ${currentAlerts[0].value} `}
+          src={`data:image/png;base64, ${currentAnalyzedThreatOrAlert.value} `}
           className='threat-image'
           alt='alert'
         />
       )
-    } else {
-      return <div className='empty-threat'>Currently no alerts</div>
+    } else if (
+      currentAnalyzedThreatOrAlert === {} ||
+      currentAnalyzedThreatOrAlert === undefined
+    ) {
+      return <div className='empty-threat'>No Images</div>
     }
   }
 
@@ -74,7 +86,11 @@ export default function ThreatAnalyser(
           />
         </div>
         <div className='threatAnalyser__buttons'>
-          <ButtonLarge textValue='Ignore' onClick={() => ignoreEvent()} />
+          <ButtonLarge
+            textValue='Ignore'
+            onClick={() => ignoreEvent()}
+            color='grey'
+          />
         </div>
       </div>
     </div>
