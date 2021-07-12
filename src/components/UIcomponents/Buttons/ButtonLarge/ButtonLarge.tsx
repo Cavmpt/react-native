@@ -24,8 +24,9 @@ export default function ButtonLarge(props: IButtonLargeProps): JSX.Element {
       onClick={() => handleClick()}
       type='button'
       disabled={disable}
+      data-testid='button-large'
     >
-      <div data-testid='button-large'>{textValue}</div>
+      <div>{textValue}</div>
     </button>
   )
 }
