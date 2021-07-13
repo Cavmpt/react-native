@@ -3,7 +3,6 @@
 import React from 'react'
 import {getByTestId, render, screen} from '@testing-library/react'
 import userEvent from "@testing-library/user-event";
-import setCurrentAnalyzedThreatOrAlert  from '../ThreatAnalyser/ThreatAnalyser'
 import Controls from '../Controls'
 import {Context} from '../../../../store/Provider'
 
@@ -21,36 +20,11 @@ describe('Alert Box behavior works as expected', () => {
   ]
   
   it('displays the threats correctly', async () => {
-
     render(
       <Context.Provider value={{currentThreats, currentAlerts}}>
         <Controls />
       </Context.Provider>,
     )
-
     expect(screen.getByTestId('threat-Box')).toBeTruthy()
-  })
-
-  it('button is enabled', async () => {
-
-    const { getAllByTestId, getByText } = render(
-      <Context.Provider value={{currentThreats, currentAlerts}}>
-        <Controls />
-      </Context.Provider>,
-    )
-
-    expect(getAllByTestId('button-large')[0]).not.toBeDisabled();
-  })
-
-  it('threat is selected', async () => {
-
-    const { getAllByTestId } = render(
-      <Context.Provider value={{currentThreats, currentAlerts }}>
-        <Controls />
-      </Context.Provider>,
-    )
-
-    userEvent.click(screen.getAllByTestId('threatBox-tr')[0])
-    expect(getAllByTestId('button-large')[0]).toBeDisabled();
   })
 })
