@@ -125,7 +125,7 @@ export default function socketConfig(props: ISocketConfigProps) {
         let stompClient = new Client(stompConfig)
 
         stompClient.onConnect = (frame: any) => {
-          stompClient.subscribe('/topic/alert', function (response) {
+          stompClient.subscribe('/topic/alert', async function (response) {
             const body = response._binaryBody
             if (body) {
               let deserializeBinary =
@@ -134,16 +134,12 @@ export default function socketConfig(props: ISocketConfigProps) {
               let id = deserializeBinary.getId()
               if (action === message.UnknownObjectNotification.Action.REMOVED) {
                 /**
-                 *
-                 *
                  * TESTING IN CREATING new Current Analyzed Threat
-                 *
                  */
-
                 for (let i = 0; i < currentAlerts.length; i++) {
                   if (currentAlerts[i].id === id) {
-                    currentAlerts.splice(i, 1)
-                    setCurrentAlerts(currentAlerts => {
+                    await currentAlerts.splice(i, 1)
+                    await setCurrentAlerts(currentAlerts => {
                       return [...currentAlerts]
                     })
                     if (
@@ -217,7 +213,6 @@ export default function socketConfig(props: ISocketConfigProps) {
               let action = deserializeBinary.getAction()
               let id = deserializeBinary.getId()
               if (action === message.UnknownObjectNotification.Action.REMOVED) {
-                v
               } else if (
                 action === message.UnknownObjectNotification.Action.ADDED
               ) {
@@ -229,10 +224,7 @@ export default function socketConfig(props: ISocketConfigProps) {
                   // credentials: 'same-origin',
                 })
                   .then(response => response.body)
-                  .then(body => {
-                    console.log('body___:', body)
-                    return createReadableStream(body)
-                  })
+                  .then(body => createReadableStream(body))
                   .then(stream => createArrayBuffer(stream))
                   .then(result => {
                     const unknownObjectEntity =
@@ -247,7 +239,6 @@ export default function socketConfig(props: ISocketConfigProps) {
                       message: `threat ${id}`,
                       value: image,
                     }
-
                     setCurrentThreats(lastCurrentThreat => [
                       ...lastCurrentThreat,
                       threat,

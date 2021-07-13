@@ -19,10 +19,14 @@ export default function ThreatAnalyser(
   const {
     currentAlerts,
     setCurrentAnalyzedThreatOrAlert,
+    setCurrentAlerts,
+    setCurrentThreats,
     currentAnalyzedThreatOrAlert,
   } = context
   const [isCurrentAnalyzedAThreat, setIsCurrentAnalyzedAThreat] =
     useState<boolean>(false)
+  const [domRefresh, setDomRefresh] = useState<boolean>(false)
+
   useEffect(() => {
     if (
       currentAnalyzedThreatOrAlert !== {} &&
@@ -38,48 +42,75 @@ export default function ThreatAnalyser(
     }
   }, [currentAnalyzedThreatOrAlert])
 
-
   const confirmThreat = async () => {
     if (currentAlerts.length > 0) {
-
-      let alertKey = 0;
-      for(let i = 0; i < currentAlerts.length; i++){
-        if(currentAnalyzedThreatOrAlert.id == currentAlerts[i].id){
-          alertKey = i;
-        }
-      }
-      setCurrentAnalyzedThreatOrAlert(currentAlerts.splice(alertKey, 1))
       fetch(
         `${process.env.REACT_APP_REST_BASE_URL}/threat-ack?id=${currentAnalyzedThreatOrAlert.id}`,
         {
           method: 'POST',
           mode: 'cors',
           cache: 'no-cache',
-        },
-      ) // THIS WILL TRIGGER WEBSOCKETS
+        }, // THIS WILL TRIGGER WEBSOCKETS
+      )
+      let keyToBeSpliced = findKeyToBeSpliced()-1
+
+      function findKeyToBeSpliced() {
+        for(let i = 0; i < currentAlerts.length; i++) {
+          if(currentAnalyzedThreatOrAlert.id === currentAlerts[i].id) {
+            return i
+          }
+        }
+      }
+      await currentAlerts.splice(keyToBeSpliced,1)
+      await setCurrentAlerts(currentAlerts)
+
+      if(currentAlerts.length > 0) {
+        setCurrentAnalyzedThreatOrAlert({
+            id: currentAlerts[0].id,
+            message: currentAlerts[0].message,
+            value: currentAlerts[0].value,
+            type: 'alert',
+        })
+      } else {
+        setCurrentAnalyzedThreatOrAlert()
+      }
     } else {
       return
     }
   }
 
-  const ignoreEvent = () => {
+  const ignoreEvent = async () => {
     if (currentAlerts.length > 0) {
-
-      let alertKey = 0;
-      for(let i = 0; i < currentAlerts.length; i++){
-        if(currentAnalyzedThreatOrAlert.id == currentAlerts[i].id){
-          alertKey = i;
-        }
-      }
-      setCurrentAnalyzedThreatOrAlert(currentAlerts.splice(alertKey, 1))
       fetch(
         `${process.env.REACT_APP_REST_BASE_URL}/threat-dis?id=${currentAnalyzedThreatOrAlert.id}`,
         {
           method: 'POST',
           mode: 'cors',
           cache: 'no-cache',
-        },
-      ) // THIS WILL TRIGGER WEBSOCKETS
+        }, // THIS WILL TRIGGER WEBSOCKETS
+      )
+      let keyToBeSpliced = findKeyToBeSpliced()-1
+
+      function findKeyToBeSpliced() {
+        for(let i = 0; i < currentAlerts.length; i++) {
+          if(currentAnalyzedThreatOrAlert.id === currentAlerts[i].id) {
+            return i
+          }
+        }
+      }
+      await currentAlerts.splice(keyToBeSpliced,1)
+      await setCurrentAlerts(currentAlerts)
+
+      if(currentAlerts.length > 0) {
+        setCurrentAnalyzedThreatOrAlert({
+            id: currentAlerts[0].id,
+            message: currentAlerts[0].message,
+            value: currentAlerts[0].value,
+            type: 'alert',
+        })
+      } else {
+        setCurrentAnalyzedThreatOrAlert()
+      }
     } else {
       return
     }
