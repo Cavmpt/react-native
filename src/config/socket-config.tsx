@@ -133,34 +133,34 @@ export default function socketConfig(props: ISocketConfigProps) {
               let action = deserializeBinary.getAction()
               let id = deserializeBinary.getId()
               if (action === message.UnknownObjectNotification.Action.REMOVED) {
-                /**
+                /*
                  * TESTING IN CREATING new Current Analyzed Threat
                  */
-                for (let i = 0; i < currentAlerts.length; i++) {
-                  if (currentAlerts[i].id === id) {
-                    await currentAlerts.splice(i, 1)
-                    await setCurrentAlerts(currentAlerts => {
-                      return [...currentAlerts]
-                    })
-                    if (
-                      currentAlerts.length > 0 &&
-                      currentAnalyzedThreatOrAlert !== undefined &&
-                      currentAnalyzedThreatOrAlert.type === 'alert' &&
-                      currentAnalyzedThreatOrAlert.id === id
-                    ) {
-                      setCurrentAnalyzedThreatOrAlert(currentAlerts => {
-                        return {
-                          id: currentAlerts.id,
-                          message: currentAlerts.message,
-                          value: currentAlerts.value,
-                          type: 'alert',
-                        }
-                      })
-                    } else if (currentAlerts.length < 0) {
-                      setCurrentAnalyzedThreatOrAlert()
-                    }
-                  }
-                }
+                // for (let i = 0; i < currentAlerts.length; i++) {
+                //   if (currentAlerts[i].id === id) {
+                //     await currentAlerts.splice(i, 1)
+                //     await setCurrentAlerts(currentAlerts => {
+                //       return [...currentAlerts]
+                //     })
+                //     if (
+                //       currentAlerts.length > 0 &&
+                //       currentAnalyzedThreatOrAlert !== undefined &&
+                //       currentAnalyzedThreatOrAlert.type === 'alert' &&
+                //       currentAnalyzedThreatOrAlert.id === id
+                //     ) {
+                //       setCurrentAnalyzedThreatOrAlert(currentAlerts => {
+                //         return {
+                //           id: currentAlerts.id,
+                //           message: currentAlerts.message,
+                //           value: currentAlerts.value,
+                //           type: 'alert',
+                //         }
+                //       })
+                //     } else if (currentAlerts.length < 0) {
+                //       setCurrentAnalyzedThreatOrAlert()
+                //     }
+                //   }
+                // }
               } else if (
                 action === message.UnknownObjectNotification.Action.ADDED
               ) {
