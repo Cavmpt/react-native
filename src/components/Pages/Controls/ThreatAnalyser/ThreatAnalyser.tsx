@@ -48,8 +48,7 @@ export default function ThreatAnalyser(
           alertKey = i;
         }
       }
-
-      currentAlerts.splice(alertKey, 1)
+      setCurrentAnalyzedThreatOrAlert(currentAlerts.splice(alertKey, 1))
       fetch(
         `${process.env.REACT_APP_REST_BASE_URL}/threat-ack?id=${currentAnalyzedThreatOrAlert.id}`,
         {
@@ -72,8 +71,7 @@ export default function ThreatAnalyser(
           alertKey = i;
         }
       }
-
-      currentAlerts.splice(alertKey, 1)
+      setCurrentAnalyzedThreatOrAlert(currentAlerts.splice(alertKey, 1))
       fetch(
         `${process.env.REACT_APP_REST_BASE_URL}/threat-dis?id=${currentAnalyzedThreatOrAlert.id}`,
         {
