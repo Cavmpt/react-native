@@ -61,7 +61,7 @@ export default function ThreatAnalyser(
           }
         }
       }
-      await currentAlerts.splice(keyToBeSpliced,1)
+      await currentAlerts.splice(keyToBeSpliced-1,1)
       await setCurrentAlerts(currentAlerts)
 
       if(currentAlerts.length > 0) {
@@ -89,16 +89,17 @@ export default function ThreatAnalyser(
           cache: 'no-cache',
         }, // THIS WILL TRIGGER WEBSOCKETS
       )
-      let keyToBeSpliced = findKeyToBeSpliced()-1
-
+      let keyToBeSpliced = findKeyToBeSpliced()
+      console.log('keyToBeSpliced:',keyToBeSpliced)
       function findKeyToBeSpliced() {
         for(let i = 0; i < currentAlerts.length; i++) {
           if(currentAnalyzedThreatOrAlert.id === currentAlerts[i].id) {
+            console.log('i:',i)
             return i
           }
         }
       }
-      await currentAlerts.splice(keyToBeSpliced,1)
+      await currentAlerts.splice(keyToBeSpliced-1,1)
       await setCurrentAlerts(currentAlerts)
 
       if(currentAlerts.length > 0) {
