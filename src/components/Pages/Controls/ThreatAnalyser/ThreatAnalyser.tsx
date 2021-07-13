@@ -43,7 +43,7 @@ export default function ThreatAnalyser(
   }, [currentAnalyzedThreatOrAlert])
 
   const confirmThreat = async () => {
-    if (currentAlerts.length > 0) {
+    if (currentAlerts.length > 0 && currentAnalyzedThreatOrAlert.id !== undefined) {
       fetch(
         `${process.env.REACT_APP_REST_BASE_URL}/threat-ack?id=${currentAnalyzedThreatOrAlert.id}`,
         {
@@ -52,16 +52,18 @@ export default function ThreatAnalyser(
           cache: 'no-cache',
         }, // THIS WILL TRIGGER WEBSOCKETS
       )
-      let keyToBeSpliced = findKeyToBeSpliced()-1
+      let keyToBeSpliced = findKeyToBeSpliced()
 
       function findKeyToBeSpliced() {
         for(let i = 0; i < currentAlerts.length; i++) {
           if(currentAnalyzedThreatOrAlert.id === currentAlerts[i].id) {
+            console.log('____i:___', i)
             return i
           }
         }
       }
-      await currentAlerts.splice(keyToBeSpliced-1,1)
+      await console.log('currentAlerts:', currentAlerts)
+      await currentAlerts.splice(keyToBeSpliced,1)
       await setCurrentAlerts(currentAlerts)
 
       if(currentAlerts.length > 0) {
@@ -80,7 +82,7 @@ export default function ThreatAnalyser(
   }
 
   const ignoreEvent = async () => {
-    if (currentAlerts.length > 0) {
+    if (currentAlerts.length > 0 && currentAnalyzedThreatOrAlert.id !== undefined) {
       fetch(
         `${process.env.REACT_APP_REST_BASE_URL}/threat-dis?id=${currentAnalyzedThreatOrAlert.id}`,
         {
@@ -94,12 +96,11 @@ export default function ThreatAnalyser(
       function findKeyToBeSpliced() {
         for(let i = 0; i < currentAlerts.length; i++) {
           if(currentAnalyzedThreatOrAlert.id === currentAlerts[i].id) {
-            console.log('i:',i)
             return i
           }
         }
       }
-      await currentAlerts.splice(keyToBeSpliced-1,1)
+      await currentAlerts.splice(keyToBeSpliced,1)
       await setCurrentAlerts(currentAlerts)
 
       if(currentAlerts.length > 0) {
