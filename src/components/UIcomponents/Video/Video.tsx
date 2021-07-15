@@ -5,7 +5,6 @@ import videojs from 'video.js'
 
 export interface IVideojsProps {
   options: any
-  playing: any
 }
 
 export const VideoJS = (props: IVideojsProps) => {
@@ -25,7 +24,7 @@ export const VideoJS = (props: IVideojsProps) => {
     let player: any
     if (videoElement) {
       player = videojs(videoElement, options, () => {
-        props.playing()
+        // props.playing()
       })
     }
     return () => {

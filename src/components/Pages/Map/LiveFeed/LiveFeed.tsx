@@ -67,7 +67,7 @@ export default function LiveFeed(props: ILiveFeedProps): JSX.Element {
         />
       )} */}
       <VideoJS
-        playing={() => setLoading({state: true, style: 'block'})}
+        // playing={() => setLoading({state: true, style: 'block'})}
         options={videoJsOptions}
       />
     </div>
