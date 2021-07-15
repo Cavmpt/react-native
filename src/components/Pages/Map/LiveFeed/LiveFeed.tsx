@@ -28,8 +28,8 @@ export default function LiveFeed(props: ILiveFeedProps): JSX.Element {
 
   const videoJsOptions = {
     // lookup the options in the docs for more options
-    autoplay: 'play',
-    controls: false,
+    autoplay: true,
+    controls: true,
     responsive: true,
     fluid: true,
     sources: [
