@@ -1,6 +1,11 @@
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable jsx-a11y/media-has-caption */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react'
+import videojs from 'video.js'
+import 'video.js/dist/video-js.css'
 
+import {VideoJS} from '../../../UIcomponents/Video/Video'
 import Skeleton from '../../../UIcomponents/Skeleton/Skeleton'
 import StaticSkeleton from '../../../UIcomponents/Skeleton/StaticSkeleton/StaticSkeleton'
 
@@ -23,6 +28,20 @@ export default function LiveFeed(props: ILiveFeedProps): JSX.Element {
     minWidth: '0px',
   }
 
+  const videoJsOptions = {
+    // lookup the options in the docs for more options
+    autoplay: true,
+    controls: true,
+    responsive: true,
+    fluid: true,
+    sources: [
+      {
+        src: 'http://localhost:8000/home/index.m3u8',
+        type: 'application/x-mpegURL',
+      },
+    ],
+  }
+
   const setImage = () => {
     setLoading({state: true, style: 'block'})
   }
@@ -34,7 +53,6 @@ export default function LiveFeed(props: ILiveFeedProps): JSX.Element {
 
     return () => window.clearTimeout(loadingTimer)
   }, [noFeed])
-
   return (
     <div className='live-feed-wrap'>
       {!loading.state && noFeed && (
@@ -45,7 +63,6 @@ export default function LiveFeed(props: ILiveFeedProps): JSX.Element {
           maxHeight={dimensions.maxHeight}
         />
       )}
-
       {!loading.state && !noFeed && (
         <StaticSkeleton
           width={dimensions.width}
@@ -55,23 +72,7 @@ export default function LiveFeed(props: ILiveFeedProps): JSX.Element {
           message='Live Feed Unavailable'
         />
       )}
-
-      <img
-        className='live-feed'
-        alt='liveFeed'
-        data-testid='liveFeed'
-        style={{
-          display: loading.style,
-          width: dimensions.width,
-          height: dimensions.height,
-          maxHeight: dimensions.maxHeight,
-          maxWidth: dimensions.maxWidth,
-          minHeight: dimensions.minHeight,
-          minWidth: dimensions.minWidth,
-        }}
-        src={process.env.REACT_APP_LIVE_FEED_URL}
-        onLoad={() => setImage()}
-      />
+      <VideoJS options={videoJsOptions} />
     </div>
   )
 }
