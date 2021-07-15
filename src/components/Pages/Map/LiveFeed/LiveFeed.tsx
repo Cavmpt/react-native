@@ -2,8 +2,6 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react'
-import videojs from 'video.js'
-import 'video.js/dist/video-js.css'
 
 import {VideoJS} from '../../../UIcomponents/Video/Video'
 import Skeleton from '../../../UIcomponents/Skeleton/Skeleton'
@@ -30,8 +28,8 @@ export default function LiveFeed(props: ILiveFeedProps): JSX.Element {
 
   const videoJsOptions = {
     // lookup the options in the docs for more options
-    autoplay: true,
-    controls: true,
+    autoplay: 'play',
+    controls: false,
     responsive: true,
     fluid: true,
     sources: [
@@ -40,10 +38,6 @@ export default function LiveFeed(props: ILiveFeedProps): JSX.Element {
         type: 'application/x-mpegURL',
       },
     ],
-  }
-
-  const setImage = () => {
-    setLoading({state: true, style: 'block'})
   }
 
   useEffect(() => {
@@ -55,7 +49,7 @@ export default function LiveFeed(props: ILiveFeedProps): JSX.Element {
   }, [noFeed])
   return (
     <div className='live-feed-wrap'>
-      {!loading.state && noFeed && (
+      {/* {!loading.state && noFeed && (
         <Skeleton
           width={dimensions.width}
           height={dimensions.height}
@@ -71,8 +65,11 @@ export default function LiveFeed(props: ILiveFeedProps): JSX.Element {
           maxHeight={dimensions.maxHeight}
           message='Live Feed Unavailable'
         />
-      )}
-      <VideoJS options={videoJsOptions} />
+      )} */}
+      <VideoJS
+        playing={() => setLoading({state: true, style: 'block'})}
+        options={videoJsOptions}
+      />
     </div>
   )
 }
