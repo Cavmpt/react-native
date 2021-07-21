@@ -37,7 +37,7 @@ export default function Gmap(props: IGmapProps): JSX.Element {
   return (
     <>
       {isLoaded ? (
-        <div className='map-container' data-testid='GMAP'>
+        <div className='map-container'>
           <div className='map-container__google-map' data-test-i>
             <span className='map-container__title'>Location map</span>
             <GoogleMap
