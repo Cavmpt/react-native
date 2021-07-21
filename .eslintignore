@@ -15,3 +15,5 @@ jest.config.js
 !**/.eslintrc.js*
 eslintrc.js
 rtspServer.js
+src/helpers/uav-core_pb.js
+src/helpers/uav-monitor_pb.js
