@@ -5,7 +5,7 @@ interface Props {
   
 }
 
-const Login = (props: Props) => {
+const Signup = (props: Props) => {
   const [username, setUsername] = React.useState('');
   const [password, setPassword] = React.useState('');
   
@@ -39,4 +39,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Login
+export default Signup
