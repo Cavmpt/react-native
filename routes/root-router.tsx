@@ -4,10 +4,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Login from '../screens/Login';
 import Signup from '../screens/Signup'
-// import EmployeeNavigator from './EmployeeNavigator/EmployeeNavigator';
-// import SuperintendentNavigator from './SuperintendentNavigator';
-
-import { navigationRef } from './navigationService';
 
 export default function Navigation(){
     return (

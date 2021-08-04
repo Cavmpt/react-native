@@ -11,7 +11,7 @@ const Login = (props: Props) => {
   
   return (
     <SafeAreaView>
-      <TextInput
+      {/* <TextInput
         style={styles.input}
         onChangeText={onChangeText}
         value={text}
@@ -25,7 +25,7 @@ const Login = (props: Props) => {
         style={styles.input}
         onChangeText={onChangeText}
         value={text}
-      />
+      /> */}
     </SafeAreaView>
   )
 }
