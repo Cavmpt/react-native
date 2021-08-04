@@ -1,50 +1,39 @@
-import { createSlice, nanoid, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import type { RootState } from '../../app/store'
 
-export const fetchTodos = createAsyncThunk('todos/fetchTodos', async () => {
-  const response = await axios.get(
-    'https://eager-supreme-appalachiosaurus.glitch.me/todos'
-  );
-  return response.data.todoList;
-});
+// Define a type for the slice state
+interface userState {
+  username: string
+  password: string
+}
 
-export const todoSlice = createSlice({
-  name: 'todos',
-  initialState: {
-    todoList: [],
-    status: 'idle',
-    error: null,
-  },
+// Define the initial state using that type
+const initialState: userState = {
+  username: '',
+  password: ''
+}
+
+export const userSlice = createSlice({
+  name: 'user',
+  // `createSlice` will infer the state type from the `initialState` argument
+  initialState,
   reducers: {
-    addTodo: {
-      reducer: (state, action) => {
-        state.todoList.push(action.payload);
-      },
-      prepare(value) {
-        return {
-          payload: {
-            key: nanoid(),
-            value: value,
-          },
-        };
-      },
+    setUsername: (state, action: PayloadAction<string>) => {
+      state.username = action.payload
     },
+    setPassword: (state, action: PayloadAction<string>) => {
+      state.password = action.payload
+    }
   },
-  extraReducers: {
-    [fetchTodos.pending]: (state, action) => {
-      state.status = 'loading';
-    },
-    [fetchTodos.fulfilled]: (state, action) => {
-      state.status = 'succeeded';
-      state.todoList.push(...action.payload);
-    },
-    [fetchTodos.rejected]: (state, action) => {
-      state.status = 'failed';
-      state.error = action.error.message;
-    },
-  },
-});
+})
 
-export const { addTodo } = todoSlice.actions;
+export const { setUsername, setPassword } = userSlice.actions
 
-export default todoSlice.reducer;
+// Other code such as selectors can use the imported `RootState` type
+
+const selectUsername = (state: RootState) => state.user.username
+const selectPassword = (state: RootState) => state.user.password
+
+export {selectUsername, selectPassword}
+
+export default userSlice.reducer
