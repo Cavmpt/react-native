@@ -7,7 +7,6 @@ module.exports = {
     'eslint:recommended',
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
-    'prettier',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -17,14 +16,19 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: ['react', '@typescript-eslint'],
+  plugins: ['react', '@typescript-eslint', 'prettier',],
   rules: {
     indent: ['error', 4],
     'linebreak-style': ['error', 'unix'],
     quotes: ['error', 'single'],
     semi: ['error', 'never'],
     'prettier/prettier': [
-      'error'
+      'error',
+      {}, // blank on purpose in order to remove configurations
+      {
+        usePrettierrc: true,
+        withNodeModules: false,
+      },
     ],
   },
 }

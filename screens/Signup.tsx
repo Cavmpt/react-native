@@ -1,14 +1,11 @@
 import React, {useState} from 'react'
-import { SafeAreaView, StyleSheet, TextInput, View, Text } from "react-native";
+import {SafeAreaView, StyleSheet, TextInput, View, Text} from 'react-native'
 
-interface Props {
-
-}
+interface Props {}
 
 const Signup = (props: Props) => {
-  const [username, setUsername] = useState('');
-
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
 
   return (
     <SafeAreaView>
@@ -39,6 +36,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
   },
-});
+})
 
 export default Signup
