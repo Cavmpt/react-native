@@ -1,16 +1,17 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { SafeAreaView, StyleSheet, TextInput, View, Text } from "react-native";
 
 interface Props {
-  
+
 }
 
 const Login = (props: Props) => {
-  const [username, setUsername] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
   return (
-    <SafeAreaView>
+
+    <SafeAreaView style={styles.container}>
       {/* <TextInput
         style={styles.input}
         onChangeText={onChangeText}
@@ -31,12 +32,9 @@ const Login = (props: Props) => {
 }
 
 const styles = StyleSheet.create({
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-  },
+  container : {
+    flex: 1
+  }
 });
 
 export default Login

@@ -1,20 +1,22 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { SafeAreaView, StyleSheet, TextInput, View, Text } from "react-native";
 
 interface Props {
-  
+
 }
 
 const Signup = (props: Props) => {
-  const [username, setUsername] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  
+  const [username, setUsername] = useState('');
+
+  const [password, setPassword] = useState('');
+
   return (
     <SafeAreaView>
       {/* <TextInput
         style={styles.input}
         onChangeText={onChangeText}
         value={text}
+
       />
       <TextInput
         style={styles.input}

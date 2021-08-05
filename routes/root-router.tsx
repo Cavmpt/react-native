@@ -6,20 +6,20 @@ import Login from '../screens/Login';
 import Signup from '../screens/Signup'
 
 export default function Navigation(){
-    return (
-        <NavigationContainer>
-            <RootNavigator/>
-        </NavigationContainer>
-    )
+  return (
+    <NavigationContainer>
+        <RootNavigator/>
+    </NavigationContainer>
+  )
 }
 
 const Stack = createNativeStackNavigator();
 
 function RootNavigator(){
-    return(
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="Login" component={Login}/>
-            <Stack.Screen name="Signup" component={Signup}/>
-        </Stack.Navigator>
-    )
+  return(
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Login" component={Login}/>
+        <Stack.Screen name="Signup" component={Signup}/>
+    </Stack.Navigator>
+  )
 }
