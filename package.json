@@ -11,9 +11,12 @@
     "lint:format": "prettier --check ."
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "~1.15.0",
+    "@react-native-community/netinfo": "6.0.0",
     "@react-navigation/native": "^6.0.1",
     "@react-navigation/native-stack": "^6.0.1",
     "@reduxjs/toolkit": "^1.6.1",
+    "aws-amplify": "^4.2.2",
     "eslint-plugin-prettier": "^3.4.0",
     "expo": "~42.0.1",
     "expo-status-bar": "~1.0.4",
