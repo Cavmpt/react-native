@@ -15,6 +15,8 @@ const Login = (props: Props) => {
     <SafeAreaView style={styles.container}>
       <Text style={styles.xguard_title}>Xguard</Text>
       <Text style={styles.xguard_subtitle}>Robotic</Text>
+
+      <Text style={styles.username_text}>username</Text>
       <TextInput
         style={styles.input_username}
         onChangeText={value => {
@@ -22,6 +24,8 @@ const Login = (props: Props) => {
         }}
         value={username}
       />
+
+      <Text style={styles.password_text}>password</Text>
       <TextInput
         style={styles.input_password}
         onChangeText={value => {
@@ -61,6 +65,13 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
   },
+  username_text: {
+
+  },
+  password_text: {
+    
+  }
+
 })
 
 export default Login
