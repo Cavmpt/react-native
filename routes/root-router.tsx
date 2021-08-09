@@ -1,7 +1,7 @@
 import React from 'react'
 import {NavigationContainer} from '@react-navigation/native'
 import {createNativeStackNavigator} from '@react-navigation/native-stack'
-import { createBottomTabsNavigator } from '@react-navigation/bottom-Tabss';
+import { createBottomTabsNavigator } from '@react-navigation/bottom-Tabs';
 import Login from '../screens/Login'
 import Signup from '../screens/Signup'
 import Main from '../screens/Alerts'
