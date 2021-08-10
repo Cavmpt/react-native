@@ -6,10 +6,14 @@ import Navigation from './routes/root-router'
 import {store} from './store/root-reducer'
 import {Provider} from 'react-redux'
 
+import SocketConfig from './config/socket-config'
+
 export default function App() {
   return (
   <Provider store={store}>
-    <Navigation/>
+    <SocketConfig>
+      <Navigation/>
+    </SocketConfig>
   </Provider>
   );
 }

@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import type { RootState } from '../../app/store'
+import {fetchThreats} from '../../helpers/fetch-call-repo'
+// import use stompsjs to fetch the info
 
 // Define a type for the slice state
 interface IAlertsSlice {
@@ -8,7 +9,8 @@ interface IAlertsSlice {
     message: string
     value: string
   } | undefined
-    currentAlerts: {
+
+  currentAlerts: {
     id: number
     message: string
     value: string
@@ -18,31 +20,31 @@ interface IAlertsSlice {
 
 // Define the initial state using that type
 const initialState: IAlertsSlice = {
-  currentThreats: [],
-  password: []
+  currentThreats: undefined,
+  currentAlerts: undefined,
+  currentAnalyzedThreatOrAlert: undefined,
 }
 
 export const userSlice = createSlice({
-  name: 'Alerts',
+  name: 'Threats',
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    fetchAlerts: (state, action: PayloadAction<string>) => {
-      state.username = action.payload
+    fetchAllThreats: (state) => {
+      state.currentAlerts = fetchThreats()
     },
-    setPassword: (state, action: PayloadAction<string>) => {
-      state.password = action.payload
+    fetchSingleThreat: (state) => {
+      state.currentAlerts = fetchSingleThreats()
     }
   },
 })
 
-export const { setUsername, setPassword } = userSlice.actions
+export const { fetchThreats } = userSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
 
-const selectUsername = (state: RootState) => state.user.username
-const selectPassword = (state: RootState) => state.user.password
+const selectUsername = (state: RootState) => state.user.currentThreats
 
 export {selectUsername, selectPassword}
 
-export default userSlice.reducerk
+export default userSlice.reducer
